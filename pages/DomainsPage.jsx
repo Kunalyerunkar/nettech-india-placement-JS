@@ -2,12 +2,13 @@ import React, { useState, useEffect } from 'react';
 import { Search, BookOpen, Briefcase, CheckCircle, ArrowRight, XCircle, Code2 } from 'lucide-react';
 import { JOB_DOMAINS } from '../constants';
 import Modal from '../components/Modal';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const DomainsPage = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedDomain, setSelectedDomain] = useState(null);
   const [selectedRole, setSelectedRole] = useState(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -60,6 +61,17 @@ const DomainsPage = () => {
 
   const closeRoleModal = () => {
     setSelectedRole(null);
+  };
+
+  const handleApply = () => {
+    if (selectedRole && selectedDomain) {
+      navigate('/register', {
+        state: {
+          domain: selectedDomain.title,
+          skills: selectedRole.skills
+        }
+      });
+    }
   };
 
   const getRelatedRoles = (currentRole, allDomains) => {
@@ -300,14 +312,12 @@ const DomainsPage = () => {
             </div>
 
             <div className="mt-8 pt-6 border-t border-gray-200 dark:border-gray-700 text-center">
-              <a
-                href="https://forms.gle/Qn5vCbw1FsaLizeeA"
-                target="_blank"
-                rel="noopener noreferrer"
+              <button
+                onClick={handleApply}
                 className="inline-block w-full sm:w-auto bg-blue-600 text-white font-bold py-3 px-8 rounded-lg hover:bg-blue-700 transition-colors shadow-lg hover:shadow-xl hover:scale-105 transform duration-300"
               >
                 Apply for this Role
-              </a>
+              </button>
             </div>
           </div>
         )}

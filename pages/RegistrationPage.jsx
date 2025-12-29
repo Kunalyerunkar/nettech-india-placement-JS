@@ -1,12 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import { User, Phone, Mail, MapPin, GraduationCap, Calendar, Building2, CheckCircle, Send, AlertCircle, Briefcase, Code2, RefreshCcw } from 'lucide-react';
+import { useLocation } from 'react-router-dom';
 import { api } from '../services/api';
 import { JOB_DOMAINS } from '../constants';
 
 const RegistrationPage = () => {
+    const location = useLocation();
+
     useEffect(() => {
         window.scrollTo(0, 0);
     }, []);
+
+    // Extract pre-fill data from state if available
+    const prefillData = location.state || {};
 
     const [formData, setFormData] = useState({
         fullName: '',
@@ -18,8 +24,8 @@ const RegistrationPage = () => {
         otherQualification: '',
         passingYear: '',
         collegeName: '',
-        interestedDomain: '',
-        skills: ''
+        interestedDomain: prefillData.domain || '',
+        skills: prefillData.skills ? prefillData.skills.join(', ') : ''
     });
 
     const [errors, setErrors] = useState({});
@@ -274,7 +280,6 @@ const RegistrationPage = () => {
                                 </div>
                                 {errors.phone && <p className="mt-1 text-xs text-red-500 flex items-center ml-1"><AlertCircle className="w-3 h-3 mr-1" />{errors.phone}</p>}
                             </div>
-                            {/* ... Rest of fields styled similarly with rounded-xl and group effects ... */}
                             <div>
                                 <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">City</label>
                                 <div className="relative group">

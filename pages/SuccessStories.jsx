@@ -155,7 +155,7 @@ const SuccessStories = () => {
             <button
               onClick={loadMore}
               disabled={isAnimating}
-              className="group relative inline-flex items-center justify-center px-10 py-4 bg-white dark:bg-gray-800 text-blue-700 dark:text-blue-400 font-bold rounded-full border-2 border-blue-700 dark:border-blue-500 hover:bg-blue-700 dark:hover:bg-blue-500 hover:text-white transition-all duration-300 shadow-lg"
+              className="group relative inline-flex items-center justify-center px-10 py-4 bg-white dark:bg-gray-800 text-blue-700 dark:text-blue-400 font-bold rounded-full border-2 border-blue-700 dark:border-blue-500 hover:bg-blue-700 dark:hover:bg-blue-500 hover:text-white dark:hover:text-white transition-all duration-300 shadow-lg"
             >
               {isAnimating ? <RefreshCcw className="w-6 h-6 animate-spin mr-2" /> : <ChevronDown className="w-6 h-6 mr-2" />}
               {isAnimating ? 'Loading More...' : `Show More Success Stories (${PLACED_STUDENTS.length - visibleCount} remaining)`}
@@ -189,7 +189,6 @@ const SuccessStories = () => {
                       onMouseLeave={handleVideoLeave}
                       className="group relative aspect-[9/16] bg-gray-950 rounded-[2rem] overflow-hidden shadow-lg transition-all duration-500 hover:-translate-y-2 cursor-pointer"
                     >
-                      {/* Removed 'muted' attribute to allow audio playback */}
                       <video
                         className="absolute inset-0 w-full h-full object-cover"
                         src={reel.url}

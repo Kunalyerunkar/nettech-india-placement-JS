@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
 import { JOB_DOMAINS } from '../constants';
 import { Search, ArrowRight, BookOpen, Briefcase, Code2, CheckCircle } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Modal from './Modal';
 
 const Domains = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedDomain, setSelectedDomain] = useState(null);
   const [selectedRole, setSelectedRole] = useState(null);
+  const navigate = useNavigate();
 
   const filteredDomains = JOB_DOMAINS.filter(domain => {
     const term = searchTerm.toLowerCase();
@@ -37,6 +38,17 @@ const Domains = () => {
 
   const closeRoleModal = () => {
     setSelectedRole(null);
+  };
+
+  const handleApply = () => {
+    if (selectedRole && selectedDomain) {
+      navigate('/register', {
+        state: {
+          domain: selectedDomain.title,
+          skills: selectedRole.skills
+        }
+      });
+    }
   };
 
   const getRelatedRoles = (currentRole, allDomains) => {
@@ -268,15 +280,13 @@ const Domains = () => {
             </div>
 
             <div className="mt-8 pt-6 border-t border-gray-200 dark:border-gray-700 text-center">
-              <a
-                href="https://forms.gle/Qn5vCbw1FsaLizeeA"
-                target="_blank"
-                rel="noopener noreferrer"
+              <button
+                onClick={handleApply}
                 className="group relative inline-flex w-full sm:w-auto items-center justify-center bg-blue-600 text-white font-bold py-3 px-8 rounded-lg hover:bg-blue-700 transition-all duration-300 shadow-lg hover:scale-105 active:scale-95 overflow-hidden"
               >
                 <span className="relative z-10">Apply for this Role</span>
                 <div className="absolute inset-0 bg-white/20 -translate-x-full group-hover:translate-x-full transition-transform duration-500 skew-x-12"></div>
-              </a>
+              </button>
             </div>
           </div>
         )}
