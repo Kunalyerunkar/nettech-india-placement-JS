@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef, useCallback, useMemo } from 'react';
-import { ChevronDown, RefreshCcw, Send, Play, ChevronLeft, ChevronRight, Sparkles } from 'lucide-react';
+import { ChevronDown, RefreshCcw, Send, Play, ChevronLeft, ChevronRight, Sparkles, Calendar } from 'lucide-react';
 import { PLACED_STUDENTS } from '../data/successData';
 
 const SUCCESS_REELS = [
@@ -49,11 +49,8 @@ const SuccessStories = () => {
   const handleVideoHover = (e) => {
     const video = e.currentTarget.querySelector('video');
     if (video) {
-      // Unmute explicitly before playing as requested
       video.muted = false;
-      video.play().catch((err) => {
-        console.log("Playback with audio usually requires a previous user interaction on the page.", err);
-      });
+      video.play().catch(() => { });
     }
   };
 
@@ -105,7 +102,7 @@ const SuccessStories = () => {
         <div className="relative mb-4" style={{ transform: 'translateZ(40px)' }}>
           <div className="absolute -top-3 left-1/2 transform -translate-x-1/2 w-16 h-6 bg-yellow-200/60 z-10 rotate-1"></div>
           <div className="bg-white p-2 shadow-lg transform rotate-1">
-            <div className="bg-red-600 p-0 w-40 h-48 overflow-hidden relative">
+            <div className="bg-gray-100 p-0 w-40 h-48 overflow-hidden relative">
               <img src={student.image} alt={student.name} className="w-full h-full object-cover" />
             </div>
           </div>
@@ -116,10 +113,16 @@ const SuccessStories = () => {
           </div>
         </div>
         <h2 className="text-2xl font-bold mb-3" style={{ transform: 'translateZ(30px)' }}>{student.name}</h2>
-        <div className="w-full bg-white py-2 mb-3 text-center transform -skew-x-6 shadow-sm" style={{ transform: 'translateZ(25px) skewX(-6deg)' }}>
+        <div className="w-full bg-white py-2 mb-2 text-center transform -skew-x-6 shadow-sm" style={{ transform: 'translateZ(25px) skewX(-6deg)' }}>
           <p className="text-gray-900 font-bold text-sm uppercase tracking-wide transform skew-x-6">{student.role}</p>
         </div>
-        <h4 className="text-xl font-bold text-yellow-400 mt-auto" style={{ transform: 'translateZ(20px)' }}>{student.company}</h4>
+        <h4 className="text-xl font-bold text-yellow-400" style={{ transform: 'translateZ(20px)' }}>{student.company}</h4>
+
+        {/* Selection Date UI */}
+        <div className="mt-4 flex items-center gap-1.5 opacity-80" style={{ transform: 'translateZ(15px)' }}>
+          <Calendar className="w-3.5 h-3.5 text-blue-200" />
+          <span className="text-[10px] font-bold text-blue-100 uppercase tracking-widest">Selected on: {student.selectionDate}</span>
+        </div>
       </div>
     );
   };
@@ -155,7 +158,7 @@ const SuccessStories = () => {
             <button
               onClick={loadMore}
               disabled={isAnimating}
-              className="group relative inline-flex items-center justify-center px-10 py-4 bg-white dark:bg-gray-800 text-blue-700 dark:text-blue-400 font-bold rounded-full border-2 border-blue-700 dark:border-blue-500 hover:bg-blue-700 dark:hover:bg-blue-500 hover:text-white dark:hover:text-white transition-all duration-300 shadow-lg"
+              className="group relative inline-flex items-center justify-center px-10 py-4 bg-white dark:bg-gray-800 text-blue-700 dark:text-blue-400 font-bold rounded-full border-2 border-blue-700 dark:border-blue-500 hover:bg-blue-700 dark:hover:bg-blue-500 hover:text-white transition-all duration-300 shadow-lg"
             >
               {isAnimating ? <RefreshCcw className="w-6 h-6 animate-spin mr-2" /> : <ChevronDown className="w-6 h-6 mr-2" />}
               {isAnimating ? 'Loading More...' : `Show More Success Stories (${PLACED_STUDENTS.length - visibleCount} remaining)`}
@@ -195,14 +198,12 @@ const SuccessStories = () => {
                         loop playsInline
                       />
 
-                      {/* Play Button Overlay - Hid when playing (on hover) */}
                       <div className="absolute inset-0 flex items-center justify-center transition-opacity duration-300 group-hover:opacity-0 pointer-events-none">
                         <div className="w-16 h-16 bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center text-white border border-white/30">
                           <Play className="w-8 h-8 fill-current ml-1" />
                         </div>
                       </div>
 
-                      {/* Info Overlay */}
                       <div className="absolute bottom-6 left-6 right-6">
                         <span className="text-[10px] font-black text-white drop-shadow-md uppercase tracking-widest mb-1 block">{reel.tag}</span>
                         <h4 className="text-xl font-bold text-white leading-tight drop-shadow-lg">{reel.title}</h4>
