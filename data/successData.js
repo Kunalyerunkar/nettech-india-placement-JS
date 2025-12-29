@@ -6538,7 +6538,7 @@ export const PLACED_STUDENTS = [
         company: "External",
         image: "https://ui-avatars.com/api/?name=Mrunali%2BMandhare&background=0D8ABC&color=fff",
         selectionDate: "Selected"
-    },
+    }, 
     {
         id: 818,
         name: "Abhay Nitnavare",
