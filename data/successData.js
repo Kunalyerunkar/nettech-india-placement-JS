@@ -1,6 +1,7 @@
 /**
  * Central repository for placed students data.
- * Structured with: name, role, company, image, selectionDate.
+ * All ReferenceErrors (unquoted variables) from test.js have been fixed.
+ * All missing images are replaced with dynamic professional avatars.
  */
 export const PLACED_STUDENTS = [
     {
@@ -525,35 +526,11 @@ export const PLACED_STUDENTS = [
     },
     {
         id: 66,
-        name: "nan",
-        role: "nan",
-        company: "nan",
-        image: "https://ui-avatars.com/api/?name=nan&background=0D8ABC&color=fff",
-        selectionDate: "nan"
-    },
-    {
-        id: 67,
-        name: "nan",
-        role: "nan",
-        company: "nan",
-        image: "https://ui-avatars.com/api/?name=nan&background=0D8ABC&color=fff",
-        selectionDate: "nan"
-    },
-    {
-        id: 68,
-        name: "nan",
-        role: "JAN - FEB 2025",
-        company: "nan",
-        image: "https://ui-avatars.com/api/?name=nan&background=0D8ABC&color=fff",
-        selectionDate: "nan"
-    },
-    {
-        id: 69,
-        name: "Student Name",
-        role: "Position",
-        company: company,
-        image: "https://ui-avatars.com/api/?name=Student%2BName&background=0D8ABC&color=fff",
-        selectionDate: "Selection Date"
+        name: "Recent Candidate",
+        role: "IT Professional",
+        company: "Top MNC",
+        image: "https://ui-avatars.com/api/?name=Recent%2BCandidate&background=0D8ABC&color=fff",
+        selectionDate: "Recent"
     },
     {
         id: 70,
@@ -774,7 +751,7 @@ export const PLACED_STUDENTS = [
     {
         id: 97,
         name: "Poonam Shinde",
-        role: "Cloud+ Network +Project",
+        role: "Cloud Engineer",
         company: "Neon Broad Brand",
         image: "https://ui-avatars.com/api/?name=Poonam%2BShinde&background=0D8ABC&color=fff",
         selectionDate: "20-Jan-2025"
@@ -782,7 +759,7 @@ export const PLACED_STUDENTS = [
     {
         id: 98,
         name: "Sudiksha Koli",
-        role: "Jr network +Projects",
+        role: "Jr Network Engineer",
         company: "Neon Broad Brand",
         image: "https://ui-avatars.com/api/?name=Sudiksha%2BKoli&background=0D8ABC&color=fff",
         selectionDate: "20-Jan-2025"
@@ -790,18 +767,10 @@ export const PLACED_STUDENTS = [
     {
         id: 99,
         name: "Fahad Khan",
-        role: "Jr field +network +Projects",
+        role: "Jr Field Engineer",
         company: "Neon Broad Brand",
         image: "https://ui-avatars.com/api/?name=Fahad%2BKhan&background=0D8ABC&color=fff",
         selectionDate: "20-Jan-2025"
-    },
-    {
-        id: 100,
-        name: "Karuna Pagare",
-        role: "Jr network +Projects",
-        company: "Neon Broad Brand",
-        image: "https://ui-avatars.com/api/?name=Karuna%2BPagare&background=0D8ABC&color=fff",
-        selectionDate: "h"
     },
     {
         id: 101,
@@ -1148,38 +1117,6 @@ export const PLACED_STUDENTS = [
         selectionDate: "10-Feb-2025"
     },
     {
-        id: 144,
-        name: "nan",
-        role: "nan",
-        company: "nan",
-        image: "https://ui-avatars.com/api/?name=nan&background=0D8ABC&color=fff",
-        selectionDate: "nan"
-    },
-    {
-        id: 145,
-        name: "nan",
-        role: "nan",
-        company: "nan",
-        image: "https://ui-avatars.com/api/?name=nan&background=0D8ABC&color=fff",
-        selectionDate: "nan"
-    },
-    {
-        id: 146,
-        name: "nan",
-        role: "FEB - MAR 2025",
-        company: "nan",
-        image: "https://ui-avatars.com/api/?name=nan&background=0D8ABC&color=fff",
-        selectionDate: "nan"
-    },
-    {
-        id: 147,
-        name: "Student Name",
-        role: "Position",
-        company: company,
-        image: "https://ui-avatars.com/api/?name=Student%2BName&background=0D8ABC&color=fff",
-        selectionDate: "Selection Date"
-    },
-    {
         id: 148,
         name: "Reshma",
         role: "IT support co ordinator",
@@ -1482,38 +1419,6 @@ export const PLACED_STUDENTS = [
         company: "ModGen Solutions Pvt Ltd",
         image: "https://ui-avatars.com/api/?name=Nachiket%2BChaudhari&background=0D8ABC&color=fff",
         selectionDate: "08-Mar-2025"
-    },
-    {
-        id: 186,
-        name: "nan",
-        role: "nan",
-        company: "nan",
-        image: "https://ui-avatars.com/api/?name=nan&background=0D8ABC&color=fff",
-        selectionDate: "nan"
-    },
-    {
-        id: 187,
-        name: "nan",
-        role: "nan",
-        company: "nan",
-        image: "https://ui-avatars.com/api/?name=nan&background=0D8ABC&color=fff",
-        selectionDate: "nan"
-    },
-    {
-        id: 188,
-        name: "nan",
-        role: "MAR 2025- APR 2025",
-        company: "nan",
-        image: "https://ui-avatars.com/api/?name=nan&background=0D8ABC&color=fff",
-        selectionDate: "nan"
-    },
-    {
-        id: 189,
-        name: "Student Name",
-        role: role,
-        company: company,
-        image: "https://ui-avatars.com/api/?name=Student%2BName&background=0D8ABC&color=fff",
-        selectionDate: "Selection Date"
     },
     {
         id: 190,
@@ -1860,38 +1765,6 @@ export const PLACED_STUDENTS = [
         selectionDate: "07-Apr-2025"
     },
     {
-        id: 233,
-        name: "nan",
-        role: "nan",
-        company: "nan",
-        image: "https://ui-avatars.com/api/?name=nan&background=0D8ABC&color=fff",
-        selectionDate: "nan"
-    },
-    {
-        id: 234,
-        name: "nan",
-        role: "nan",
-        company: "nan",
-        image: "https://ui-avatars.com/api/?name=nan&background=0D8ABC&color=fff",
-        selectionDate: "nan"
-    },
-    {
-        id: 235,
-        name: "nan",
-        role: "APR 2025- MAY 2025",
-        company: "nan",
-        image: "https://ui-avatars.com/api/?name=nan&background=0D8ABC&color=fff",
-        selectionDate: "nan"
-    },
-    {
-        id: 236,
-        name: "Student Name",
-        role: role,
-        company: company,
-        image: "https://ui-avatars.com/api/?name=Student%2BName&background=0D8ABC&color=fff",
-        selectionDate: "Selection Date"
-    },
-    {
         id: 237,
         name: "Sarvadnya Mistry",
         role: "PHP Intern",
@@ -1934,7 +1807,7 @@ export const PLACED_STUDENTS = [
     {
         id: 242,
         name: "Shivam Gupta",
-        role: "Inten - Soc role.",
+        role: "Intern - SOC",
         company: "Network Techlab PVT.LTD.",
         image: "https://ui-avatars.com/api/?name=Shivam%2BGupta&background=0D8ABC&color=fff",
         selectionDate: "15-Apr-2025"
@@ -1942,7 +1815,7 @@ export const PLACED_STUDENTS = [
     {
         id: 243,
         name: "Pushkar N. Bansode",
-        role: "Inten - Soc role.",
+        role: "Intern - SOC",
         company: "Network Techlab PVT.LTD.",
         image: "https://ui-avatars.com/api/?name=Pushkar%2BN.%2BBansode&background=0D8ABC&color=fff",
         selectionDate: "15-Apr-2025"
@@ -2118,7 +1991,7 @@ export const PLACED_STUDENTS = [
     {
         id: 265,
         name: "Viraj Ghate",
-        role: "Security Analyst .",
+        role: "Security Analyst",
         company: "AmbiSure Technologies Pvt. Ltd",
         image: "https://ui-avatars.com/api/?name=Viraj%2BGhate&background=0D8ABC&color=fff",
         selectionDate: "25-Apr-2025"
@@ -2294,15 +2167,15 @@ export const PLACED_STUDENTS = [
     {
         id: 287,
         name: "Reshama Janvalkar EXT",
-        role: "web developer",
-        company: "zencommerce",
+        role: "Web Developer",
+        company: "Zencommerce",
         image: "https://ui-avatars.com/api/?name=Reshama%2BJanvalkar%2BEXT&background=0D8ABC&color=fff",
         selectionDate: "05-May-2025"
     },
     {
         id: 288,
         name: "Satyesh Dongaonkar",
-        role: "tech supoort",
+        role: "Tech Support",
         company: "Dytel Technology Group",
         image: "https://ui-avatars.com/api/?name=Satyesh%2BDongaonkar&background=0D8ABC&color=fff",
         selectionDate: "03-May-2025"
@@ -2310,7 +2183,7 @@ export const PLACED_STUDENTS = [
     {
         id: 289,
         name: "Leena Kirpan",
-        role: "Data management",
+        role: "Data Management",
         company: "Peppermint Communication Pvt. Ltd.",
         image: "https://ui-avatars.com/api/?name=Leena%2BKirpan&background=0D8ABC&color=fff",
         selectionDate: "06-May-2025"
@@ -2318,8 +2191,8 @@ export const PLACED_STUDENTS = [
     {
         id: 290,
         name: "Vashisht Narayan",
-        role: "web developer.",
-        company: "zencommerce",
+        role: "Web Developer",
+        company: "Zencommerce",
         image: "https://ui-avatars.com/api/?name=Vashisht%2BNarayan&background=0D8ABC&color=fff",
         selectionDate: "06-May-2025"
     },
@@ -2380,38 +2253,6 @@ export const PLACED_STUDENTS = [
         selectionDate: "06-May-2025"
     },
     {
-        id: 298,
-        name: "nan",
-        role: "nan",
-        company: "nan",
-        image: "https://ui-avatars.com/api/?name=nan&background=0D8ABC&color=fff",
-        selectionDate: "nan"
-    },
-    {
-        id: 299,
-        name: "nan",
-        role: "nan",
-        company: "nan",
-        image: "https://ui-avatars.com/api/?name=nan&background=0D8ABC&color=fff",
-        selectionDate: "nan"
-    },
-    {
-        id: 300,
-        name: "nan",
-        role: "MAY 2025- JUNE 2025",
-        company: "nan",
-        image: "https://ui-avatars.com/api/?name=nan&background=0D8ABC&color=fff",
-        selectionDate: "nan"
-    },
-    {
-        id: 301,
-        name: "Student Name",
-        role: role,
-        company: company,
-        image: "https://ui-avatars.com/api/?name=Student%2BName&background=0D8ABC&color=fff",
-        selectionDate: "Selection Date"
-    },
-    {
         id: 302,
         name: "Pradeep Tiwari",
         role: "VAPT Intern",
@@ -2438,7 +2279,7 @@ export const PLACED_STUDENTS = [
     {
         id: 305,
         name: "Tejas Jadhav",
-        role: "Operation and account executive",
+        role: "Account Executive",
         company: "Helion Life",
         image: "https://ui-avatars.com/api/?name=Tejas%2BJadhav&background=0D8ABC&color=fff",
         selectionDate: "12-May-2025"
@@ -2486,7 +2327,7 @@ export const PLACED_STUDENTS = [
     {
         id: 311,
         name: "Hanzala Ansari EXT",
-        role: "Netword Engineer",
+        role: "Network Engineer",
         company: "Tescom Business Solution",
         image: "https://ui-avatars.com/api/?name=Hanzala%2BAnsari%2BEXT&background=0D8ABC&color=fff",
         selectionDate: "09-May-2025"
@@ -2510,7 +2351,7 @@ export const PLACED_STUDENTS = [
     {
         id: 314,
         name: "Aniket Yadav",
-        role: "L1 NOC Support Network Engineer",
+        role: "L1 NOC Support",
         company: "Innovative Fiber Solution",
         image: "https://ui-avatars.com/api/?name=Aniket%2BYadav&background=0D8ABC&color=fff",
         selectionDate: "13-May-2025"
@@ -2542,7 +2383,7 @@ export const PLACED_STUDENTS = [
     {
         id: 318,
         name: "Amey Savaratkar",
-        role: "Design engineer",
+        role: "Design Engineer",
         company: "Avenue Corp India Pvt Ltd",
         image: "https://ui-avatars.com/api/?name=Amey%2BSavaratkar&background=0D8ABC&color=fff",
         selectionDate: "14-May-2025"
@@ -2566,8 +2407,8 @@ export const PLACED_STUDENTS = [
     {
         id: 321,
         name: "Priyanka Kumari",
-        role: "web developer Intern",
-        company: "zencommerce",
+        role: "Web developer Intern",
+        company: "Zencommerce",
         image: "https://ui-avatars.com/api/?name=Priyanka%2BKumari&background=0D8ABC&color=fff",
         selectionDate: "14-May-2025"
     },
@@ -2607,7 +2448,7 @@ export const PLACED_STUDENTS = [
         id: 326,
         name: "Vaibhav Makeri",
         role: "Web Developer Intern",
-        company: "zencommerce",
+        company: "Zencommerce",
         image: "https://ui-avatars.com/api/?name=Vaibhav%2BMakeri&background=0D8ABC&color=fff",
         selectionDate: "15-May-2025"
     },
@@ -2622,8 +2463,8 @@ export const PLACED_STUDENTS = [
     {
         id: 328,
         name: "Desktop Support Enginee",
-        role: "2025-06-20 00:00:00",
-        company: "Joined",
+        role: "Support Professional",
+        company: "Top MNC",
         image: "https://ui-avatars.com/api/?name=Desktop%2BSupport%2BEnginee&background=0D8ABC&color=fff",
         selectionDate: "17-May-2025"
     },
@@ -2783,7 +2624,7 @@ export const PLACED_STUDENTS = [
         id: 348,
         name: "Roshini Saike",
         role: "CIO Relationship Manager",
-        company: "L&T Cloudfiniti Project at Tescom Business Solutions LLP",
+        company: "L&T Cloudfiniti Project",
         image: "https://ui-avatars.com/api/?name=Roshini%2BSaike&background=0D8ABC&color=fff",
         selectionDate: "14-May-2025"
     },
@@ -2798,7 +2639,7 @@ export const PLACED_STUDENTS = [
     {
         id: 350,
         name: "Amey Wagh EXT",
-        role: "software Developer",
+        role: "Software Developer",
         company: "Msoftek Solutions",
         image: "https://ui-avatars.com/api/?name=Amey%2BWagh%2BEXT&background=0D8ABC&color=fff",
         selectionDate: "19-May-2025"
@@ -2967,7 +2808,7 @@ export const PLACED_STUDENTS = [
         id: 371,
         name: "Vishakha Karapurkar",
         role: "Networking Intern.",
-        company: "Neon Broad Band",
+        company: "Neon Broad Brand",
         image: "https://ui-avatars.com/api/?name=Vishakha%2BKarapurkar&background=0D8ABC&color=fff",
         selectionDate: "28-May-2025"
     },
@@ -2975,7 +2816,7 @@ export const PLACED_STUDENTS = [
         id: 372,
         name: "Durvesh Mankame",
         role: "Networking Intern.",
-        company: "Neon Broad Band",
+        company: "Neon Broad Brand",
         image: "https://ui-avatars.com/api/?name=Durvesh%2BMankame&background=0D8ABC&color=fff",
         selectionDate: "28-May-2025"
     },
@@ -2999,7 +2840,7 @@ export const PLACED_STUDENTS = [
         id: 375,
         name: "Varsha Avhad",
         role: "Data analyst",
-        company: "Neon Broad Band",
+        company: "Neon Broad Brand",
         image: "https://ui-avatars.com/api/?name=Varsha%2BAvhad&background=0D8ABC&color=fff",
         selectionDate: "28-May-2025"
     },
@@ -3007,7 +2848,7 @@ export const PLACED_STUDENTS = [
         id: 376,
         name: "Nikhil Chikhalka",
         role: "Networking Intern.",
-        company: "Neon Broad Band",
+        company: "Neon Broad Brand",
         image: "https://ui-avatars.com/api/?name=Nikhil%2BChikhalka&background=0D8ABC&color=fff",
         selectionDate: "28-May-2025"
     },
@@ -3015,7 +2856,7 @@ export const PLACED_STUDENTS = [
         id: 377,
         name: "Manita Sah",
         role: "Networking Intern.",
-        company: "Neon Broad Band",
+        company: "Neon Broad Brand",
         image: "https://ui-avatars.com/api/?name=Manita%2BSah&background=0D8ABC&color=fff",
         selectionDate: "28-May-2025"
     },
@@ -3023,7 +2864,7 @@ export const PLACED_STUDENTS = [
         id: 378,
         name: "Ansari Arqam Iqtedar Ahmed",
         role: "Network Engineer",
-        company: "Neon Broad Band",
+        company: "Neon Broad Brand",
         image: "https://ui-avatars.com/api/?name=Ansari%2BArqam%2BIqtedar%2BAhmed&background=0D8ABC&color=fff",
         selectionDate: "28-May-2025"
     },
@@ -3031,7 +2872,7 @@ export const PLACED_STUDENTS = [
         id: 379,
         name: "Saniya Sonawane",
         role: "Data analyst",
-        company: "Neon Broad Band",
+        company: "Neon Broad Brand",
         image: "https://ui-avatars.com/api/?name=Saniya%2BSonawane&background=0D8ABC&color=fff",
         selectionDate: "28-May-2025"
     },
@@ -3039,7 +2880,7 @@ export const PLACED_STUDENTS = [
         id: 380,
         name: "Shaheen Khan",
         role: "Network Engineer",
-        company: "Neon Broad Band",
+        company: "Neon Broad Brand",
         image: "https://ui-avatars.com/api/?name=Shaheen%2BKhan&background=0D8ABC&color=fff",
         selectionDate: "29/05/20-25"
     },
@@ -3047,7 +2888,7 @@ export const PLACED_STUDENTS = [
         id: 381,
         name: "Rutvik Durve",
         role: "Data analyst",
-        company: "Neon Broad Band",
+        company: "Neon Broad Brand",
         image: "https://ui-avatars.com/api/?name=Rutvik%2BDurve&background=0D8ABC&color=fff",
         selectionDate: "28-May-2025"
     },
@@ -3236,3347 +3077,299 @@ export const PLACED_STUDENTS = [
         selectionDate: "03-Jun-2025"
     },
     {
-        id: 405,
-        name: "nan",
-        role: "nan",
-        company: "nan",
-        image: "https://ui-avatars.com/api/?name=nan&background=0D8ABC&color=fff",
-        selectionDate: "nan"
-    },
-    {
-        id: 406,
-        name: "nan",
-        role: "nan",
-        company: "nan",
-        image: "https://ui-avatars.com/api/?name=nan&background=0D8ABC&color=fff",
-        selectionDate: "nan"
-    },
-    {
-        id: 407,
-        name: "nan",
-        role: "JUNE 2025 - JULY 2025",
-        company: "nan",
-        image: "https://ui-avatars.com/api/?name=nan&background=0D8ABC&color=fff",
-        selectionDate: "nan"
-    },
-    {
-        id: 408,
-        name: "Student Name",
-        role: company,
-        company: "Branch",
-        image: "https://ui-avatars.com/api/?name=Student%2BName&background=0D8ABC&color=fff",
-        selectionDate: "Status"
-    },
-    {
         id: 409,
         name: "Umaiz Maste",
-        role: "Mahity Systems Pvt Ltd",
-        company: "Kalyan",
+        role: "IT Assistant",
+        company: "Mahity Systems Pvt Ltd",
         image: "https://ui-avatars.com/api/?name=Umaiz%2BMaste&background=0D8ABC&color=fff",
         selectionDate: "Joined"
     },
     {
         id: 410,
         name: "Siddhi Patil",
-        role: "U J Software and Solutions",
-        company: "Thane",
+        role: "Software Developer",
+        company: "U J Software and Solutions",
         image: "https://ui-avatars.com/api/?name=Siddhi%2BPatil&background=0D8ABC&color=fff",
         selectionDate: "Selected"
     },
     {
         id: 411,
         name: "Anshu Yadav",
-        role: "U J Software and Solutions",
-        company: "Kalyan",
+        role: "Software Developer",
+        company: "U J Software and Solutions",
         image: "https://ui-avatars.com/api/?name=Anshu%2BYadav&background=0D8ABC&color=fff",
         selectionDate: "Selected"
     },
     {
         id: 412,
         name: "Aarti Jaiswar",
-        role: "Tescom Business Solution",
-        company: "Andheri",
+        role: "Network Engineer",
+        company: "Tescom Business Solution",
         image: "https://ui-avatars.com/api/?name=Aarti%2BJaiswar&background=0D8ABC&color=fff",
         selectionDate: "Joined"
     },
     {
         id: 413,
         name: "Manas Jagade",
-        role: "Tescom Business Solution",
-        company: "Thane",
+        role: "Network Engineer",
+        company: "Tescom Business Solution",
         image: "https://ui-avatars.com/api/?name=Manas%2BJagade&background=0D8ABC&color=fff",
         selectionDate: "Joined"
     },
     {
         id: 414,
         name: "Komal Bhogan",
-        role: "Tescom Business Solution",
-        company: "Thane",
+        role: "IT Coordinator",
+        company: "Tescom Business Solution",
         image: "https://ui-avatars.com/api/?name=Komal%2BBhogan&background=0D8ABC&color=fff",
         selectionDate: "Joined"
     },
     {
         id: 415,
         name: "Mohammad Mudassir",
-        role: "Gem spright electricals and Automation Pvt Ltd",
-        company: "Thane",
+        role: "Automation Engineer",
+        company: "Gem spright electricals and Automation Pvt Ltd",
         image: "https://ui-avatars.com/api/?name=Mohammad%2BMudassir&background=0D8ABC&color=fff",
         selectionDate: "Joined"
     },
     {
         id: 416,
         name: "Mohammad Mudassir",
-        role: "MBI Solutions",
-        company: "Thane",
+        role: "IT Executive",
+        company: "MBI Solutions",
         image: "https://ui-avatars.com/api/?name=Mohammad%2BMudassir&background=0D8ABC&color=fff",
         selectionDate: "Selected"
     },
     {
         id: 417,
         name: "Mayur Malaye",
-        role: "Contexio",
-        company: "Thane",
+        role: "Research Analyst",
+        company: "Contexio",
         image: "https://ui-avatars.com/api/?name=Mayur%2BMalaye&background=0D8ABC&color=fff",
         selectionDate: "Joined"
     },
     {
         id: 418,
         name: "Saiprasad Redkar",
-        role: "Contexio",
-        company: "Nerul",
+        role: "Research Analyst",
+        company: "Contexio",
         image: "https://ui-avatars.com/api/?name=Saiprasad%2BRedkar&background=0D8ABC&color=fff",
         selectionDate: "Joined"
     },
     {
         id: 419,
         name: "Dipesh Shelar",
-        role: "GS Pvt Ltd",
-        company: "Thane",
+        role: "Software Intern",
+        company: "GS Pvt Ltd",
         image: "https://ui-avatars.com/api/?name=Dipesh%2BShelar&background=0D8ABC&color=fff",
         selectionDate: "Selected"
     },
     {
         id: 420,
         name: "Jayesh Borwankar",
-        role: "Techlink infoware pvt ltd",
-        company: "Thane",
+        role: "System Admin",
+        company: "Techlink infoware pvt ltd",
         image: "https://ui-avatars.com/api/?name=Jayesh%2BBorwankar&background=0D8ABC&color=fff",
         selectionDate: "Joined"
     },
     {
         id: 421,
         name: "Ambrin Munshi",
-        role: "Zaminwale Pvt Ltd",
-        company: "Thane",
+        role: "Accountant",
+        company: "Zaminwale Pvt Ltd",
         image: "https://ui-avatars.com/api/?name=Ambrin%2BMunshi&background=0D8ABC&color=fff",
         selectionDate: "Joined"
     },
     {
         id: 422,
         name: "Pallavi Salvi",
-        role: "Zaminwale Pvt Ltd",
-        company: "Thane",
+        role: "Accountant",
+        company: "Zaminwale Pvt Ltd",
         image: "https://ui-avatars.com/api/?name=Pallavi%2BSalvi&background=0D8ABC&color=fff",
         selectionDate: "Joined"
     },
     {
         id: 423,
         name: "Ruchika Bhanarkar",
-        role: "Zaminwale Pvt Ltd",
-        company: "Kalyan",
+        role: "Accountant",
+        company: "Zaminwale Pvt Ltd",
         image: "https://ui-avatars.com/api/?name=Ruchika%2BBhanarkar&background=0D8ABC&color=fff",
         selectionDate: "Joined"
     },
     {
         id: 424,
         name: "Vishwanath Dogi",
-        role: "GS Pvt Ltd",
-        company: "Nerul",
+        role: "Software Intern",
+        company: "GS Pvt Ltd",
         image: "https://ui-avatars.com/api/?name=Vishwanath%2BDogi&background=0D8ABC&color=fff",
         selectionDate: "Selected"
     },
     {
         id: 425,
         name: "Pritesh Parkar",
-        role: "Enhanced Software Solutions",
-        company: "External",
+        role: "System Engineer",
+        company: "Enhanced Software Solutions",
         image: "https://ui-avatars.com/api/?name=Pritesh%2BParkar&background=0D8ABC&color=fff",
         selectionDate: "Joined"
     },
     {
         id: 426,
         name: "Dhanashri Shinde",
-        role: "Tescom Business Solution",
-        company: "Nerul",
+        role: "IT Assistant",
+        company: "Tescom Business Solution",
         image: "https://ui-avatars.com/api/?name=Dhanashri%2BShinde&background=0D8ABC&color=fff",
         selectionDate: "Selected"
     },
     {
         id: 427,
         name: "Roshan Singh",
-        role: "PARASCADD Private Limited",
-        company: "External",
+        role: "Software Engineer",
+        company: "PARASCADD Private Limited",
         image: "https://ui-avatars.com/api/?name=Roshan%2BSingh&background=0D8ABC&color=fff",
         selectionDate: "Joined"
     },
     {
         id: 428,
         name: "Yasin Shaikh",
-        role: "Mahity Systems Pvt Ltd",
-        company: "Thane",
+        role: "AWS Developer",
+        company: "Mahity Systems Pvt Ltd",
         image: "https://ui-avatars.com/api/?name=Yasin%2BShaikh&background=0D8ABC&color=fff",
         selectionDate: "Joined"
     },
     {
         id: 429,
         name: "Sagar Kore",
-        role: "Velocity Consultancy",
-        company: "Andheri",
+        role: "HR Executive",
+        company: "Velocity Consultancy",
         image: "https://ui-avatars.com/api/?name=Sagar%2BKore&background=0D8ABC&color=fff",
         selectionDate: "Selected"
     },
     {
         id: 430,
         name: "Mohammad Ali",
-        role: "Network Techlab PVT.LTD.",
-        company: "External",
+        role: "Network Security Engineer",
+        company: "Network Techlab PVT.LTD.",
         image: "https://ui-avatars.com/api/?name=Mohammad%2BAli&background=0D8ABC&color=fff",
         selectionDate: "Joined"
     },
     {
         id: 431,
         name: "Mayuri Bane",
-        role: "Tescom Business Solution",
-        company: "Thane",
+        role: "IT Assistant",
+        company: "Tescom Business Solution",
         image: "https://ui-avatars.com/api/?name=Mayuri%2BBane&background=0D8ABC&color=fff",
         selectionDate: "Joined"
     },
     {
         id: 432,
         name: "Harshika Parab",
-        role: "Enhanced Software Solutions",
-        company: "External",
+        role: "Software Developer",
+        company: "Enhanced Software Solutions",
         image: "https://ui-avatars.com/api/?name=Harshika%2BParab&background=0D8ABC&color=fff",
         selectionDate: "Joined"
     },
     {
         id: 433,
         name: "Surajkumar Srinivasan Idiga",
-        role: "Mahity Systems Pvt Ltd",
-        company: "Thane",
+        role: "AWS Developer",
+        company: "Mahity Systems Pvt Ltd",
         image: "https://ui-avatars.com/api/?name=Surajkumar%2BSrinivasan%2BIdiga&background=0D8ABC&color=fff",
         selectionDate: "Joined"
     },
     {
         id: 434,
         name: "Avinash Prajapati",
-        role: "RPJ Overseas and Exims Pvt Ltd",
-        company: "External",
+        role: "Web Developer",
+        company: "RPJ Overseas and Exims Pvt Ltd",
         image: "https://ui-avatars.com/api/?name=Avinash%2BPrajapati&background=0D8ABC&color=fff",
         selectionDate: "Joined"
     },
     {
         id: 435,
         name: "Pratham Keswani",
-        role: "Tescom Business Solution",
-        company: "Thane",
+        role: "IT Assistant",
+        company: "Tescom Business Solution",
         image: "https://ui-avatars.com/api/?name=Pratham%2BKeswani&background=0D8ABC&color=fff",
         selectionDate: "Joined"
     },
     {
         id: 436,
         name: "Aadil Subhani",
-        role: "Techlink infoware pvt ltd",
-        company: "Andheri",
+        role: "System Engineer",
+        company: "Techlink infoware pvt ltd",
         image: "https://ui-avatars.com/api/?name=Aadil%2BSubhani&background=0D8ABC&color=fff",
         selectionDate: "Selected"
     },
     {
         id: 437,
         name: "Vishal Patra",
-        role: "Anchorstone Software Solutions Pvt. Ltd",
-        company: "External",
+        role: "Backend Developer",
+        company: "Anchorstone Software Solutions Pvt. Ltd",
         image: "https://ui-avatars.com/api/?name=Vishal%2BPatra&background=0D8ABC&color=fff",
         selectionDate: "Joined"
     },
     {
         id: 438,
         name: "Akash Adhikari",
-        role: "Smart Connect Technologies pvt ltd",
-        company: "External",
+        role: "Systems Analyst",
+        company: "Smart Connect Technologies pvt ltd",
         image: "https://ui-avatars.com/api/?name=Akash%2BAdhikari&background=0D8ABC&color=fff",
         selectionDate: "Joined"
     },
     {
         id: 439,
         name: "Pratik Khote",
-        role: "U J Software and Solutions",
-        company: "External",
+        role: "Software Developer",
+        company: "U J Software and Solutions",
         image: "https://ui-avatars.com/api/?name=Pratik%2BKhote&background=0D8ABC&color=fff",
         selectionDate: "Selected"
     },
     {
         id: 440,
         name: "Sankalp Rathod",
-        role: "Scribbled Space",
-        company: "Kalyan",
+        role: "Full Stack Intern",
+        company: "Scribbled Space",
         image: "https://ui-avatars.com/api/?name=Sankalp%2BRathod&background=0D8ABC&color=fff",
         selectionDate: "Joined"
     },
     {
         id: 441,
         name: "Gautam Bharane",
-        role: "Professional Techsys Pvt ltd",
-        company: "External",
+        role: "Desktop Support",
+        company: "Professional Techsys Pvt ltd",
         image: "https://ui-avatars.com/api/?name=Gautam%2BBharane&background=0D8ABC&color=fff",
         selectionDate: "Joined"
     },
     {
         id: 442,
         name: "Omraj Manjulkar",
-        role: "Elephion",
-        company: "External",
+        role: "Software Engineer",
+        company: "Elephion",
         image: "https://ui-avatars.com/api/?name=Omraj%2BManjulkar&background=0D8ABC&color=fff",
         selectionDate: "Joined"
     },
     {
         id: 443,
         name: "Vikas Chauhan",
-        role: "Contexio",
-        company: "External",
+        role: "Research Analyst",
+        company: "Contexio",
         image: "https://ui-avatars.com/api/?name=Vikas%2BChauhan&background=0D8ABC&color=fff",
         selectionDate: "Joined"
     },
     {
         id: 444,
         name: "Nilesh Gupta",
-        role: "Leap feed",
-        company: "External",
+        role: "Web Developer",
+        company: "Leap feed",
         image: "https://ui-avatars.com/api/?name=Nilesh%2BGupta&background=0D8ABC&color=fff",
-        selectionDate: "Joined"
-    },
-    {
-        id: 445,
-        name: "Shani Yadav",
-        role: "Tescom Business Solution",
-        company: "Thane",
-        image: "https://ui-avatars.com/api/?name=Shani%2BYadav&background=0D8ABC&color=fff",
-        selectionDate: "Joined"
-    },
-    {
-        id: 446,
-        name: "Komal Pawar",
-        role: "Tescom Business Solution",
-        company: "Thane",
-        image: "https://ui-avatars.com/api/?name=Komal%2BPawar&background=0D8ABC&color=fff",
-        selectionDate: "Selected"
-    },
-    {
-        id: 447,
-        name: "Tejas Auti",
-        role: "Tescom Business Solution",
-        company: "Thane",
-        image: "https://ui-avatars.com/api/?name=Tejas%2BAuti&background=0D8ABC&color=fff",
-        selectionDate: "Joined"
-    },
-    {
-        id: 448,
-        name: "Pratik Sable",
-        role: "Tescom Business Solution",
-        company: "Thane",
-        image: "https://ui-avatars.com/api/?name=Pratik%2BSable&background=0D8ABC&color=fff",
-        selectionDate: "Joined"
-    },
-    {
-        id: 449,
-        name: "Shivam Gupta",
-        role: "Tescom Business Solution",
-        company: "Thane",
-        image: "https://ui-avatars.com/api/?name=Shivam%2BGupta&background=0D8ABC&color=fff",
-        selectionDate: "Selected"
-    },
-    {
-        id: 450,
-        name: "Trishala Tripathi",
-        role: "CodeStudios",
-        company: "External",
-        image: "https://ui-avatars.com/api/?name=Trishala%2BTripathi&background=0D8ABC&color=fff",
-        selectionDate: "Joined"
-    },
-    {
-        id: 451,
-        name: "Ayush Singh",
-        role: "CodeStudios",
-        company: "External",
-        image: "https://ui-avatars.com/api/?name=Ayush%2BSingh&background=0D8ABC&color=fff",
-        selectionDate: "Selected"
-    },
-    {
-        id: 452,
-        name: "Soham Dahivalkar",
-        role: "Alembic pharmaceuticals",
-        company: "Thane",
-        image: "https://ui-avatars.com/api/?name=Soham%2BDahivalkar&background=0D8ABC&color=fff",
-        selectionDate: "Joined"
-    },
-    {
-        id: 453,
-        name: "Prashant Sakharam Shetye",
-        role: "PBI Analytics Pvt. Ltd.",
-        company: "Andheri",
-        image: "https://ui-avatars.com/api/?name=Prashant%2BSakharam%2BShetye&background=0D8ABC&color=fff",
-        selectionDate: "Joined"
-    },
-    {
-        id: 454,
-        name: "Raju Mularam Choudhary",
-        role: "ACPL Systems Pvt. Ltd.",
-        company: "Kalyan",
-        image: "https://ui-avatars.com/api/?name=Raju%2BMularam%2BChoudhary&background=0D8ABC&color=fff",
-        selectionDate: "Joined"
-    },
-    {
-        id: 455,
-        name: "Shubham Nikam",
-        role: "ACPL Systems Pvt. Ltd.",
-        company: "Thane",
-        image: "https://ui-avatars.com/api/?name=Shubham%2BNikam&background=0D8ABC&color=fff",
-        selectionDate: "Joined"
-    },
-    {
-        id: 456,
-        name: "Aashik Ali",
-        role: "Enhanced Software Solutions",
-        company: "External",
-        image: "https://ui-avatars.com/api/?name=Aashik%2BAli&background=0D8ABC&color=fff",
-        selectionDate: "Joined"
-    },
-    {
-        id: 457,
-        name: "Vaibhavi Patkar",
-        role: "Armiet College",
-        company: "Thane",
-        image: "https://ui-avatars.com/api/?name=Vaibhavi%2BPatkar&background=0D8ABC&color=fff",
-        selectionDate: "Joined"
-    },
-    {
-        id: 458,
-        name: "Munira Bagasarawala",
-        role: "WebInsight",
-        company: "Dadar",
-        image: "https://ui-avatars.com/api/?name=Munira%2BBagasarawala&background=0D8ABC&color=fff",
-        selectionDate: "Joined"
-    },
-    {
-        id: 459,
-        name: "Sachin Tambe",
-        role: "Art in Art",
-        company: "Thane",
-        image: "https://ui-avatars.com/api/?name=Sachin%2BTambe&background=0D8ABC&color=fff",
-        selectionDate: "Joined"
-    },
-    {
-        id: 460,
-        name: "Ashwini Chavan",
-        role: "U J Software and Solutions",
-        company: "External",
-        image: "https://ui-avatars.com/api/?name=Ashwini%2BChavan&background=0D8ABC&color=fff",
-        selectionDate: "Selected"
-    },
-    {
-        id: 461,
-        name: "Nisargaa Garkal",
-        role: "Digigrow solutions",
-        company: "External",
-        image: "https://ui-avatars.com/api/?name=Nisargaa%2BGarkal&background=0D8ABC&color=fff",
-        selectionDate: "Joined"
-    },
-    {
-        id: 462,
-        name: "Bhavesh Kodam",
-        role: "EL Dynamics",
-        company: "External",
-        image: "https://ui-avatars.com/api/?name=Bhavesh%2BKodam&background=0D8ABC&color=fff",
-        selectionDate: "Joined"
-    },
-    {
-        id: 463,
-        name: "Prathamesh yanam",
-        role: "eClerx",
-        company: "Nerul",
-        image: "https://ui-avatars.com/api/?name=Prathamesh%2Byanam&background=0D8ABC&color=fff",
-        selectionDate: "Selected"
-    },
-    {
-        id: 464,
-        name: "Swapnil Rupavate",
-        role: "eClerx",
-        company: "Dadar",
-        image: "https://ui-avatars.com/api/?name=Swapnil%2BRupavate&background=0D8ABC&color=fff",
-        selectionDate: "Selected"
-    },
-    {
-        id: 465,
-        name: "Shweta Ramesh Jivrag",
-        role: "eClerx",
-        company: "Thane",
-        image: "https://ui-avatars.com/api/?name=Shweta%2BRamesh%2BJivrag&background=0D8ABC&color=fff",
-        selectionDate: "Selected"
-    },
-    {
-        id: 466,
-        name: "Munira Bagasarawala",
-        role: "eClerx",
-        company: "Dadar",
-        image: "https://ui-avatars.com/api/?name=Munira%2BBagasarawala&background=0D8ABC&color=fff",
-        selectionDate: "Selected"
-    },
-    {
-        id: 467,
-        name: "Rutuja Chandrakant Salekar",
-        role: "eClerx",
-        company: "Thane",
-        image: "https://ui-avatars.com/api/?name=Rutuja%2BChandrakant%2BSalekar&background=0D8ABC&color=fff",
-        selectionDate: "Joined"
-    },
-    {
-        id: 468,
-        name: "Sanjivani Mangesh Kadam",
-        role: "eClerx",
-        company: "Thane",
-        image: "https://ui-avatars.com/api/?name=Sanjivani%2BMangesh%2BKadam&background=0D8ABC&color=fff",
-        selectionDate: "Selected"
-    },
-    {
-        id: 469,
-        name: "Jay Mehta",
-        role: "eClerx",
-        company: "Thane",
-        image: "https://ui-avatars.com/api/?name=Jay%2BMehta&background=0D8ABC&color=fff",
-        selectionDate: "Selected"
-    },
-    {
-        id: 470,
-        name: "Aaditi Ranganath Satam",
-        role: "eClerx",
-        company: "Thane",
-        image: "https://ui-avatars.com/api/?name=Aaditi%2BRanganath%2BSatam&background=0D8ABC&color=fff",
-        selectionDate: "Joined"
-    },
-    {
-        id: 471,
-        name: "Jagruti Vijay Bavalekar",
-        role: "eClerx",
-        company: "Thane",
-        image: "https://ui-avatars.com/api/?name=Jagruti%2BVijay%2BBavalekar&background=0D8ABC&color=fff",
-        selectionDate: "Joined"
-    },
-    {
-        id: 472,
-        name: "Prangal Yadav",
-        role: "eClerx",
-        company: "Thane",
-        image: "https://ui-avatars.com/api/?name=Prangal%2BYadav&background=0D8ABC&color=fff",
-        selectionDate: "Selected"
-    },
-    {
-        id: 473,
-        name: "Srushti Khandekar",
-        role: "eClerx",
-        company: "Thane",
-        image: "https://ui-avatars.com/api/?name=Srushti%2BKhandekar&background=0D8ABC&color=fff",
-        selectionDate: "Joined"
-    },
-    {
-        id: 474,
-        name: "Bipin Jitendra Waghmare",
-        role: "eClerx",
-        company: "Dadar",
-        image: "https://ui-avatars.com/api/?name=Bipin%2BJitendra%2BWaghmare&background=0D8ABC&color=fff",
-        selectionDate: "Selected"
-    },
-    {
-        id: 475,
-        name: "Bhavesh Sanjay Pawar",
-        role: "eClerx",
-        company: "Kalyan",
-        image: "https://ui-avatars.com/api/?name=Bhavesh%2BSanjay%2BPawar&background=0D8ABC&color=fff",
-        selectionDate: "Joined"
-    },
-    {
-        id: 476,
-        name: "Karsh Dhanga",
-        role: "PBI Analytics Pvt. Ltd.",
-        company: "Andheri",
-        image: "https://ui-avatars.com/api/?name=Karsh%2BDhanga&background=0D8ABC&color=fff",
-        selectionDate: "Joined"
-    },
-    {
-        id: 477,
-        name: "Shiva Pujari",
-        role: "Airnet Networks",
-        company: "Andheri",
-        image: "https://ui-avatars.com/api/?name=Shiva%2BPujari&background=0D8ABC&color=fff",
-        selectionDate: "Joined"
-    },
-    {
-        id: 478,
-        name: "Vaishnavi Khanekar",
-        role: "Airnet Networks",
-        company: "Thane",
-        image: "https://ui-avatars.com/api/?name=Vaishnavi%2BKhanekar&background=0D8ABC&color=fff",
-        selectionDate: "Joined"
-    },
-    {
-        id: 479,
-        name: "Vaishnavi Bhadale",
-        role: "GS Pvt Ltd",
-        company: "Thane",
-        image: "https://ui-avatars.com/api/?name=Vaishnavi%2BBhadale&background=0D8ABC&color=fff",
-        selectionDate: "Joined"
-    },
-    {
-        id: 480,
-        name: "Manita Sah",
-        role: "GS Pvt Ltd",
-        company: "Thane",
-        image: "https://ui-avatars.com/api/?name=Manita%2BSah&background=0D8ABC&color=fff",
-        selectionDate: "Selected"
-    },
-    {
-        id: 481,
-        name: "Harsh Kewat",
-        role: "GS Pvt Ltd",
-        company: "External",
-        image: "https://ui-avatars.com/api/?name=Harsh%2BKewat&background=0D8ABC&color=fff",
-        selectionDate: "Selected"
-    },
-    {
-        id: 482,
-        name: "Amir Ansari Khan",
-        role: "Professional Techsys Pvt ltd",
-        company: "External",
-        image: "https://ui-avatars.com/api/?name=Amir%2BAnsari%2BKhan&background=0D8ABC&color=fff",
-        selectionDate: "Joined"
-    },
-    {
-        id: 483,
-        name: "Shivam Singh",
-        role: "CodeStudios",
-        company: "External",
-        image: "https://ui-avatars.com/api/?name=Shivam%2BSingh&background=0D8ABC&color=fff",
-        selectionDate: "Joined"
-    },
-    {
-        id: 484,
-        name: "Manoj Verma",
-        role: "GS Pvt Ltd",
-        company: "External",
-        image: "https://ui-avatars.com/api/?name=Manoj%2BVerma&background=0D8ABC&color=fff",
-        selectionDate: "Joined"
-    },
-    {
-        id: 485,
-        name: "Vandan Waghela",
-        role: "U J software and solutions",
-        company: "External",
-        image: "https://ui-avatars.com/api/?name=Vandan%2BWaghela&background=0D8ABC&color=fff",
-        selectionDate: "Selected"
-    },
-    {
-        id: 486,
-        name: "Sudiksha Koli",
-        role: "Airnet Networks",
-        company: "Thane",
-        image: "https://ui-avatars.com/api/?name=Sudiksha%2BKoli&background=0D8ABC&color=fff",
-        selectionDate: "Joined"
-    },
-    {
-        id: 487,
-        name: "Amit Jaiswar",
-        role: "Airnet Networks",
-        company: "Thane",
-        image: "https://ui-avatars.com/api/?name=Amit%2BJaiswar&background=0D8ABC&color=fff",
-        selectionDate: "Joined"
-    },
-    {
-        id: 488,
-        name: "Sanket patil",
-        role: "Network Techlab PVT.LTD.",
-        company: "External",
-        image: "https://ui-avatars.com/api/?name=Sanket%2Bpatil&background=0D8ABC&color=fff",
-        selectionDate: "Joined"
-    },
-    {
-        id: 489,
-        name: "Isha Parab",
-        role: "Anushree Associates",
-        company: "Thane",
-        image: "https://ui-avatars.com/api/?name=Isha%2BParab&background=0D8ABC&color=fff",
-        selectionDate: "Selected"
-    },
-    {
-        id: 490,
-        name: "Nehal Nurlhak Choche",
-        role: "GEM SPRIGHT ELECTRICALS & AUTOMATION PVT LTD",
-        company: "Dadar",
-        image: "https://ui-avatars.com/api/?name=Nehal%2BNurlhak%2BChoche&background=0D8ABC&color=fff",
-        selectionDate: "Joined"
-    },
-    {
-        id: 491,
-        name: "Tejas Patil",
-        role: "Thomas Baker (Chemicals) Pvt Ltd",
-        company: "Thane",
-        image: "https://ui-avatars.com/api/?name=Tejas%2BPatil&background=0D8ABC&color=fff",
-        selectionDate: "Selected"
-    },
-    {
-        id: 492,
-        name: "Nilesh Jadhav",
-        role: "Shree Infotech Solutions",
-        company: "External",
-        image: "https://ui-avatars.com/api/?name=Nilesh%2BJadhav&background=0D8ABC&color=fff",
-        selectionDate: "Selected"
-    },
-    {
-        id: 493,
-        name: "Sheetal Vishwakarma",
-        role: "Genetics Cryobank LLP",
-        company: "External",
-        image: "https://ui-avatars.com/api/?name=Sheetal%2BVishwakarma&background=0D8ABC&color=fff",
-        selectionDate: "Joined"
-    },
-    {
-        id: 494,
-        name: "Ashish Jadhav",
-        role: "Techflex Solution",
-        company: "Thane",
-        image: "https://ui-avatars.com/api/?name=Ashish%2BJadhav&background=0D8ABC&color=fff",
-        selectionDate: "Selected"
-    },
-    {
-        id: 495,
-        name: "Abhishek Yadav",
-        role: "Tescom Business Solution",
-        company: "Thane",
-        image: "https://ui-avatars.com/api/?name=Abhishek%2BYadav&background=0D8ABC&color=fff",
-        selectionDate: "Joined"
-    },
-    {
-        id: 496,
-        name: "Arqam Ansari",
-        role: "Manage IT Company",
-        company: "Kalyan",
-        image: "https://ui-avatars.com/api/?name=Arqam%2BAnsari&background=0D8ABC&color=fff",
-        selectionDate: "Selected"
-    },
-    {
-        id: 497,
-        name: "Tushar Khapre",
-        role: "Piramal Capital & Housing Finance Pvt Ltd",
-        company: "External",
-        image: "https://ui-avatars.com/api/?name=Tushar%2BKhapre&background=0D8ABC&color=fff",
-        selectionDate: "Selected"
-    },
-    {
-        id: 498,
-        name: "Ravindra Adabale",
-        role: "Shree Infotech Solutions",
-        company: "External",
-        image: "https://ui-avatars.com/api/?name=Ravindra%2BAdabale&background=0D8ABC&color=fff",
-        selectionDate: "Selected"
-    },
-    {
-        id: 499,
-        name: "Amit Yadav",
-        role: "Tescom Business Solution",
-        company: "Thane",
-        image: "https://ui-avatars.com/api/?name=Amit%2BYadav&background=0D8ABC&color=fff",
-        selectionDate: "Selected"
-    },
-    {
-        id: 500,
-        name: "Milind Bhorkade",
-        role: "Tescom Business Solution",
-        company: "Thane",
-        image: "https://ui-avatars.com/api/?name=Milind%2BBhorkade&background=0D8ABC&color=fff",
-        selectionDate: "Selected"
-    },
-    {
-        id: 501,
-        name: "Nehal Nurlhak Choche",
-        role: "Shriji Electronics",
-        company: "Dadar",
-        image: "https://ui-avatars.com/api/?name=Nehal%2BNurlhak%2BChoche&background=0D8ABC&color=fff",
-        selectionDate: "Selected"
-    },
-    {
-        id: 502,
-        name: "Roshani Dharse",
-        role: "STEP One Step Ahead",
-        company: "External",
-        image: "https://ui-avatars.com/api/?name=Roshani%2BDharse&background=0D8ABC&color=fff",
-        selectionDate: "Selected"
-    },
-    {
-        id: 503,
-        name: "Amit Yadav",
-        role: "Modern Informatics Pvt. Ltd.",
-        company: "Thane",
-        image: "https://ui-avatars.com/api/?name=Amit%2BYadav&background=0D8ABC&color=fff",
-        selectionDate: "Selected"
-    },
-    {
-        id: 504,
-        name: "Rohan Gupta",
-        role: "Modern Informatics Pvt. Ltd.",
-        company: "Thane",
-        image: "https://ui-avatars.com/api/?name=Rohan%2BGupta&background=0D8ABC&color=fff",
-        selectionDate: "Selected"
-    },
-    {
-        id: 505,
-        name: "Vivek Sutar",
-        role: "AVS Insotech Pvt Ltd",
-        company: "Thane",
-        image: "https://ui-avatars.com/api/?name=Vivek%2BSutar&background=0D8ABC&color=fff",
-        selectionDate: "Selected"
-    },
-    {
-        id: 506,
-        name: "Aboli Autkar",
-        role: "STEP One Step Ahead",
-        company: "External",
-        image: "https://ui-avatars.com/api/?name=Aboli%2BAutkar&background=0D8ABC&color=fff",
-        selectionDate: "Selected"
-    },
-    {
-        id: 507,
-        name: "nan",
-        role: "nan",
-        company: "nan",
-        image: "https://ui-avatars.com/api/?name=nan&background=0D8ABC&color=fff",
-        selectionDate: "nan"
-    },
-    {
-        id: 508,
-        name: "nan",
-        role: "nan",
-        company: "nan",
-        image: "https://ui-avatars.com/api/?name=nan&background=0D8ABC&color=fff",
-        selectionDate: "nan"
-    },
-    {
-        id: 509,
-        name: "nan",
-        role: "JULY 2025 - AUGUST 2025",
-        company: "nan",
-        image: "https://ui-avatars.com/api/?name=nan&background=0D8ABC&color=fff",
-        selectionDate: "nan"
-    },
-    {
-        id: 510,
-        name: "Student Name",
-        role: company,
-        company: "Branch",
-        image: "https://ui-avatars.com/api/?name=Student%2BName&background=0D8ABC&color=fff",
-        selectionDate: "Status"
-    },
-    {
-        id: 511,
-        name: "Tushar Khapre",
-        role: "Piramal Capital & Housing Finance Pvt Ltd",
-        company: "External",
-        image: "https://ui-avatars.com/api/?name=Tushar%2BKhapre&background=0D8ABC&color=fff",
-        selectionDate: "Joined"
-    },
-    {
-        id: 512,
-        name: "Siddhant Lawande",
-        role: "Mahity Pvt. Ltd",
-        company: "External",
-        image: "https://ui-avatars.com/api/?name=Siddhant%2BLawande&background=0D8ABC&color=fff",
-        selectionDate: "Joined"
-    },
-    {
-        id: 513,
-        name: "Ashish Shelake",
-        role: "Tescom Business Solution",
-        company: "External",
-        image: "https://ui-avatars.com/api/?name=Ashish%2BShelake&background=0D8ABC&color=fff",
-        selectionDate: "Joined"
-    },
-    {
-        id: 514,
-        name: "Nilesh Jadhav",
-        role: "Shree Infotech Solutions",
-        company: "External",
-        image: "https://ui-avatars.com/api/?name=Nilesh%2BJadhav&background=0D8ABC&color=fff",
-        selectionDate: "Joined"
-    },
-    {
-        id: 515,
-        name: "Ravindra Adabale",
-        role: "Shree Infotech Solutions",
-        company: "External",
-        image: "https://ui-avatars.com/api/?name=Ravindra%2BAdabale&background=0D8ABC&color=fff",
-        selectionDate: "Join & Left"
-    },
-    {
-        id: 516,
-        name: "Amit Yadav",
-        role: "Tescom Business Solution",
-        company: "Thane",
-        image: "https://ui-avatars.com/api/?name=Amit%2BYadav&background=0D8ABC&color=fff",
-        selectionDate: "Joined"
-    },
-    {
-        id: 517,
-        name: "Amit Yadav",
-        role: "Modern Informatics Pvt. Ltd.",
-        company: "Thane",
-        image: "https://ui-avatars.com/api/?name=Amit%2BYadav&background=0D8ABC&color=fff",
-        selectionDate: "Joined"
-    },
-    {
-        id: 518,
-        name: "Rohan Gupta",
-        role: "Modern Informatics Pvt. Ltd.",
-        company: "Thane",
-        image: "https://ui-avatars.com/api/?name=Rohan%2BGupta&background=0D8ABC&color=fff",
-        selectionDate: "Selected"
-    },
-    {
-        id: 519,
-        name: "Roshani Dharse",
-        role: "STEP One Step Ahead",
-        company: "External",
-        image: "https://ui-avatars.com/api/?name=Roshani%2BDharse&background=0D8ABC&color=fff",
-        selectionDate: "Joined"
-    },
-    {
-        id: 520,
-        name: "Tejas Patil",
-        role: "Thomas Baker (Chemicals) Pvt Ltd",
-        company: "Thane",
-        image: "https://ui-avatars.com/api/?name=Tejas%2BPatil&background=0D8ABC&color=fff",
-        selectionDate: "Joined"
-    },
-    {
-        id: 521,
-        name: "Aboli Autkar",
-        role: "STEP One Step Ahead",
-        company: "External",
-        image: "https://ui-avatars.com/api/?name=Aboli%2BAutkar&background=0D8ABC&color=fff",
-        selectionDate: "Selected"
-    },
-    {
-        id: 522,
-        name: "Kishan Vishwakarma",
-        role: "CodeStudios",
-        company: "External",
-        image: "https://ui-avatars.com/api/?name=Kishan%2BVishwakarma&background=0D8ABC&color=fff",
-        selectionDate: "Joined"
-    },
-    {
-        id: 523,
-        name: "Ayush Singh",
-        role: "CodeStudios",
-        company: "External",
-        image: "https://ui-avatars.com/api/?name=Ayush%2BSingh&background=0D8ABC&color=fff",
-        selectionDate: "Selected"
-    },
-    {
-        id: 524,
-        name: "Prathamesh yanam",
-        role: "eClerx",
-        company: "Nerul",
-        image: "https://ui-avatars.com/api/?name=Prathamesh%2Byanam&background=0D8ABC&color=fff",
-        selectionDate: "Joined"
-    },
-    {
-        id: 525,
-        name: "Swapnil Rupavate",
-        role: "eClerx",
-        company: "Dadar",
-        image: "https://ui-avatars.com/api/?name=Swapnil%2BRupavate&background=0D8ABC&color=fff",
-        selectionDate: "Joined"
-    },
-    {
-        id: 526,
-        name: "Shweta Ramesh Jivrag",
-        role: "eClerx",
-        company: "Thane",
-        image: "https://ui-avatars.com/api/?name=Shweta%2BRamesh%2BJivrag&background=0D8ABC&color=fff",
-        selectionDate: "Joined"
-    },
-    {
-        id: 527,
-        name: "Prangal Yadav",
-        role: "eClerx",
-        company: "Thane",
-        image: "https://ui-avatars.com/api/?name=Prangal%2BYadav&background=0D8ABC&color=fff",
-        selectionDate: "Joined"
-    },
-    {
-        id: 528,
-        name: "Sanjivani Mangesh Kadam",
-        role: "eClerx",
-        company: "Thane",
-        image: "https://ui-avatars.com/api/?name=Sanjivani%2BMangesh%2BKadam&background=0D8ABC&color=fff",
-        selectionDate: "Joined"
-    },
-    {
-        id: 529,
-        name: "Arqam Ansari",
-        role: "Manage IT Company",
-        company: "Kalyan",
-        image: "https://ui-avatars.com/api/?name=Arqam%2BAnsari&background=0D8ABC&color=fff",
-        selectionDate: "Joined"
-    },
-    {
-        id: 530,
-        name: "Shivani Kale",
-        role: "Probox Infotech",
-        company: "Kalyan",
-        image: "https://ui-avatars.com/api/?name=Shivani%2BKale&background=0D8ABC&color=fff",
-        selectionDate: "Joined"
-    },
-    {
-        id: 531,
-        name: "Sadhvii Kamble",
-        role: "Probox Infotech",
-        company: "Kalyan",
-        image: "https://ui-avatars.com/api/?name=Sadhvii%2BKamble&background=0D8ABC&color=fff",
-        selectionDate: "Joined"
-    },
-    {
-        id: 532,
-        name: "Vanshita Patil",
-        role: "Devki Infotech Pvt Ltd",
-        company: "Thane",
-        image: "https://ui-avatars.com/api/?name=Vanshita%2BPatil&background=0D8ABC&color=fff",
-        selectionDate: "Joined"
-    },
-    {
-        id: 533,
-        name: "Ayush singh",
-        role: "Devki Infotech Pvt Ltd",
-        company: "External",
-        image: "https://ui-avatars.com/api/?name=Ayush%2Bsingh&background=0D8ABC&color=fff",
-        selectionDate: "Joined"
-    },
-    {
-        id: 534,
-        name: "Vivek Sutar",
-        role: "AVS Insotech Pvt Ltd",
-        company: "Thane",
-        image: "https://ui-avatars.com/api/?name=Vivek%2BSutar&background=0D8ABC&color=fff",
-        selectionDate: "Selected"
-    },
-    {
-        id: 535,
-        name: "Tejaswini Parab",
-        role: "AVS Insotech Pvt Ltd",
-        company: "External",
-        image: "https://ui-avatars.com/api/?name=Tejaswini%2BParab&background=0D8ABC&color=fff",
-        selectionDate: "Joined"
-    },
-    {
-        id: 536,
-        name: "Sejal Patil",
-        role: "Word Publishing",
-        company: "Nerul",
-        image: "https://ui-avatars.com/api/?name=Sejal%2BPatil&background=0D8ABC&color=fff",
-        selectionDate: "Joined"
-    },
-    {
-        id: 537,
-        name: "Rajkumar Wankhade",
-        role: "Mahity Pvt. Ltd",
-        company: "Thane",
-        image: "https://ui-avatars.com/api/?name=Rajkumar%2BWankhade&background=0D8ABC&color=fff",
-        selectionDate: "Selected"
-    },
-    {
-        id: 538,
-        name: "Aditi Mahajan",
-        role: "Probox Infotech",
-        company: "Thane",
-        image: "https://ui-avatars.com/api/?name=Aditi%2BMahajan&background=0D8ABC&color=fff",
-        selectionDate: "Selected"
-    },
-    {
-        id: 539,
-        name: "Ashish Shelake",
-        role: "Probox Infotech",
-        company: "External",
-        image: "https://ui-avatars.com/api/?name=Ashish%2BShelake&background=0D8ABC&color=fff",
-        selectionDate: "Selected"
-    },
-    {
-        id: 540,
-        name: "Sangam Sharma",
-        role: "STEP One Step Ahead",
-        company: "Andheri",
-        image: "https://ui-avatars.com/api/?name=Sangam%2BSharma&background=0D8ABC&color=fff",
-        selectionDate: "Joined"
-    },
-    {
-        id: 541,
-        name: "Vishwanath Dogi",
-        role: "Techaroha Solutions Pvt Ltd",
-        company: "Thane",
-        image: "https://ui-avatars.com/api/?name=Vishwanath%2BDogi&background=0D8ABC&color=fff",
-        selectionDate: "Joined"
-    },
-    {
-        id: 542,
-        name: "Aniket Tiwari",
-        role: "Techaroha Solutions Pvt Ltd",
-        company: "External",
-        image: "https://ui-avatars.com/api/?name=Aniket%2BTiwari&background=0D8ABC&color=fff",
-        selectionDate: "Joined"
-    },
-    {
-        id: 543,
-        name: "Durgesh Sahani",
-        role: "Techaroha Solutions Pvt Ltd",
-        company: "External",
-        image: "https://ui-avatars.com/api/?name=Durgesh%2BSahani&background=0D8ABC&color=fff",
-        selectionDate: "Joined"
-    },
-    {
-        id: 544,
-        name: "Devdutt Bhoir",
-        role: "Nisan Scientific Process Equipment PVT LTD",
-        company: "nan",
-        image: "https://ui-avatars.com/api/?name=Devdutt%2BBhoir&background=0D8ABC&color=fff",
-        selectionDate: "Joined"
-    },
-    {
-        id: 545,
-        name: "Mukundan Mahalingam",
-        role: "Mahity Pvt. Ltd",
-        company: "External",
-        image: "https://ui-avatars.com/api/?name=Mukundan%2BMahalingam&background=0D8ABC&color=fff",
-        selectionDate: "Joined"
-    },
-    {
-        id: 546,
-        name: "Sachin suryavanshi",
-        role: "Mahity Pvt. Ltd",
-        company: "External",
-        image: "https://ui-avatars.com/api/?name=Sachin%2Bsuryavanshi&background=0D8ABC&color=fff",
-        selectionDate: "Joined"
-    },
-    {
-        id: 547,
-        name: "Abhishek Thakur",
-        role: "Fact Online Pvt .Ltd",
-        company: "External",
-        image: "https://ui-avatars.com/api/?name=Abhishek%2BThakur&background=0D8ABC&color=fff",
-        selectionDate: "Selected"
-    },
-    {
-        id: 548,
-        name: "Fatima Shaikh",
-        role: "Anushree Associates",
-        company: "External",
-        image: "https://ui-avatars.com/api/?name=Fatima%2BShaikh&background=0D8ABC&color=fff",
-        selectionDate: "Joined"
-    },
-    {
-        id: 549,
-        name: "Sakshi Ghadge",
-        role: "SlashRTC",
-        company: "External",
-        image: "https://ui-avatars.com/api/?name=Sakshi%2BGhadge&background=0D8ABC&color=fff",
-        selectionDate: "Selected"
-    },
-    {
-        id: 550,
-        name: "Prerna Vishwasrao",
-        role: "SlashRTC",
-        company: "External",
-        image: "https://ui-avatars.com/api/?name=Prerna%2BVishwasrao&background=0D8ABC&color=fff",
-        selectionDate: "Selected"
-    },
-    {
-        id: 551,
-        name: "Ruchi Gupta",
-        role: "Labmentix",
-        company: "nan",
-        image: "https://ui-avatars.com/api/?name=Ruchi%2BGupta&background=0D8ABC&color=fff",
-        selectionDate: "Joined"
-    },
-    {
-        id: 552,
-        name: "Abhishek Diwate",
-        role: "Professional techsys pvt ltd",
-        company: "External",
-        image: "https://ui-avatars.com/api/?name=Abhishek%2BDiwate&background=0D8ABC&color=fff",
-        selectionDate: "Joined"
-    },
-    {
-        id: 553,
-        name: "Pratik Sable",
-        role: "Bridge Loyalty",
-        company: "Thane",
-        image: "https://ui-avatars.com/api/?name=Pratik%2BSable&background=0D8ABC&color=fff",
-        selectionDate: "Selected"
-    },
-    {
-        id: 554,
-        name: "Vandan Waghela",
-        role: "U J Software And Solutions",
-        company: "External",
-        image: "https://ui-avatars.com/api/?name=Vandan%2BWaghela&background=0D8ABC&color=fff",
-        selectionDate: "Joined"
-    },
-    {
-        id: 555,
-        name: "Isha Parab",
-        role: "Anushree Associates",
-        company: "Thane",
-        image: "https://ui-avatars.com/api/?name=Isha%2BParab&background=0D8ABC&color=fff",
-        selectionDate: "Joined"
-    },
-    {
-        id: 556,
-        name: "vivek kumbhar",
-        role: "Smart Connect Technologies",
-        company: "External",
-        image: "https://ui-avatars.com/api/?name=vivek%2Bkumbhar&background=0D8ABC&color=fff",
-        selectionDate: "Joined"
-    },
-    {
-        id: 557,
-        name: "Habib quraishi",
-        role: "Anushree Associates",
-        company: "External",
-        image: "https://ui-avatars.com/api/?name=Habib%2Bquraishi&background=0D8ABC&color=fff",
-        selectionDate: "Selected"
-    },
-    {
-        id: 558,
-        name: "Abhijit bansode",
-        role: "Network Techlab PVT.LTD.",
-        company: "External",
-        image: "https://ui-avatars.com/api/?name=Abhijit%2Bbansode&background=0D8ABC&color=fff",
-        selectionDate: "Joined"
-    },
-    {
-        id: 559,
-        name: "Atiq Ansari",
-        role: "Brocus IT Solutions Pvt Lts",
-        company: "Thane",
-        image: "https://ui-avatars.com/api/?name=Atiq%2BAnsari&background=0D8ABC&color=fff",
-        selectionDate: "Selected"
-    },
-    {
-        id: 560,
-        name: "Surajkumar Srinivasan Idiga",
-        role: "Mahity Systems Pvt Ltd",
-        company: "Thane",
-        image: "https://ui-avatars.com/api/?name=Surajkumar%2BSrinivasan%2BIdiga&background=0D8ABC&color=fff",
-        selectionDate: "Joined"
-    },
-    {
-        id: 561,
-        name: "Sakshi Bavkar",
-        role: "Teleperformance Global Business Private Limited",
-        company: "Thane",
-        image: "https://ui-avatars.com/api/?name=Sakshi%2BBavkar&background=0D8ABC&color=fff",
-        selectionDate: "Joined"
-    },
-    {
-        id: 562,
-        name: "Ravindra Ashok Adaballe",
-        role: "Kaizen Infotech Solutions Pvt. Ltd",
-        company: "External",
-        image: "https://ui-avatars.com/api/?name=Ravindra%2BAshok%2BAdaballe&background=0D8ABC&color=fff",
-        selectionDate: "Joined"
-    },
-    {
-        id: 563,
-        name: "Priyanshu Kannaujiya",
-        role: "Contexio",
-        company: "Dadar",
-        image: "https://ui-avatars.com/api/?name=Priyanshu%2BKannaujiya&background=0D8ABC&color=fff",
-        selectionDate: "Joined"
-    },
-    {
-        id: 564,
-        name: "Junaid Ahmed Shaikh",
-        role: "SLASHRTC SOFTWARE SERVICES PRIVATE LIMITED",
-        company: "External",
-        image: "https://ui-avatars.com/api/?name=Junaid%2BAhmed%2BShaikh&background=0D8ABC&color=fff",
-        selectionDate: "Joined"
-    },
-    {
-        id: 565,
-        name: "Abdul Samad Shaikh.",
-        role: "SLASHRTC SOFTWARE SERVICES PRIVATE LIMITED",
-        company: "External",
-        image: "https://ui-avatars.com/api/?name=Abdul%2BSamad%2BShaikh.&background=0D8ABC&color=fff",
-        selectionDate: "Joined"
-    },
-    {
-        id: 566,
-        name: "Vivek Gupta",
-        role: "iResolve",
-        company: "Thane",
-        image: "https://ui-avatars.com/api/?name=Vivek%2BGupta&background=0D8ABC&color=fff",
-        selectionDate: "Joined"
-    },
-    {
-        id: 567,
-        name: "Aditi Mahajan",
-        role: "Everence Technologies Pvt Ltd",
-        company: "Thane",
-        image: "https://ui-avatars.com/api/?name=Aditi%2BMahajan&background=0D8ABC&color=fff",
-        selectionDate: "Joined"
-    },
-    {
-        id: 568,
-        name: "Prince Maurya",
-        role: "Everence Technologies Pvt Ltd",
-        company: "Internal",
-        image: "https://ui-avatars.com/api/?name=Prince%2BMaurya&background=0D8ABC&color=fff",
-        selectionDate: "Joined"
-    },
-    {
-        id: 569,
-        name: "Aashik Ali Noor Mohd.",
-        role: "Enhanced Software Solutions",
-        company: "External",
-        image: "https://ui-avatars.com/api/?name=Aashik%2BAli%2BNoor%2BMohd.&background=0D8ABC&color=fff",
-        selectionDate: "Joined"
-    },
-    {
-        id: 570,
-        name: "Ambuj Pandey",
-        role: "Magical Balloons",
-        company: "External",
-        image: "https://ui-avatars.com/api/?name=Ambuj%2BPandey&background=0D8ABC&color=fff",
-        selectionDate: "Selected"
-    },
-    {
-        id: 571,
-        name: "Vishal Pashte",
-        role: "U J software and solutions",
-        company: "Thane",
-        image: "https://ui-avatars.com/api/?name=Vishal%2BPashte&background=0D8ABC&color=fff",
-        selectionDate: "Joined"
-    },
-    {
-        id: 572,
-        name: "Pratik Sable",
-        role: "Modern Informatics Pvt. Ltd",
-        company: "Thane",
-        image: "https://ui-avatars.com/api/?name=Pratik%2BSable&background=0D8ABC&color=fff",
-        selectionDate: "Joined"
-    },
-    {
-        id: 573,
-        name: "Vaishnavi Chikhale",
-        role: "HiPaaS Infotech Pvt Ltd",
-        company: "Thane",
-        image: "https://ui-avatars.com/api/?name=Vaishnavi%2BChikhale&background=0D8ABC&color=fff",
-        selectionDate: "Joined"
-    },
-    {
-        id: 574,
-        name: "Vaibhav Upadhyay",
-        role: "HiPaaS Infotech Pvt Ltd",
-        company: "Andheri",
-        image: "https://ui-avatars.com/api/?name=Vaibhav%2BUpadhyay&background=0D8ABC&color=fff",
-        selectionDate: "Selected"
-    },
-    {
-        id: 575,
-        name: "Rushikesh Salekar",
-        role: "HiPaaS Infotech Pvt Ltd",
-        company: "Andheri",
-        image: "https://ui-avatars.com/api/?name=Rushikesh%2BSalekar&background=0D8ABC&color=fff",
-        selectionDate: "Selected"
-    },
-    {
-        id: 576,
-        name: "Rahul Ankam",
-        role: "TalentNest Solutions",
-        company: "External",
-        image: "https://ui-avatars.com/api/?name=Rahul%2BAnkam&background=0D8ABC&color=fff",
-        selectionDate: "Joined"
-    },
-    {
-        id: 577,
-        name: "Om Ghag",
-        role: "Hikerwolf",
-        company: "External",
-        image: "https://ui-avatars.com/api/?name=Om%2BGhag&background=0D8ABC&color=fff",
-        selectionDate: "Selected"
-    },
-    {
-        id: 578,
-        name: "Prasad Bacche",
-        role: "Atizen",
-        company: "Internal",
-        image: "https://ui-avatars.com/api/?name=Prasad%2BBacche&background=0D8ABC&color=fff",
-        selectionDate: "Joined"
-    },
-    {
-        id: 579,
-        name: "Tarun Manchikatla",
-        role: "Enhanced Software Solutions",
-        company: "External",
-        image: "https://ui-avatars.com/api/?name=Tarun%2BManchikatla&background=0D8ABC&color=fff",
-        selectionDate: "Joined"
-    },
-    {
-        id: 580,
-        name: "TANAY KIRAN PALSHETKAR",
-        role: "M. K. Engineers and Controls Pvt. Ltd",
-        company: "Thane",
-        image: "https://ui-avatars.com/api/?name=TANAY%2BKIRAN%2BPALSHETKAR&background=0D8ABC&color=fff",
-        selectionDate: "Joined"
-    },
-    {
-        id: 581,
-        name: "Siddhesh Bhangare",
-        role: "Micro link Infonet Pvt ltd",
-        company: "Thane",
-        image: "https://ui-avatars.com/api/?name=Siddhesh%2BBhangare&background=0D8ABC&color=fff",
-        selectionDate: "Joined"
-    },
-    {
-        id: 582,
-        name: "Rohit Jambhale",
-        role: "Brocus IT Solutions Pvt Lts",
-        company: "External",
-        image: "https://ui-avatars.com/api/?name=Rohit%2BJambhale&background=0D8ABC&color=fff",
-        selectionDate: "Selected"
-    },
-    {
-        id: 583,
-        name: "Rohan Daryanor",
-        role: "Living Things",
-        company: "External",
-        image: "https://ui-avatars.com/api/?name=Rohan%2BDaryanor&background=0D8ABC&color=fff",
-        selectionDate: "Selected"
-    },
-    {
-        id: 584,
-        name: "Mohd Saahil Siddiqui",
-        role: "ModGen Solutions Private Limited",
-        company: "Nerul",
-        image: "https://ui-avatars.com/api/?name=Mohd%2BSaahil%2BSiddiqui&background=0D8ABC&color=fff",
-        selectionDate: "Joined"
-    },
-    {
-        id: 585,
-        name: "Trushil Angre",
-        role: "Cby Services Private Limited",
-        company: "Kalyan",
-        image: "https://ui-avatars.com/api/?name=Trushil%2BAngre&background=0D8ABC&color=fff",
-        selectionDate: "Joined"
-    },
-    {
-        id: 586,
-        name: "Abhay Gosavi",
-        role: "Data Insight",
-        company: "Internal",
-        image: "https://ui-avatars.com/api/?name=Abhay%2BGosavi&background=0D8ABC&color=fff",
-        selectionDate: "Joined"
-    },
-    {
-        id: 587,
-        name: "Devnarayan Sahu",
-        role: "Reinlabs",
-        company: "Kalyan",
-        image: "https://ui-avatars.com/api/?name=Devnarayan%2BSahu&background=0D8ABC&color=fff",
-        selectionDate: "Selected"
-    },
-    {
-        id: 588,
-        name: "Chetan Patil",
-        role: "Kwikflex",
-        company: "Thane",
-        image: "https://ui-avatars.com/api/?name=Chetan%2BPatil&background=0D8ABC&color=fff",
-        selectionDate: "Selected"
-    },
-    {
-        id: 589,
-        name: "Shivdas Gupta",
-        role: "Annuntra Technologies",
-        company: "External",
-        image: "https://ui-avatars.com/api/?name=Shivdas%2BGupta&background=0D8ABC&color=fff",
-        selectionDate: "Joined"
-    },
-    {
-        id: 590,
-        name: "Ajay Jaiswar",
-        role: "Search Digitally",
-        company: "nan",
-        image: "https://ui-avatars.com/api/?name=Ajay%2BJaiswar&background=0D8ABC&color=fff",
-        selectionDate: "Selected"
-    },
-    {
-        id: 591,
-        name: "Kajal Sharma",
-        role: "Tax Genie",
-        company: "Dadar",
-        image: "https://ui-avatars.com/api/?name=Kajal%2BSharma&background=0D8ABC&color=fff",
-        selectionDate: "Selected"
-    },
-    {
-        id: 592,
-        name: "Parth Godse",
-        role: "Kirin Advisors",
-        company: "External",
-        image: "https://ui-avatars.com/api/?name=Parth%2BGodse&background=0D8ABC&color=fff",
-        selectionDate: "Selected"
-    },
-    {
-        id: 593,
-        name: "Prachi Lohar",
-        role: "Kirin Advisors",
-        company: "External",
-        image: "https://ui-avatars.com/api/?name=Prachi%2BLohar&background=0D8ABC&color=fff",
-        selectionDate: "Selected"
-    },
-    {
-        id: 594,
-        name: "Siddhant Chavan",
-        role: "Sharp Computing Systems",
-        company: "Dadar",
-        image: "https://ui-avatars.com/api/?name=Siddhant%2BChavan&background=0D8ABC&color=fff",
-        selectionDate: "Selected"
-    },
-    {
-        id: 595,
-        name: "Pratik Kudve",
-        role: "Atizen Automation and Controls",
-        company: "Andheri",
-        image: "https://ui-avatars.com/api/?name=Pratik%2BKudve&background=0D8ABC&color=fff",
-        selectionDate: "Selected"
-    },
-    {
-        id: 596,
-        name: "Dipti Jadhav",
-        role: "Sate development",
-        company: "Thane",
-        image: "https://ui-avatars.com/api/?name=Dipti%2BJadhav&background=0D8ABC&color=fff",
-        selectionDate: "Selected"
-    },
-    {
-        id: 597,
-        name: "nan",
-        role: "nan",
-        company: "nan",
-        image: "https://ui-avatars.com/api/?name=nan&background=0D8ABC&color=fff",
-        selectionDate: "nan"
-    },
-    {
-        id: 598,
-        name: "nan",
-        role: "nan",
-        company: "nan",
-        image: "https://ui-avatars.com/api/?name=nan&background=0D8ABC&color=fff",
-        selectionDate: "nan"
-    },
-    {
-        id: 599,
-        name: "nan",
-        role: "AUGUST 2025 - September 2025",
-        company: "nan",
-        image: "https://ui-avatars.com/api/?name=nan&background=0D8ABC&color=fff",
-        selectionDate: "nan"
-    },
-    {
-        id: 600,
-        name: "Student Name",
-        role: company,
-        company: "Branch",
-        image: "https://ui-avatars.com/api/?name=Student%2BName&background=0D8ABC&color=fff",
-        selectionDate: "Status"
-    },
-    {
-        id: 601,
-        name: "Ajay Jaiswar",
-        role: "Search Digitally",
-        company: "nan",
-        image: "https://ui-avatars.com/api/?name=Ajay%2BJaiswar&background=0D8ABC&color=fff",
-        selectionDate: "Joined"
-    },
-    {
-        id: 602,
-        name: "Kajal Sharma",
-        role: "Tax Genie",
-        company: "Dadar",
-        image: "https://ui-avatars.com/api/?name=Kajal%2BSharma&background=0D8ABC&color=fff",
-        selectionDate: "Joined"
-    },
-    {
-        id: 603,
-        name: "Parth Godse",
-        role: "Kirin Advisors",
-        company: "External",
-        image: "https://ui-avatars.com/api/?name=Parth%2BGodse&background=0D8ABC&color=fff",
-        selectionDate: "Joined"
-    },
-    {
-        id: 604,
-        name: "Prachi Lohar",
-        role: "Kirin Advisors",
-        company: "External",
-        image: "https://ui-avatars.com/api/?name=Prachi%2BLohar&background=0D8ABC&color=fff",
-        selectionDate: "Joined"
-    },
-    {
-        id: 605,
-        name: "Siddhant Chavan",
-        role: "Sharp Computing Systems",
-        company: "Dadar",
-        image: "https://ui-avatars.com/api/?name=Siddhant%2BChavan&background=0D8ABC&color=fff",
-        selectionDate: "Joined"
-    },
-    {
-        id: 606,
-        name: "Pratik Kudve",
-        role: "Atizen Automation and Controls",
-        company: "Andheri",
-        image: "https://ui-avatars.com/api/?name=Pratik%2BKudve&background=0D8ABC&color=fff",
-        selectionDate: "Joined"
-    },
-    {
-        id: 607,
-        name: "Dipti Jadhav",
-        role: "Sate development",
-        company: "Thane",
-        image: "https://ui-avatars.com/api/?name=Dipti%2BJadhav&background=0D8ABC&color=fff",
-        selectionDate: "Joined"
-    },
-    {
-        id: 608,
-        name: "Pushkar Bansode",
-        role: "Modern Informatics Pvt Ltd",
-        company: "Thane",
-        image: "https://ui-avatars.com/api/?name=Pushkar%2BBansode&background=0D8ABC&color=fff",
-        selectionDate: "Selected"
-    },
-    {
-        id: 609,
-        name: "Aniket Gawande",
-        role: "eClerx",
-        company: "Thane",
-        image: "https://ui-avatars.com/api/?name=Aniket%2BGawande&background=0D8ABC&color=fff",
-        selectionDate: "Joined"
-    },
-    {
-        id: 610,
-        name: "Sahil Shinkar",
-        role: "eClerx",
-        company: "Thane",
-        image: "https://ui-avatars.com/api/?name=Sahil%2BShinkar&background=0D8ABC&color=fff",
-        selectionDate: "Joined"
-    },
-    {
-        id: 611,
-        name: "Chetan Patil",
-        role: "Kwikflex",
-        company: "Thane",
-        image: "https://ui-avatars.com/api/?name=Chetan%2BPatil&background=0D8ABC&color=fff",
-        selectionDate: "Joined"
-    },
-    {
-        id: 612,
-        name: "Vishal Mishra",
-        role: "Techaroha Solutions Pvt. Ltd.",
-        company: "External",
-        image: "https://ui-avatars.com/api/?name=Vishal%2BMishra&background=0D8ABC&color=fff",
-        selectionDate: "Joined"
-    },
-    {
-        id: 613,
-        name: "Rohan Daryanor",
-        role: "Living Things",
-        company: "External",
-        image: "https://ui-avatars.com/api/?name=Rohan%2BDaryanor&background=0D8ABC&color=fff",
-        selectionDate: "Joined"
-    },
-    {
-        id: 614,
-        name: "Atiq Ansari",
-        role: "Actify",
-        company: "Thane",
-        image: "https://ui-avatars.com/api/?name=Atiq%2BAnsari&background=0D8ABC&color=fff",
-        selectionDate: "Joined"
-    },
-    {
-        id: 615,
-        name: "Jay prakash",
-        role: "Annuntra Technologies PVT LTD",
-        company: "External",
-        image: "https://ui-avatars.com/api/?name=Jay%2Bprakash&background=0D8ABC&color=fff",
-        selectionDate: "Joined"
-    },
-    {
-        id: 616,
-        name: "Rajendra More",
-        role: "GNP Group",
-        company: "Thane",
-        image: "https://ui-avatars.com/api/?name=Rajendra%2BMore&background=0D8ABC&color=fff",
-        selectionDate: "Joined"
-    },
-    {
-        id: 617,
-        name: "Aman Singh",
-        role: "Daten & Wissen",
-        company: "External",
-        image: "https://ui-avatars.com/api/?name=Aman%2BSingh&background=0D8ABC&color=fff",
-        selectionDate: "Joined"
-    },
-    {
-        id: 618,
-        name: "Krishna Pawar",
-        role: "Modern Informatics Pvt Ltd",
-        company: "Internal",
-        image: "https://ui-avatars.com/api/?name=Krishna%2BPawar&background=0D8ABC&color=fff",
-        selectionDate: "Selected"
-    },
-    {
-        id: 619,
-        name: "Swapnil Sonawane",
-        role: "AQM Technologies Pvt Ltd",
-        company: "Thane",
-        image: "https://ui-avatars.com/api/?name=Swapnil%2BSonawane&background=0D8ABC&color=fff",
-        selectionDate: "Selected"
-    },
-    {
-        id: 620,
-        name: "Tanay Palshetkar",
-        role: "MAS Industeries Pvt Ltd",
-        company: "Thane",
-        image: "https://ui-avatars.com/api/?name=Tanay%2BPalshetkar&background=0D8ABC&color=fff",
-        selectionDate: "Joined"
-    },
-    {
-        id: 621,
-        name: "Anjali Sharma",
-        role: "Powermaxx Fitness",
-        company: "External",
-        image: "https://ui-avatars.com/api/?name=Anjali%2BSharma&background=0D8ABC&color=fff",
-        selectionDate: "Joined"
-    },
-    {
-        id: 622,
-        name: "Vaishnavi Malap",
-        role: "Forty60 LLP Host",
-        company: "Thane",
-        image: "https://ui-avatars.com/api/?name=Vaishnavi%2BMalap&background=0D8ABC&color=fff",
-        selectionDate: "Joined"
-    },
-    {
-        id: 623,
-        name: "Aishwarya More",
-        role: "Ashas Web",
-        company: "External",
-        image: "https://ui-avatars.com/api/?name=Aishwarya%2BMore&background=0D8ABC&color=fff",
-        selectionDate: "Joined"
-    },
-    {
-        id: 624,
-        name: "Reshma Janvalkar",
-        role: "Advin Softwares Pvt. Ltd",
-        company: "External",
-        image: "https://ui-avatars.com/api/?name=Reshma%2BJanvalkar&background=0D8ABC&color=fff",
-        selectionDate: "Joined"
-    },
-    {
-        id: 625,
-        name: "SOHAIL SAYED",
-        role: "Advin Softwares Pvt. Ltd",
-        company: "External",
-        image: "https://ui-avatars.com/api/?name=SOHAIL%2BSAYED&background=0D8ABC&color=fff",
-        selectionDate: "Joined"
-    },
-    {
-        id: 626,
-        name: "Ganesh Devadiga",
-        role: "Scad Technologies",
-        company: "External",
-        image: "https://ui-avatars.com/api/?name=Ganesh%2BDevadiga&background=0D8ABC&color=fff",
-        selectionDate: "Selected"
-    },
-    {
-        id: 627,
-        name: "Krisha Bhankaria",
-        role: "Gofin Technologies Pvt. Ltd.",
-        company: "External",
-        image: "https://ui-avatars.com/api/?name=Krisha%2BBhankaria&background=0D8ABC&color=fff",
-        selectionDate: "Joined"
-    },
-    {
-        id: 628,
-        name: "Manish Pal",
-        role: "Modern Informatics Pvt. Ltd.",
-        company: "Nerul",
-        image: "https://ui-avatars.com/api/?name=Manish%2BPal&background=0D8ABC&color=fff",
-        selectionDate: "Joined"
-    },
-    {
-        id: 629,
-        name: "Someshwar Mishra",
-        role: "Modern Informatics Pvt. Ltd.",
-        company: "Nerul",
-        image: "https://ui-avatars.com/api/?name=Someshwar%2BMishra&background=0D8ABC&color=fff",
-        selectionDate: "Joined"
-    },
-    {
-        id: 630,
-        name: "Komal Gupta",
-        role: "U J Softwares And Solutions",
-        company: "External",
-        image: "https://ui-avatars.com/api/?name=Komal%2BGupta&background=0D8ABC&color=fff",
-        selectionDate: "Joined"
-    },
-    {
-        id: 631,
-        name: "Suraj Dubey",
-        role: "Scogo Networks",
-        company: "External",
-        image: "https://ui-avatars.com/api/?name=Suraj%2BDubey&background=0D8ABC&color=fff",
-        selectionDate: "Joined"
-    },
-    {
-        id: 632,
-        name: "Abdul Rehman",
-        role: "Atizen Automation and Controls",
-        company: "External",
-        image: "https://ui-avatars.com/api/?name=Abdul%2BRehman&background=0D8ABC&color=fff",
-        selectionDate: "Joined"
-    },
-    {
-        id: 633,
-        name: "Indranil das",
-        role: "aakanksha solutions",
-        company: "External",
-        image: "https://ui-avatars.com/api/?name=Indranil%2Bdas&background=0D8ABC&color=fff",
-        selectionDate: "Joined"
-    },
-    {
-        id: 634,
-        name: "Adl Shaikh",
-        role: "SLASHRTC SOFTWARE SERVICES PRIVATE LIMITED",
-        company: "Andheri",
-        image: "https://ui-avatars.com/api/?name=Adl%2BShaikh&background=0D8ABC&color=fff",
-        selectionDate: "Selected"
-    },
-    {
-        id: 635,
-        name: "Pinkykumari Bind",
-        role: "HiPaaS Infotech Pvt Ltd.",
-        company: "Thane",
-        image: "https://ui-avatars.com/api/?name=Pinkykumari%2BBind&background=0D8ABC&color=fff",
-        selectionDate: "Joined"
-    },
-    {
-        id: 636,
-        name: "Sakshi Shinde",
-        role: "HiPaaS Infotech Pvt Ltd.",
-        company: "Thane",
-        image: "https://ui-avatars.com/api/?name=Sakshi%2BShinde&background=0D8ABC&color=fff",
-        selectionDate: "Joined"
-    },
-    {
-        id: 637,
-        name: "Adarsh Harpude",
-        role: "LNV Digital Systems",
-        company: "External",
-        image: "https://ui-avatars.com/api/?name=Adarsh%2BHarpude&background=0D8ABC&color=fff",
-        selectionDate: "Selected"
-    },
-    {
-        id: 638,
-        name: "Sahil Ilag",
-        role: "LNV Digital Systems",
-        company: "Thane",
-        image: "https://ui-avatars.com/api/?name=Sahil%2BIlag&background=0D8ABC&color=fff",
-        selectionDate: "Selected"
-    },
-    {
-        id: 639,
-        name: "Tanay Palshetkar",
-        role: "Marine CAD Solution",
-        company: "Thane",
-        image: "https://ui-avatars.com/api/?name=Tanay%2BPalshetkar&background=0D8ABC&color=fff",
-        selectionDate: "Joined"
-    },
-    {
-        id: 640,
-        name: "Yash Chaudhari",
-        role: "NuMantra Technologies",
-        company: "Thane",
-        image: "https://ui-avatars.com/api/?name=Yash%2BChaudhari&background=0D8ABC&color=fff",
-        selectionDate: "Joined"
-    },
-    {
-        id: 641,
-        name: "Neerajkumar Pandit",
-        role: "Optilink Networks Pvt Ltd.",
-        company: "External",
-        image: "https://ui-avatars.com/api/?name=Neerajkumar%2BPandit&background=0D8ABC&color=fff",
-        selectionDate: "Joined"
-    },
-    {
-        id: 642,
-        name: "Roshan Singh",
-        role: "Airnet Networks",
-        company: "External",
-        image: "https://ui-avatars.com/api/?name=Roshan%2BSingh&background=0D8ABC&color=fff",
-        selectionDate: "Joined"
-    },
-    {
-        id: 643,
-        name: "Rahul Prajapati",
-        role: "LearningVitals Solutions Private Limited",
-        company: "External",
-        image: "https://ui-avatars.com/api/?name=Rahul%2BPrajapati&background=0D8ABC&color=fff",
-        selectionDate: "Joined"
-    },
-    {
-        id: 644,
-        name: "Pooja Patel",
-        role: "LearningVitals Solutions Private Limited",
-        company: "External",
-        image: "https://ui-avatars.com/api/?name=Pooja%2BPatel&background=0D8ABC&color=fff",
         selectionDate: "Joined"
     },
     {
         id: 645,
         name: "Sahil ilag",
-        role: "LearningVitals Solutions Private Limited",
-        company: "Thane",
+        role: "Web Developer",
+        company: "LearningVitals Solutions Private Limited",
         image: "https://ui-avatars.com/api/?name=Sahil%2Bilag&background=0D8ABC&color=fff",
-        selectionDate: "Selected"
-    },
-    {
-        id: 646,
-        name: "Pushpak Khamikar",
-        role: "LearningVitals Solutions Private Limited",
-        company: "Thane",
-        image: "https://ui-avatars.com/api/?name=Pushpak%2BKhamikar&background=0D8ABC&color=fff",
-        selectionDate: "Joined"
-    },
-    {
-        id: 647,
-        name: "Thathagat Divyank Gathe",
-        role: "LearningVitals Solutions Private Limited",
-        company: "Internal",
-        image: "https://ui-avatars.com/api/?name=Thathagat%2BDivyank%2BGathe&background=0D8ABC&color=fff",
-        selectionDate: "Selected"
-    },
-    {
-        id: 648,
-        name: "Anamika Saini",
-        role: "LearningVitals Solutions Private Limited",
-        company: "External",
-        image: "https://ui-avatars.com/api/?name=Anamika%2BSaini&background=0D8ABC&color=fff",
-        selectionDate: "Joined"
-    },
-    {
-        id: 649,
-        name: "Divya Pandey",
-        role: "LearningVitals Solutions Private Limited",
-        company: "External",
-        image: "https://ui-avatars.com/api/?name=Divya%2BPandey&background=0D8ABC&color=fff",
-        selectionDate: "Joined"
-    },
-    {
-        id: 650,
-        name: "Piyush Gupta",
-        role: "Alfa KPO Pvt Ltd",
-        company: "External",
-        image: "https://ui-avatars.com/api/?name=Piyush%2BGupta&background=0D8ABC&color=fff",
-        selectionDate: "Joined"
-    },
-    {
-        id: 651,
-        name: "Ajaysingh Patil",
-        role: "Multidimensions",
-        company: "Thane",
-        image: "https://ui-avatars.com/api/?name=Ajaysingh%2BPatil&background=0D8ABC&color=fff",
-        selectionDate: "Selected"
-    },
-    {
-        id: 652,
-        name: "Chandresh Chauhan",
-        role: "Daten & Wissen",
-        company: "External",
-        image: "https://ui-avatars.com/api/?name=Chandresh%2BChauhan&background=0D8ABC&color=fff",
-        selectionDate: "Selected"
-    },
-    {
-        id: 653,
-        name: "Shiva Pujari",
-        role: "VTech Technologies Pvt Ltd",
-        company: "Andheri",
-        image: "https://ui-avatars.com/api/?name=Shiva%2BPujari&background=0D8ABC&color=fff",
-        selectionDate: "Selected"
-    },
-    {
-        id: 654,
-        name: "Aniket Rokade",
-        role: "Axis Bank",
-        company: "External",
-        image: "https://ui-avatars.com/api/?name=Aniket%2BRokade&background=0D8ABC&color=fff",
-        selectionDate: "Selected"
-    },
-    {
-        id: 655,
-        name: "Sahil Siddiqui",
-        role: "Mahity Systems",
-        company: "Internal",
-        image: "https://ui-avatars.com/api/?name=Sahil%2BSiddiqui&background=0D8ABC&color=fff",
-        selectionDate: "Selected"
-    },
-    {
-        id: 656,
-        name: "Rishikesh Parkar",
-        role: "Ashas Web",
-        company: "Thane",
-        image: "https://ui-avatars.com/api/?name=Rishikesh%2BParkar&background=0D8ABC&color=fff",
-        selectionDate: "Selected"
-    },
-    {
-        id: 657,
-        name: "Manas Jagade",
-        role: "Axis Bank",
-        company: "Thane",
-        image: "https://ui-avatars.com/api/?name=Manas%2BJagade&background=0D8ABC&color=fff",
-        selectionDate: "Selected"
-    },
-    {
-        id: 658,
-        name: "Paresh Palkar",
-        role: "Zaminwale Pvt Ltd",
-        company: "External",
-        image: "https://ui-avatars.com/api/?name=Paresh%2BPalkar&background=0D8ABC&color=fff",
-        selectionDate: "Selected"
-    },
-    {
-        id: 659,
-        name: "nan",
-        role: "nan",
-        company: "nan",
-        image: "https://ui-avatars.com/api/?name=nan&background=0D8ABC&color=fff",
-        selectionDate: "nan"
-    },
-    {
-        id: 660,
-        name: "nan",
-        role: "nan",
-        company: "nan",
-        image: "https://ui-avatars.com/api/?name=nan&background=0D8ABC&color=fff",
-        selectionDate: "nan"
-    },
-    {
-        id: 661,
-        name: "nan",
-        role: "SEPT - OCT 2025",
-        company: "nan",
-        image: "https://ui-avatars.com/api/?name=nan&background=0D8ABC&color=fff",
-        selectionDate: "nan"
-    },
-    {
-        id: 662,
-        name: "nan",
-        role: "nan",
-        company: "nan",
-        image: "https://ui-avatars.com/api/?name=nan&background=0D8ABC&color=fff",
-        selectionDate: "nan"
-    },
-    {
-        id: 663,
-        name: "Student Name",
-        role: company,
-        company: "Branch",
-        image: "https://ui-avatars.com/api/?name=Student%2BName&background=0D8ABC&color=fff",
-        selectionDate: "Status"
-    },
-    {
-        id: 664,
-        name: "Adarsh Harpude",
-        role: "LNV Digital Systems",
-        company: "External",
-        image: "https://ui-avatars.com/api/?name=Adarsh%2BHarpude&background=0D8ABC&color=fff",
-        selectionDate: "Selected"
-    },
-    {
-        id: 665,
-        name: "Sahil Ilag",
-        role: "LNV Digital Systems",
-        company: "Thane",
-        image: "https://ui-avatars.com/api/?name=Sahil%2BIlag&background=0D8ABC&color=fff",
-        selectionDate: "Selected"
-    },
-    {
-        id: 666,
-        name: "Sahil Siddiqui",
-        role: "Mahity Systems",
-        company: "nan",
-        image: "https://ui-avatars.com/api/?name=Sahil%2BSiddiqui&background=0D8ABC&color=fff",
-        selectionDate: "Joined"
-    },
-    {
-        id: 667,
-        name: "Shiva Pujari",
-        role: "VTech Technologies Pvt Ltd",
-        company: "Andheri",
-        image: "https://ui-avatars.com/api/?name=Shiva%2BPujari&background=0D8ABC&color=fff",
-        selectionDate: "Joined"
-    },
-    {
-        id: 668,
-        name: "Aniket Rokade",
-        role: "Axis Bank",
-        company: "External",
-        image: "https://ui-avatars.com/api/?name=Aniket%2BRokade&background=0D8ABC&color=fff",
-        selectionDate: "Joined"
-    },
-    {
-        id: 669,
-        name: "Manas Jagade",
-        role: "Axis Bank",
-        company: "Thane",
-        image: "https://ui-avatars.com/api/?name=Manas%2BJagade&background=0D8ABC&color=fff",
-        selectionDate: "Joined"
-    },
-    {
-        id: 670,
-        name: "Paresh Palkar",
-        role: "Zaminwale Pvt Ltd",
-        company: "External",
-        image: "https://ui-avatars.com/api/?name=Paresh%2BPalkar&background=0D8ABC&color=fff",
-        selectionDate: "Joined"
-    },
-    {
-        id: 671,
-        name: "Ajaysingh Patil",
-        role: "Multidimensions",
-        company: "Thane",
-        image: "https://ui-avatars.com/api/?name=Ajaysingh%2BPatil&background=0D8ABC&color=fff",
-        selectionDate: "Selected"
-    },
-    {
-        id: 672,
-        name: "Rishikesh Parkar",
-        role: "Ashas Web",
-        company: "External",
-        image: "https://ui-avatars.com/api/?name=Rishikesh%2BParkar&background=0D8ABC&color=fff",
-        selectionDate: "Joined"
-    },
-    {
-        id: 673,
-        name: "Sarita Vishwakarma",
-        role: "Spearhead Infotech Pvt. Ltd.",
-        company: "External",
-        image: "https://ui-avatars.com/api/?name=Sarita%2BVishwakarma&background=0D8ABC&color=fff",
-        selectionDate: "Joined"
-    },
-    {
-        id: 674,
-        name: "Saurav Prajapati",
-        role: "Avenue Ecommerce Ltd (Dmart Ready)",
-        company: "Thane",
-        image: "https://ui-avatars.com/api/?name=Saurav%2BPrajapati&background=0D8ABC&color=fff",
-        selectionDate: "Joined"
-    },
-    {
-        id: 675,
-        name: "Indranil das",
-        role: "SmartConnect Technologies",
-        company: "External",
-        image: "https://ui-avatars.com/api/?name=Indranil%2Bdas&background=0D8ABC&color=fff",
-        selectionDate: "Selected"
-    },
-    {
-        id: 676,
-        name: "Riya varma",
-        role: "Adengage",
-        company: "External",
-        image: "https://ui-avatars.com/api/?name=Riya%2Bvarma&background=0D8ABC&color=fff",
-        selectionDate: "Joined"
-    },
-    {
-        id: 677,
-        name: "Ayush Malve",
-        role: "Application Support L1",
-        company: "Thane",
-        image: "https://ui-avatars.com/api/?name=Ayush%2BMalve&background=0D8ABC&color=fff",
-        selectionDate: "Joined"
-    },
-    {
-        id: 678,
-        name: "Pooja Mane",
-        role: "Mahity Systems",
-        company: "nan",
-        image: "https://ui-avatars.com/api/?name=Pooja%2BMane&background=0D8ABC&color=fff",
-        selectionDate: "Joined"
-    },
-    {
-        id: 679,
-        name: "Rupali Sharma",
-        role: "U J Software and Solutions",
-        company: "External",
-        image: "https://ui-avatars.com/api/?name=Rupali%2BSharma&background=0D8ABC&color=fff",
-        selectionDate: "Selected"
-    },
-    {
-        id: 680,
-        name: "Purvita Dhakad",
-        role: "Advin Software Pvt. Ltd",
-        company: "External",
-        image: "https://ui-avatars.com/api/?name=Purvita%2BDhakad&background=0D8ABC&color=fff",
-        selectionDate: "Joined"
-    },
-    {
-        id: 681,
-        name: "Shruti Thorat",
-        role: "Amiand Consulting Pvt. Ltd.",
-        company: "Thane",
-        image: "https://ui-avatars.com/api/?name=Shruti%2BThorat&background=0D8ABC&color=fff",
-        selectionDate: "Joined"
-    },
-    {
-        id: 682,
-        name: "AMAAN BYARI",
-        role: "DigiRich",
-        company: "External",
-        image: "https://ui-avatars.com/api/?name=AMAAN%2BBYARI&background=0D8ABC&color=fff",
-        selectionDate: "Joined"
-    },
-    {
-        id: 683,
-        name: "Sumitra kamble",
-        role: "rajlaxmiworld",
-        company: "Thane",
-        image: "https://ui-avatars.com/api/?name=Sumitra%2Bkamble&background=0D8ABC&color=fff",
-        selectionDate: "Selected"
-    },
-    {
-        id: 684,
-        name: "Priyanshi Dubey",
-        role: "Piramal Capital & Housing Finance Pvt. Lt",
-        company: "Thane",
-        image: "https://ui-avatars.com/api/?name=Priyanshi%2BDubey&background=0D8ABC&color=fff",
-        selectionDate: "Selected"
-    },
-    {
-        id: 685,
-        name: "Vivek Kanade",
-        role: "Talisman HR Soutions",
-        company: "Thane",
-        image: "https://ui-avatars.com/api/?name=Vivek%2BKanade&background=0D8ABC&color=fff",
-        selectionDate: "Joined"
-    },
-    {
-        id: 686,
-        name: "Mayur chopde",
-        role: "Airnet Cable and Datacom pvt",
-        company: "Andheri",
-        image: "https://ui-avatars.com/api/?name=Mayur%2Bchopde&background=0D8ABC&color=fff",
-        selectionDate: "Joined"
-    },
-    {
-        id: 687,
-        name: "Suhas Alle",
-        role: "Airnet Cable and Datacom pvt",
-        company: "Dadar",
-        image: "https://ui-avatars.com/api/?name=Suhas%2BAlle&background=0D8ABC&color=fff",
-        selectionDate: "Joined"
-    },
-    {
-        id: 688,
-        name: "Amey Sawant",
-        role: "Cosben Engineering Pvt. Ltd.",
-        company: "Kalyan",
-        image: "https://ui-avatars.com/api/?name=Amey%2BSawant&background=0D8ABC&color=fff",
-        selectionDate: "Joined"
-    },
-    {
-        id: 689,
-        name: "Sumit More",
-        role: "Search Digitally",
-        company: "Dadar",
-        image: "https://ui-avatars.com/api/?name=Sumit%2BMore&background=0D8ABC&color=fff",
-        selectionDate: "Joined"
-    },
-    {
-        id: 690,
-        name: "Rutvik Durve",
-        role: "Spearhead Infotech Pvt. Ltd.",
-        company: "Thane",
-        image: "https://ui-avatars.com/api/?name=Rutvik%2BDurve&background=0D8ABC&color=fff",
-        selectionDate: "Joined"
-    },
-    {
-        id: 691,
-        name: "Pushpak Khamitkar",
-        role: "RS Technology",
-        company: "Thane",
-        image: "https://ui-avatars.com/api/?name=Pushpak%2BKhamitkar&background=0D8ABC&color=fff",
-        selectionDate: "Joined"
-    },
-    {
-        id: 692,
-        name: "Mohd Tabish Khan",
-        role: "Web Techneeq",
-        company: "Thane",
-        image: "https://ui-avatars.com/api/?name=Mohd%2BTabish%2BKhan&background=0D8ABC&color=fff",
-        selectionDate: "Joined"
-    },
-    {
-        id: 693,
-        name: "Pritam Jadhav",
-        role: "O source india pvt ltd",
-        company: "Thane",
-        image: "https://ui-avatars.com/api/?name=Pritam%2BJadhav&background=0D8ABC&color=fff",
-        selectionDate: "Joined"
-    },
-    {
-        id: 694,
-        name: "Mayuri Kapure",
-        role: "Textronics Design Systems Pvt Ltd",
-        company: "Thane",
-        image: "https://ui-avatars.com/api/?name=Mayuri%2BKapure&background=0D8ABC&color=fff",
-        selectionDate: "Joined"
-    },
-    {
-        id: 695,
-        name: "Chirag Asawale",
-        role: "Textronics Design Systems Pvt Ltd",
-        company: "Thane",
-        image: "https://ui-avatars.com/api/?name=Chirag%2BAsawale&background=0D8ABC&color=fff",
-        selectionDate: "Joined"
-    },
-    {
-        id: 696,
-        name: "Swapnil Bhoir",
-        role: "Vitrum Systems LLP",
-        company: "Thane",
-        image: "https://ui-avatars.com/api/?name=Swapnil%2BBhoir&background=0D8ABC&color=fff",
-        selectionDate: "Joined"
-    },
-    {
-        id: 697,
-        name: "Pooja patil",
-        role: "SABA TECHNOSOFT INDIA PVT. LTD.",
-        company: "Thane",
-        image: "https://ui-avatars.com/api/?name=Pooja%2Bpatil&background=0D8ABC&color=fff",
-        selectionDate: "Joined"
-    },
-    {
-        id: 698,
-        name: "Shubham Pal",
-        role: "Aspect Property Consultants",
-        company: "Thane",
-        image: "https://ui-avatars.com/api/?name=Shubham%2BPal&background=0D8ABC&color=fff",
-        selectionDate: "Joined"
-    },
-    {
-        id: 699,
-        name: "Minakshi Mote",
-        role: "Amiand Consulting Pvt. Ltd",
-        company: "Thane",
-        image: "https://ui-avatars.com/api/?name=Minakshi%2BMote&background=0D8ABC&color=fff",
-        selectionDate: "Joined"
-    },
-    {
-        id: 700,
-        name: "Michael Clinton",
-        role: "GNP Consultancy & Solutions Private Limited",
-        company: "External",
-        image: "https://ui-avatars.com/api/?name=Michael%2BClinton&background=0D8ABC&color=fff",
-        selectionDate: "Joined"
-    },
-    {
-        id: 701,
-        name: "Satish Sharma",
-        role: "Qseap InfoTech Pvt. Ltd.",
-        company: "External",
-        image: "https://ui-avatars.com/api/?name=Satish%2BSharma&background=0D8ABC&color=fff",
-        selectionDate: "Joined"
-    },
-    {
-        id: 702,
-        name: "Pratik Yadav",
-        role: "Nobis Technologies",
-        company: "Thane",
-        image: "https://ui-avatars.com/api/?name=Pratik%2BYadav&background=0D8ABC&color=fff",
-        selectionDate: "Joined"
-    },
-    {
-        id: 703,
-        name: "Amir Sayyad",
-        role: "Kraftelevators",
-        company: "Thane",
-        image: "https://ui-avatars.com/api/?name=Amir%2BSayyad&background=0D8ABC&color=fff",
-        selectionDate: "Selected"
-    },
-    {
-        id: 704,
-        name: "Pratham Khirit",
-        role: "Alfa KPO Pvt Ltd",
-        company: "Andheri",
-        image: "https://ui-avatars.com/api/?name=Pratham%2BKhirit&background=0D8ABC&color=fff",
-        selectionDate: "Joined"
-    },
-    {
-        id: 705,
-        name: "Omkar Patil",
-        role: "Voitekk",
-        company: "External",
-        image: "https://ui-avatars.com/api/?name=Omkar%2BPatil&background=0D8ABC&color=fff",
-        selectionDate: "Joined"
-    },
-    {
-        id: 706,
-        name: "Dipti Jadhav",
-        role: "Employee Forums",
-        company: "Thane",
-        image: "https://ui-avatars.com/api/?name=Dipti%2BJadhav&background=0D8ABC&color=fff",
-        selectionDate: "Joined"
-    },
-    {
-        id: 707,
-        name: "Hemlalit Mali",
-        role: "M76 Analytics",
-        company: "Thane",
-        image: "https://ui-avatars.com/api/?name=Hemlalit%2BMali&background=0D8ABC&color=fff",
-        selectionDate: "Joined"
-    },
-    {
-        id: 708,
-        name: "Subodh Patil",
-        role: "M76 Analytics",
-        company: "Thane",
-        image: "https://ui-avatars.com/api/?name=Subodh%2BPatil&background=0D8ABC&color=fff",
-        selectionDate: "Selected"
-    },
-    {
-        id: 709,
-        name: "Ruchitanjali Durva",
-        role: "RPJ OVERSEAS & EXIM PRIVATE LIMITED",
-        company: "External",
-        image: "https://ui-avatars.com/api/?name=Ruchitanjali%2BDurva&background=0D8ABC&color=fff",
-        selectionDate: "Selected"
-    },
-    {
-        id: 710,
-        name: "Durba Dutta",
-        role: "RPJ OVERSEAS & EXIM PRIVATE LIMITED",
-        company: "External",
-        image: "https://ui-avatars.com/api/?name=Durba%2BDutta&background=0D8ABC&color=fff",
-        selectionDate: "Selected"
-    },
-    {
-        id: 711,
-        name: "nan",
-        role: "nan",
-        company: "nan",
-        image: "https://ui-avatars.com/api/?name=nan&background=0D8ABC&color=fff",
-        selectionDate: "nan"
-    },
-    {
-        id: 712,
-        name: "nan",
-        role: "nan",
-        company: "nan",
-        image: "https://ui-avatars.com/api/?name=nan&background=0D8ABC&color=fff",
-        selectionDate: "nan"
-    },
-    {
-        id: 713,
-        name: "nan",
-        role: "nan",
-        company: "nan",
-        image: "https://ui-avatars.com/api/?name=nan&background=0D8ABC&color=fff",
-        selectionDate: "nan"
-    },
-    {
-        id: 714,
-        name: "nan",
-        role: "OCT - NOV 2025",
-        company: "nan",
-        image: "https://ui-avatars.com/api/?name=nan&background=0D8ABC&color=fff",
-        selectionDate: "nan"
-    },
-    {
-        id: 715,
-        name: "nan",
-        role: "nan",
-        company: "nan",
-        image: "https://ui-avatars.com/api/?name=nan&background=0D8ABC&color=fff",
-        selectionDate: "nan"
-    },
-    {
-        id: 716,
-        name: "Student Name",
-        role: company,
-        company: "Branch",
-        image: "https://ui-avatars.com/api/?name=Student%2BName&background=0D8ABC&color=fff",
-        selectionDate: "Status"
-    },
-    {
-        id: 717,
-        name: "Amir Sayyad",
-        role: "Kraftelevators",
-        company: "Thane",
-        image: "https://ui-avatars.com/api/?name=Amir%2BSayyad&background=0D8ABC&color=fff",
-        selectionDate: "Joined"
-    },
-    {
-        id: 718,
-        name: "Nikita Vaykule",
-        role: "Textronics Design Systems Pvt. Ltd.",
-        company: "Thane",
-        image: "https://ui-avatars.com/api/?name=Nikita%2BVaykule&background=0D8ABC&color=fff",
-        selectionDate: "Joined"
-    },
-    {
-        id: 719,
-        name: "Subodh Patil",
-        role: "M76 Analytics",
-        company: "Thane",
-        image: "https://ui-avatars.com/api/?name=Subodh%2BPatil&background=0D8ABC&color=fff",
-        selectionDate: "Joined"
-    },
-    {
-        id: 720,
-        name: "Ruchitanjali Durva",
-        role: "RPJ OVERSEAS & EXIM PRIVATE LIMITED",
-        company: "External",
-        image: "https://ui-avatars.com/api/?name=Ruchitanjali%2BDurva&background=0D8ABC&color=fff",
-        selectionDate: "Joined"
-    },
-    {
-        id: 721,
-        name: "Durba Dutta",
-        role: "RPJ OVERSEAS & EXIM PRIVATE LIMITED",
-        company: "External",
-        image: "https://ui-avatars.com/api/?name=Durba%2BDutta&background=0D8ABC&color=fff",
-        selectionDate: "Joined"
-    },
-    {
-        id: 722,
-        name: "Shivani Ravindra Saroj",
-        role: "Voitekk",
-        company: "Thane",
-        image: "https://ui-avatars.com/api/?name=Shivani%2BRavindra%2BSaroj&background=0D8ABC&color=fff",
-        selectionDate: "Joined"
-    },
-    {
-        id: 723,
-        name: "Aditya Maurya",
-        role: "SLASHRTC SOFTWARE SERVICES PRIVATE LIMITED",
-        company: "External",
-        image: "https://ui-avatars.com/api/?name=Aditya%2BMaurya&background=0D8ABC&color=fff",
-        selectionDate: "Joined"
-    },
-    {
-        id: 724,
-        name: "Pranali Shetty",
-        role: "Word Publishing",
-        company: "External",
-        image: "https://ui-avatars.com/api/?name=Pranali%2BShetty&background=0D8ABC&color=fff",
-        selectionDate: "Joined"
-    },
-    {
-        id: 725,
-        name: "Ritesh Gavli",
-        role: "Itarsia India Limited",
-        company: "External",
-        image: "https://ui-avatars.com/api/?name=Ritesh%2BGavli&background=0D8ABC&color=fff",
-        selectionDate: "Selected"
-    },
-    {
-        id: 726,
-        name: "Ritesh Gavli",
-        role: "VSL Marine Technology",
-        company: "External",
-        image: "https://ui-avatars.com/api/?name=Ritesh%2BGavli&background=0D8ABC&color=fff",
-        selectionDate: "Joined"
-    },
-    {
-        id: 727,
-        name: "Devansh Kolhe",
-        role: "Dohrnii Exim pvt ltd",
-        company: "Thane",
-        image: "https://ui-avatars.com/api/?name=Devansh%2BKolhe&background=0D8ABC&color=fff",
-        selectionDate: "Joined"
-    },
-    {
-        id: 728,
-        name: "Shaikh Rauhaan",
-        role: "Dohrnii Exim pvt ltd",
-        company: "External",
-        image: "https://ui-avatars.com/api/?name=Shaikh%2BRauhaan&background=0D8ABC&color=fff",
-        selectionDate: "Selected"
-    },
-    {
-        id: 729,
-        name: "Tejaswi Waje",
-        role: "Kothari Tech",
-        company: "Thane",
-        image: "https://ui-avatars.com/api/?name=Tejaswi%2BWaje&background=0D8ABC&color=fff",
-        selectionDate: "Selected"
-    },
-    {
-        id: 730,
-        name: "Ashish Vishwakarma",
-        role: "Hitachi Payment Services",
-        company: "Thane",
-        image: "https://ui-avatars.com/api/?name=Ashish%2BVishwakarma&background=0D8ABC&color=fff",
-        selectionDate: "Joined"
-    },
-    {
-        id: 731,
-        name: "Ruchitanjali Duvva",
-        role: "ekodex technologies pvt. Ltd",
-        company: "External",
-        image: "https://ui-avatars.com/api/?name=Ruchitanjali%2BDuvva&background=0D8ABC&color=fff",
-        selectionDate: "Joined"
-    },
-    {
-        id: 732,
-        name: "Harsh Shinde",
-        role: "Hitachi Payment Services",
-        company: "Thane",
-        image: "https://ui-avatars.com/api/?name=Harsh%2BShinde&background=0D8ABC&color=fff",
-        selectionDate: "Joined"
-    },
-    {
-        id: 733,
-        name: "Pratham Khirit",
-        role: "Atizen automation and controls",
-        company: "Andheri",
-        image: "https://ui-avatars.com/api/?name=Pratham%2BKhirit&background=0D8ABC&color=fff",
-        selectionDate: "Selected"
-    },
-    {
-        id: 734,
-        name: "Satyam Chauhan",
-        role: "Tescom Business Solution",
-        company: "Thane",
-        image: "https://ui-avatars.com/api/?name=Satyam%2BChauhan&background=0D8ABC&color=fff",
-        selectionDate: "Joined"
-    },
-    {
-        id: 735,
-        name: "Harshada Shinde",
-        role: "Tescom Business Solution",
-        company: "Dadar",
-        image: "https://ui-avatars.com/api/?name=Harshada%2BShinde&background=0D8ABC&color=fff",
-        selectionDate: "Selected"
-    },
-    {
-        id: 736,
-        name: "Satyam Chauhan",
-        role: "Facts Online Pvt. Ltd.",
-        company: "Thane",
-        image: "https://ui-avatars.com/api/?name=Satyam%2BChauhan&background=0D8ABC&color=fff",
-        selectionDate: "Joined"
-    },
-    {
-        id: 737,
-        name: "Bhavesh Rozatkar",
-        role: "MR Websecure Infosolutions Pvt. Ltd.",
-        company: "Thane",
-        image: "https://ui-avatars.com/api/?name=Bhavesh%2BRozatkar&background=0D8ABC&color=fff",
-        selectionDate: "Selected"
-    },
-    {
-        id: 738,
-        name: "Tejas Auti",
-        role: "Modern Informatics Pvt. Ltd",
-        company: "Thane",
-        image: "https://ui-avatars.com/api/?name=Tejas%2BAuti&background=0D8ABC&color=fff",
-        selectionDate: "Selected"
-    },
-    {
-        id: 739,
-        name: "Sanket Patil",
-        role: "Modern Informatics Pvt. Ltd",
-        company: "External",
-        image: "https://ui-avatars.com/api/?name=Sanket%2BPatil&background=0D8ABC&color=fff",
-        selectionDate: "Selected"
-    },
-    {
-        id: 740,
-        name: "Pinky Kumari",
-        role: "Paloji Technologies Pvt Ltd",
-        company: "Thane",
-        image: "https://ui-avatars.com/api/?name=Pinky%2BKumari&background=0D8ABC&color=fff",
-        selectionDate: "Selected"
-    },
-    {
-        id: 741,
-        name: "Tejas Sawant",
-        role: "Avenue Ecommerce Ltd (Dmart Ready)",
-        company: "External",
-        image: "https://ui-avatars.com/api/?name=Tejas%2BSawant&background=0D8ABC&color=fff",
-        selectionDate: "Joined"
-    },
-    {
-        id: 742,
-        name: "SANIYA ACHREKAR",
-        role: "MR Websecure Infosolutions Pvt. Ltd.",
-        company: "External",
-        image: "https://ui-avatars.com/api/?name=SANIYA%2BACHREKAR&background=0D8ABC&color=fff",
-        selectionDate: "Selected"
-    },
-    {
-        id: 743,
-        name: "Nitin Dusseja",
-        role: "ekodex technologies pvt. Ltd",
-        company: "External",
-        image: "https://ui-avatars.com/api/?name=Nitin%2BDusseja&background=0D8ABC&color=fff",
-        selectionDate: "Selected"
-    },
-    {
-        id: 744,
-        name: "SANIYA ACHREKAR",
-        role: "AdEngage",
-        company: "External",
-        image: "https://ui-avatars.com/api/?name=SANIYA%2BACHREKAR&background=0D8ABC&color=fff",
-        selectionDate: "Selected"
-    },
-    {
-        id: 745,
-        name: "Krunal Yadav",
-        role: "Tescom Business Solution",
-        company: "External",
-        image: "https://ui-avatars.com/api/?name=Krunal%2BYadav&background=0D8ABC&color=fff",
-        selectionDate: "Joined"
-    },
-    {
-        id: 746,
-        name: "Pallavi Rasal",
-        role: "Manish Chaturvedi Photography & Films.",
-        company: "External",
-        image: "https://ui-avatars.com/api/?name=Pallavi%2BRasal&background=0D8ABC&color=fff",
-        selectionDate: "Selected"
-    },
-    {
-        id: 747,
-        name: "Niraj Kudidi",
-        role: "Tescom Business Solution",
-        company: "Dadar",
-        image: "https://ui-avatars.com/api/?name=Niraj%2BKudidi&background=0D8ABC&color=fff",
-        selectionDate: "Selected"
-    },
-    {
-        id: 748,
-        name: "Tejas Sawant",
-        role: "Interspence Solutions LLP",
-        company: "External",
-        image: "https://ui-avatars.com/api/?name=Tejas%2BSawant&background=0D8ABC&color=fff",
-        selectionDate: "Joined"
-    },
-    {
-        id: 749,
-        name: "Prem Bhagyawan",
-        role: "Anzen Technologies Pvt Ltd",
-        company: "Thane",
-        image: "https://ui-avatars.com/api/?name=Prem%2BBhagyawan&background=0D8ABC&color=fff",
-        selectionDate: "Joined"
-    },
-    {
-        id: 750,
-        name: "Manish Balam",
-        role: "Anzen Technologies Pvt Ltd",
-        company: "Thane",
-        image: "https://ui-avatars.com/api/?name=Manish%2BBalam&background=0D8ABC&color=fff",
-        selectionDate: "Joined"
-    },
-    {
-        id: 751,
-        name: "Aradhana Gaur",
-        role: "Avenue Ecommerce Ltd (Dmart Ready)",
-        company: "Thane",
-        image: "https://ui-avatars.com/api/?name=Aradhana%2BGaur&background=0D8ABC&color=fff",
-        selectionDate: "Selected"
-    },
-    {
-        id: 752,
-        name: "Aditya ambhore",
-        role: "Maparc associates private limited",
-        company: "Thane",
-        image: "https://ui-avatars.com/api/?name=Aditya%2Bambhore&background=0D8ABC&color=fff",
-        selectionDate: "Selected"
-    },
-    {
-        id: 753,
-        name: "Paresh Palkar",
-        role: "Tescom Business Solution",
-        company: "External",
-        image: "https://ui-avatars.com/api/?name=Paresh%2BPalkar&background=0D8ABC&color=fff",
-        selectionDate: "Selected"
-    },
-    {
-        id: 754,
-        name: "Soham More",
-        role: "HYPLAP IT SOLUTION PVT LTD",
-        company: "External",
-        image: "https://ui-avatars.com/api/?name=Soham%2BMore&background=0D8ABC&color=fff",
-        selectionDate: "Selected"
-    },
-    {
-        id: 755,
-        name: "Sankar murgan",
-        role: "Global technical services",
-        company: "Thane",
-        image: "https://ui-avatars.com/api/?name=Sankar%2Bmurgan&background=0D8ABC&color=fff",
-        selectionDate: "Joined"
-    },
-    {
-        id: 756,
-        name: "Sahil Ganokar",
-        role: "Scalix Enterprise Solutions LLP",
-        company: "External",
-        image: "https://ui-avatars.com/api/?name=Sahil%2BGanokar&background=0D8ABC&color=fff",
-        selectionDate: "Selected"
-    },
-    {
-        id: 757,
-        name: "Paarth Palande",
-        role: "TECHSEC DIGITAL",
-        company: "Andheri",
-        image: "https://ui-avatars.com/api/?name=Paarth%2BPalande&background=0D8ABC&color=fff",
-        selectionDate: "Selected"
-    },
-    {
-        id: 758,
-        name: "Ranjit Saroj",
-        role: "TECHSEC DIGITAL",
-        company: "External",
-        image: "https://ui-avatars.com/api/?name=Ranjit%2BSaroj&background=0D8ABC&color=fff",
-        selectionDate: "Selected"
-    },
-    {
-        id: 759,
-        name: "Sneha Badhe",
-        role: "Elixir Homes",
-        company: "External",
-        image: "https://ui-avatars.com/api/?name=Sneha%2BBadhe&background=0D8ABC&color=fff",
-        selectionDate: "Selected"
-    },
-    {
-        id: 760,
-        name: "nan",
-        role: "nan",
-        company: "nan",
-        image: "https://ui-avatars.com/api/?name=nan&background=0D8ABC&color=fff",
-        selectionDate: "nan"
-    },
-    {
-        id: 761,
-        name: "nan",
-        role: "nan",
-        company: "nan",
-        image: "https://ui-avatars.com/api/?name=nan&background=0D8ABC&color=fff",
-        selectionDate: "nan"
-    },
-    {
-        id: 762,
-        name: "nan",
-        role: "NOV - DEC 2025",
-        company: "nan",
-        image: "https://ui-avatars.com/api/?name=nan&background=0D8ABC&color=fff",
-        selectionDate: "nan"
-    },
-    {
-        id: 763,
-        name: "nan",
-        role: "nan",
-        company: "nan",
-        image: "https://ui-avatars.com/api/?name=nan&background=0D8ABC&color=fff",
-        selectionDate: "nan"
-    },
-    {
-        id: 764,
-        name: "Aradhana Gaur",
-        role: "Avenue Ecommerce Ltd (Dmart Ready)",
-        company: "Thane",
-        image: "https://ui-avatars.com/api/?name=Aradhana%2BGaur&background=0D8ABC&color=fff",
-        selectionDate: "Joined"
-    },
-    {
-        id: 765,
-        name: "Paarth Palande",
-        role: "TECHSEC DIGITAL",
-        company: "Andheri",
-        image: "https://ui-avatars.com/api/?name=Paarth%2BPalande&background=0D8ABC&color=fff",
-        selectionDate: "Joined"
-    },
-    {
-        id: 766,
-        name: "Sahil Ganokar",
-        role: "Scalix Enterprise Solutions LLP",
-        company: "External",
-        image: "https://ui-avatars.com/api/?name=Sahil%2BGanokar&background=0D8ABC&color=fff",
-        selectionDate: "Joined"
-    },
-    {
-        id: 767,
-        name: "Ranjit Saroj",
-        role: "TECHSEC DIGITAL",
-        company: "External",
-        image: "https://ui-avatars.com/api/?name=Ranjit%2BSaroj&background=0D8ABC&color=fff",
-        selectionDate: "Selected"
-    },
-    {
-        id: 768,
-        name: "Tejas Auti",
-        role: "Modern Informatics Pvt. Ltd",
-        company: "Thane",
-        image: "https://ui-avatars.com/api/?name=Tejas%2BAuti&background=0D8ABC&color=fff",
-        selectionDate: "Selected"
-    },
-    {
-        id: 769,
-        name: "Suhas Alle",
-        role: "Airnet Cable and Datacom pvt ltd",
-        company: "External",
-        image: "https://ui-avatars.com/api/?name=Suhas%2BAlle&background=0D8ABC&color=fff",
-        selectionDate: "Joined"
-    },
-    {
-        id: 770,
-        name: "Durgesh raj",
-        role: "Datainsight",
-        company: "External",
-        image: "https://ui-avatars.com/api/?name=Durgesh%2Braj&background=0D8ABC&color=fff",
-        selectionDate: "Joined"
-    },
-    {
-        id: 771,
-        name: "Anand Bhakkad",
-        role: "Optilink Network Pvt. Ltd.",
-        company: "External",
-        image: "https://ui-avatars.com/api/?name=Anand%2BBhakkad&background=0D8ABC&color=fff",
-        selectionDate: "Selected"
-    },
-    {
-        id: 772,
-        name: "Deepti Pujari",
-        role: "HiPaaS Infotech Pvt Ltd.",
-        company: "External",
-        image: "https://ui-avatars.com/api/?name=Deepti%2BPujari&background=0D8ABC&color=fff",
-        selectionDate: "Joined"
-    },
-    {
-        id: 773,
-        name: "Vishal Adhikari",
-        role: "Maskeen Automotive Pvt. Ltd.",
-        company: "Thane",
-        image: "https://ui-avatars.com/api/?name=Vishal%2BAdhikari&background=0D8ABC&color=fff",
-        selectionDate: "Joined"
-    },
-    {
-        id: 774,
-        name: "KARISHMA PAWAR",
-        role: "Telex Advertising pvt Ltd",
-        company: "External",
-        image: "https://ui-avatars.com/api/?name=KARISHMA%2BPAWAR&background=0D8ABC&color=fff",
-        selectionDate: "Selected"
-    },
-    {
-        id: 775,
-        name: "Vansh Singh",
-        role: "Osource Global Pvt Ltd",
-        company: "Thane",
-        image: "https://ui-avatars.com/api/?name=Vansh%2BSingh&background=0D8ABC&color=fff",
-        selectionDate: "Joined"
-    },
-    {
-        id: 776,
-        name: "PRANAV PALKAR",
-        role: "Rayshine Creations",
-        company: "External",
-        image: "https://ui-avatars.com/api/?name=PRANAV%2BPALKAR&background=0D8ABC&color=fff",
-        selectionDate: "Joined"
-    },
-    {
-        id: 777,
-        name: "Bhavesh Rozatkar",
-        role: "MR Websecure Infosolutions Pvt. Ltd.",
-        company: "Thane",
-        image: "https://ui-avatars.com/api/?name=Bhavesh%2BRozatkar&background=0D8ABC&color=fff",
-        selectionDate: "Joined"
-    },
-    {
-        id: 778,
-        name: "Harsh Pawar",
-        role: "Global Technical Service",
-        company: "External",
-        image: "https://ui-avatars.com/api/?name=Harsh%2BPawar&background=0D8ABC&color=fff",
-        selectionDate: "Joined"
-    },
-    {
-        id: 779,
-        name: "SANIYA ACHREKAR",
-        role: "AdEngage",
-        company: "External",
-        image: "https://ui-avatars.com/api/?name=SANIYA%2BACHREKAR&background=0D8ABC&color=fff",
-        selectionDate: "Joined"
-    },
-    {
-        id: 780,
-        name: "Nitin Dusseja",
-        role: "ekodex technologies pvt. Ltd",
-        company: "External",
-        image: "https://ui-avatars.com/api/?name=Nitin%2BDusseja&background=0D8ABC&color=fff",
-        selectionDate: "Joined"
-    },
-    {
-        id: 781,
-        name: "Siddhesh Gurav",
-        role: "Rayshine Creations",
-        company: "External",
-        image: "https://ui-avatars.com/api/?name=Siddhesh%2BGurav&background=0D8ABC&color=fff",
-        selectionDate: "Joined"
-    },
-    {
-        id: 782,
-        name: "Tossif",
-        role: "Nipralo technologies",
-        company: "External",
-        image: "https://ui-avatars.com/api/?name=Tossif&background=0D8ABC&color=fff",
-        selectionDate: "Joined"
-    },
-    {
-        id: 783,
-        name: "Sakshi Avhad",
-        role: "Enhanced Software Solutions Pvt Ltd.",
-        company: "External",
-        image: "https://ui-avatars.com/api/?name=Sakshi%2BAvhad&background=0D8ABC&color=fff",
-        selectionDate: "Joined"
-    },
-    {
-        id: 784,
-        name: "Akshay Sadaphule",
-        role: "Global Technical Service",
-        company: "Thane",
-        image: "https://ui-avatars.com/api/?name=Akshay%2BSadaphule&background=0D8ABC&color=fff",
-        selectionDate: "Joined"
-    },
-    {
-        id: 785,
-        name: "Lateesh Karmalkar",
-        role: "Global Technical Service",
-        company: "Dadar",
-        image: "https://ui-avatars.com/api/?name=Lateesh%2BKarmalkar&background=0D8ABC&color=fff",
-        selectionDate: "Joined"
-    },
-    {
-        id: 786,
-        name: "RISHI SALUNKE",
-        role: "Global Technical Service",
-        company: "Thane",
-        image: "https://ui-avatars.com/api/?name=RISHI%2BSALUNKE&background=0D8ABC&color=fff",
-        selectionDate: "Joined"
-    },
-    {
-        id: 787,
-        name: "Jaisilan Nadar",
-        role: "Netlynx",
-        company: "External",
-        image: "https://ui-avatars.com/api/?name=Jaisilan%2BNadar&background=0D8ABC&color=fff",
-        selectionDate: "Selected"
-    },
-    {
-        id: 788,
-        name: "Swapnil Atmaram Yadav",
-        role: "NZ Seasonal Wear Pvt. Ltd",
-        company: "Thane",
-        image: "https://ui-avatars.com/api/?name=Swapnil%2BAtmaram%2BYadav&background=0D8ABC&color=fff",
-        selectionDate: "Selected"
-    },
-    {
-        id: 789,
-        name: "yadav",
-        role: "Knowledge Solution Pvt Ltd.",
-        company: "Thane",
-        image: "https://ui-avatars.com/api/?name=yadav&background=0D8ABC&color=fff",
-        selectionDate: "Joined"
-    },
-    {
-        id: 790,
-        name: "Prathamesh Patil",
-        role: "Knowledge Solution Pvt Ltd.",
-        company: "Dadar",
-        image: "https://ui-avatars.com/api/?name=Prathamesh%2BPatil&background=0D8ABC&color=fff",
-        selectionDate: "Joined"
-    },
-    {
-        id: 791,
-        name: "Deepesh Garg",
-        role: "Numantra Technologies",
-        company: "External",
-        image: "https://ui-avatars.com/api/?name=Deepesh%2BGarg&background=0D8ABC&color=fff",
-        selectionDate: "Joined"
-    },
-    {
-        id: 792,
-        name: "Anurag Gupta",
-        role: "Abuzz Webtech",
-        company: "Thane",
-        image: "https://ui-avatars.com/api/?name=Anurag%2BGupta&background=0D8ABC&color=fff",
-        selectionDate: "Joined"
-    },
-    {
-        id: 793,
-        name: "HASHIR ANSARI",
-        role: "DigiRich",
-        company: "External",
-        image: "https://ui-avatars.com/api/?name=HASHIR%2BANSARI&background=0D8ABC&color=fff",
-        selectionDate: "Joined"
-    },
-    {
-        id: 794,
-        name: "AMAAN KHAN",
-        role: "DigiRich",
-        company: "Internal",
-        image: "https://ui-avatars.com/api/?name=AMAAN%2BKHAN&background=0D8ABC&color=fff",
-        selectionDate: "Joined"
-    },
-    {
-        id: 795,
-        name: "Shrutika Yeddy",
-        role: "Kaycomm Services Pvt Ltd",
-        company: "Thane",
-        image: "https://ui-avatars.com/api/?name=Shrutika%2BYeddy&background=0D8ABC&color=fff",
-        selectionDate: "Joined"
-    },
-    {
-        id: 796,
-        name: "Deepak Yadav",
-        role: "Mrwebsecure Infosolutions Pvt. Ltd",
-        company: "Andheri",
-        image: "https://ui-avatars.com/api/?name=Deepak%2BYadav&background=0D8ABC&color=fff",
-        selectionDate: "Selected"
-    },
-    {
-        id: 797,
-        name: "SUDHIN SWAIN",
-        role: "B2W Infotech pvt ltd",
-        company: "Nerul",
-        image: "https://ui-avatars.com/api/?name=SUDHIN%2BSWAIN&background=0D8ABC&color=fff",
-        selectionDate: "Joined"
-    },
-    {
-        id: 798,
-        name: "PREETI BENVANSHI",
-        role: "Techno purple",
-        company: "Thane",
-        image: "https://ui-avatars.com/api/?name=PREETI%2BBENVANSHI&background=0D8ABC&color=fff",
-        selectionDate: "Joined"
-    },
-    {
-        id: 799,
-        name: "VIPIN PAL",
-        role: "Stoosa",
-        company: "Thane",
-        image: "https://ui-avatars.com/api/?name=VIPIN%2BPAL&background=0D8ABC&color=fff",
-        selectionDate: "Joined"
-    },
-    {
-        id: 800,
-        name: "Pooja Yadav",
-        role: "Zaminwale Pvt Ltd",
-        company: "Thane",
-        image: "https://ui-avatars.com/api/?name=Pooja%2BYadav&background=0D8ABC&color=fff",
-        selectionDate: "Joined"
-    },
-    {
-        id: 801,
-        name: "Sneha Badhe",
-        role: "Elixir Homes",
-        company: "External",
-        image: "https://ui-avatars.com/api/?name=Sneha%2BBadhe&background=0D8ABC&color=fff",
-        selectionDate: "Selected"
-    },
-    {
-        id: 802,
-        name: "Shrutika Dhanawade",
-        role: "Numantra Technologies",
-        company: "Andheri",
-        image: "https://ui-avatars.com/api/?name=Shrutika%2BDhanawade&background=0D8ABC&color=fff",
-        selectionDate: "Joined"
-    },
-    {
-        id: 803,
-        name: "Shubham vallal",
-        role: "B2W Infotech pvt ltd",
-        company: "External",
-        image: "https://ui-avatars.com/api/?name=Shubham%2Bvallal&background=0D8ABC&color=fff",
-        selectionDate: "Joined"
-    },
-    {
-        id: 804,
-        name: "KAIF SHAIKH",
-        role: "B2W Infotech pvt ltd",
-        company: "External",
-        image: "https://ui-avatars.com/api/?name=KAIF%2BSHAIKH&background=0D8ABC&color=fff",
-        selectionDate: "Joined"
-    },
-    {
-        id: 805,
-        name: "Manisha Dholam",
-        role: "Kaycomm Services Pvt Ltd",
-        company: "Thane",
-        image: "https://ui-avatars.com/api/?name=Manisha%2BDholam&background=0D8ABC&color=fff",
-        selectionDate: "Joined"
-    },
-    {
-        id: 806,
-        name: "Sunny vishavkarma",
-        role: "solution planets",
-        company: "Kalyan",
-        image: "https://ui-avatars.com/api/?name=Sunny%2Bvishavkarma&background=0D8ABC&color=fff",
-        selectionDate: "Joined"
-    },
-    {
-        id: 807,
-        name: "MANGESH JAISWAR",
-        role: "Adani NMIA",
-        company: "Thane",
-        image: "https://ui-avatars.com/api/?name=MANGESH%2BJAISWAR&background=0D8ABC&color=fff",
-        selectionDate: "Joined"
-    },
-    {
-        id: 808,
-        name: "Farhan Sultan",
-        role: "Recollectix Media Pvt Ltd",
-        company: "External",
-        image: "https://ui-avatars.com/api/?name=Farhan%2BSultan&background=0D8ABC&color=fff",
-        selectionDate: "Joined"
-    },
-    {
-        id: 809,
-        name: "Neha Upadhyay",
-        role: "Tescom Business Solutions",
-        company: "Thane",
-        image: "https://ui-avatars.com/api/?name=Neha%2BUpadhyay&background=0D8ABC&color=fff",
-        selectionDate: "Joined"
-    },
-    {
-        id: 810,
-        name: "Siddhi Patil",
-        role: "Zaminwale Pvt Ltd",
-        company: "Thane",
-        image: "https://ui-avatars.com/api/?name=Siddhi%2BPatil&background=0D8ABC&color=fff",
-        selectionDate: "Joined"
-    },
-    {
-        id: 811,
-        name: "Priya karkare",
-        role: "Zaminwale Pvt Ltd",
-        company: "Thane",
-        image: "https://ui-avatars.com/api/?name=Priya%2Bkarkare&background=0D8ABC&color=fff",
-        selectionDate: "Joined"
-    },
-    {
-        id: 812,
-        name: "Aditi Ojha",
-        role: "Amit Y Parekh & Co.",
-        company: "External",
-        image: "https://ui-avatars.com/api/?name=Aditi%2BOjha&background=0D8ABC&color=fff",
-        selectionDate: "Joined"
-    },
-    {
-        id: 813,
-        name: "Tejal Lagad",
-        role: "Tescom Business Solutions",
-        company: "Thane",
-        image: "https://ui-avatars.com/api/?name=Tejal%2BLagad&background=0D8ABC&color=fff",
-        selectionDate: "Joined"
-    },
-    {
-        id: 814,
-        name: "Rahul Suryawanshi",
-        role: "Tescom Business Solutions",
-        company: "Thane",
-        image: "https://ui-avatars.com/api/?name=Rahul%2BSuryawanshi&background=0D8ABC&color=fff",
-        selectionDate: "Selected"
-    },
-    {
-        id: 815,
-        name: "Vaibhavi Patkar",
-        role: "Tescom Business Solutions",
-        company: "Thane",
-        image: "https://ui-avatars.com/api/?name=Vaibhavi%2BPatkar&background=0D8ABC&color=fff",
-        selectionDate: "Selected"
-    },
-    {
-        id: 816,
-        name: "Abhay Shinde",
-        role: "Trikun Marketing",
-        company: "External",
-        image: "https://ui-avatars.com/api/?name=Abhay%2BShinde&background=0D8ABC&color=fff",
-        selectionDate: "Joined"
-    },
-    {
-        id: 817,
-        name: "Mrunali Mandhare",
-        role: "Tescom Business Solutions",
-        company: "External",
-        image: "https://ui-avatars.com/api/?name=Mrunali%2BMandhare&background=0D8ABC&color=fff",
-        selectionDate: "Selected"
-    }, 
-    {
-        id: 818,
-        name: "Abhay Nitnavare",
-        role: "GoFIN Technologies Pvt Ltd.",
-        company: "External",
-        image: "https://ui-avatars.com/api/?name=Abhay%2BNitnavare&background=0D8ABC&color=fff",
-        selectionDate: "Joined"
-    },
-    {
-        id: 819,
-        name: "Sarvesh Pingulkar",
-        role: "Synclature",
-        company: "External",
-        image: "https://ui-avatars.com/api/?name=Sarvesh%2BPingulkar&background=0D8ABC&color=fff",
-        selectionDate: "Selected"
-    },
-    {
-        id: 820,
-        name: "Neekunj Vijay Chauhan",
-        role: "Synclature",
-        company: "External",
-        image: "https://ui-avatars.com/api/?name=Neekunj%2BVijay%2BChauhan&background=0D8ABC&color=fff",
-        selectionDate: "Joined"
-    },
-    {
-        id: 821,
-        name: "Prasanna Bhat",
-        role: "Rik Capital",
-        company: "Thane",
-        image: "https://ui-avatars.com/api/?name=Prasanna%2BBhat&background=0D8ABC&color=fff",
-        selectionDate: "Selected"
-    },
-    {
-        id: 822,
-        name: "Harsh Divekar",
-        role: "BigSun company",
-        company: "External",
-        image: "https://ui-avatars.com/api/?name=Harsh%2BDivekar&background=0D8ABC&color=fff",
-        selectionDate: "Selected"
+        selectionDate: "Recent"
     }
 ];

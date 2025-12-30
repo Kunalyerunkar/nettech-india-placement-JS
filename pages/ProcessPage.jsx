@@ -21,7 +21,7 @@ const ProcessPage = () => {
             const containerHeight = containerRef.current.offsetHeight;
             const scrollY = window.scrollY;
             const windowHeight = window.innerHeight;
-            const triggerPoint = windowHeight * 0.6;
+            const triggerPoint = windowHeight * 0.7;
             const relativeScroll = scrollY + triggerPoint - containerTop;
             const newHeight = Math.max(0, Math.min(relativeScroll, containerHeight));
             setLineHeight(newHeight);
@@ -32,7 +32,7 @@ const ProcessPage = () => {
                     setVisibleStepIds(prev => prev.includes(step.id) ? prev : [...prev, step.id]);
                 }
             });
-            if (newHeight >= containerHeight - 150) {
+            if (newHeight >= containerHeight - 100) {
                 setShowJobButton(true);
             }
         };
@@ -42,24 +42,30 @@ const ProcessPage = () => {
     }, []);
 
     return (
-        <div className="bg-gray-50 dark:bg-gray-900 min-h-screen pb-20 transition-colors duration-300">
+        <div className="bg-gray-50 dark:bg-gray-950 min-h-screen pb-32 transition-colors duration-300">
             {/* Header */}
-            <section className="bg-blue-900 text-white py-20 text-center reveal active">
-                <h1 className="text-4xl md:text-5xl font-extrabold mb-4">Your Pathway to Employment</h1>
-                <p className="text-xl text-blue-200 max-w-2xl mx-auto">
-                    Follow our simple 4-step process to secure your dream job.
-                </p>
+            <section className="bg-blue-900 text-white py-20 text-center reveal active relative overflow-hidden">
+                <div className="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full blur-3xl -mr-32 -mt-32"></div>
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                    <h1 className="text-4xl md:text-5xl font-black mb-4 tracking-tighter">Your Pathway to Employment</h1>
+                    <p className="text-xl text-blue-200 max-w-2xl mx-auto font-medium">
+                        Follow our simple 4-step process to secure your dream job.
+                    </p>
+                </div>
             </section>
 
             {/* Timeline Section */}
-            <section className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-20 relative" ref={containerRef}>
-                <div className="absolute left-6 md:left-1/2 top-0 bottom-0 w-0.5 bg-gray-300 dark:bg-gray-700 transform md:-translate-x-1/2 ml-0"></div>
+            <section className="max-w-5xl mx-auto px-4 py-20 relative" ref={containerRef}>
+                {/* Vertical Line - Centered */}
+                <div className="absolute left-1/2 top-0 bottom-0 w-[2px] bg-gray-200 dark:bg-gray-800 transform -translate-x-1/2"></div>
+
+                {/* Animated Glowing Progress Line */}
                 <div
-                    className="absolute left-6 md:left-1/2 top-0 w-0.5 bg-blue-600 shadow-[0_0_15px_#2563eb] transform md:-translate-x-1/2 ml-0 transition-all duration-100 ease-out"
+                    className="absolute left-1/2 top-0 w-[2px] bg-blue-600 shadow-[0_0_20px_#2563eb] transform -translate-x-1/2 transition-all duration-150 ease-out"
                     style={{ height: `${lineHeight}px` }}
                 ></div>
 
-                <div className="space-y-24 relative pb-24">
+                <div className="space-y-24 md:space-y-40 relative pb-24">
                     {PROCESS_STEPS.map((step, index) => {
                         const Icon = icons[index % icons.length];
                         const isVisible = visibleStepIds.includes(step.id);
@@ -68,82 +74,98 @@ const ProcessPage = () => {
                         return (
                             <div
                                 key={step.id}
-                                className={`relative flex items-center md:justify-between ${isEven ? 'md:flex-row' : 'md:flex-row-reverse'} flex-row`}
+                                className={`relative flex flex-col items-center md:flex-row md:justify-between ${isEven ? 'md:flex-row' : 'md:flex-row-reverse'}`}
                                 ref={(el) => { if (el) stepRefs.current[index] = el; }}
                             >
-                                <div className="md:hidden w-16 flex-shrink-0"></div>
+                                {/* Timeline Node (Circle with Icon) - Centered and sitting on top of the card on mobile */}
+                                <div className="absolute -top-12 md:top-1/2 left-1/2 transform -translate-x-1/2 md:-translate-y-1/2 flex items-center justify-center z-20">
+                                    <div
+                                        className={`w-14 h-14 md:w-16 md:h-16 rounded-full border-[4px] flex items-center justify-center transition-all duration-700 ${isVisible ? 'bg-blue-600 border-white dark:border-gray-900 shadow-[0_0_20px_#2563eb] scale-110' : 'bg-gray-200 dark:bg-gray-800 border-white dark:border-gray-900 scale-100'}`}
+                                    >
+                                        <Icon className={`w-7 h-7 md:w-8 md:h-8 ${isVisible ? 'text-white' : 'text-gray-400 dark:text-gray-600'}`} />
+                                    </div>
+                                </div>
+
+                                {/* Step Content Card - Centered on mobile with margin-top for icon */}
                                 <div
-                                    className={`w-full md:w-[45%] bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-lg border border-gray-100 dark:border-gray-700 transition-all duration-700 transform ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
+                                    className={`w-full md:w-[42%] bg-white dark:bg-gray-900 p-6 md:p-8 rounded-[2rem] shadow-xl border border-gray-100 dark:border-gray-800 transition-all duration-1000 transform mt-6 md:mt-0 ${isVisible ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-10 scale-95'}`}
                                 >
-                                    <h3 className="text-xl font-bold text-blue-900 dark:text-blue-400 mb-2">Step {step.id}: {step.title}</h3>
-                                    <p className="text-gray-600 dark:text-gray-300 mb-4">{step.description}</p>
+                                    <h3 className="text-xl md:text-2xl font-black text-blue-600 dark:text-blue-500 mb-3 tracking-tight text-center md:text-left">
+                                        Step {step.id}: {step.title}
+                                    </h3>
+                                    <p className="text-gray-600 dark:text-gray-400 font-medium leading-relaxed mb-4 text-center md:text-left text-sm md:text-base">
+                                        {step.description}
+                                    </p>
+
                                     {step.id === 1 && (
-                                        <div className="flex justify-center mt-4">
-                                            {/* Changed bg-white dark:bg-gray-700 to bg-white dark:bg-white to keep QR scanable */}
-                                            <div className="p-2 bg-white dark:bg-white rounded-lg shadow-sm border border-gray-100 dark:border-gray-300">
-                                                <img src="/images/qr code/home qr.png" alt="Registration QR" className="w-32 h-32 object-contain" />
+                                        <div className="flex justify-center mt-6">
+                                            <div className="p-2 bg-white rounded-2xl shadow-inner border border-gray-100 group cursor-pointer transition-transform hover:scale-105">
+                                                <img src="/images/qr code/home qr.png" alt="Registration QR" className="w-28 h-28 md:w-36 md:h-36 object-contain" />
                                             </div>
                                         </div>
                                     )}
+
                                     {step.id === 3 && (
-                                        <div className="mt-4 flex justify-center overflow-hidden group cursor-pointer" onClick={() => setIsCertificateOpen(true)}>
+                                        <div className="mt-6 flex justify-center overflow-hidden rounded-2xl group cursor-pointer border border-gray-100 dark:border-gray-800 shadow-lg" onClick={() => setIsCertificateOpen(true)}>
                                             <img
                                                 src="/images/Certificate/Certificate-Firstname-Lastname.jpg"
                                                 alt="Certificate Preview"
-                                                className="w-full h-auto object-cover rounded-lg transform group-hover:scale-105 transition-transform duration-500"
+                                                className="w-full h-auto object-cover transform group-hover:scale-110 transition-transform duration-700"
                                             />
                                         </div>
                                     )}
+
                                     {step.details && (
-                                        <ul className="space-y-1 mt-4">
+                                        <ul className="space-y-2 mt-6">
                                             {step.details.map((detail, i) => (
-                                                <li key={i} className="flex items-center text-sm text-gray-500 dark:text-gray-400">
-                                                    <div className="w-1.5 h-1.5 bg-blue-600 dark:bg-blue-400 rounded-full mr-2"></div>
+                                                <li key={i} className="flex items-center justify-center md:justify-start text-xs md:text-sm font-semibold text-gray-500 dark:text-gray-400">
+                                                    <div className="w-1.5 h-1.5 bg-blue-500 rounded-full mr-3 shadow-[0_0_8px_#3b82f6]"></div>
                                                     {detail}
                                                 </li>
                                             ))}
                                         </ul>
                                     )}
                                 </div>
-                                <div className="absolute left-6 md:left-1/2 transform -translate-x-1/2 md:-translate-x-1/2 flex items-center justify-center">
-                                    <div
-                                        className={`w-12 h-12 rounded-full border-4 flex items-center justify-center transition-all duration-500 z-10 ${isVisible ? 'bg-blue-600 border-blue-200 dark:border-blue-900 scale-110 shadow-[0_0_15px_#2563eb]' : 'bg-gray-200 dark:bg-gray-700 border-white dark:border-gray-800 scale-100'}`}
-                                    >
-                                        <Icon className={`w-6 h-6 ${isVisible ? 'text-white' : 'text-gray-400 dark:text-gray-500'}`} />
-                                    </div>
-                                </div>
-                                <div className="hidden md:block w-[45%]"></div>
+
+                                {/* Desktop Ghost Spacer */}
+                                <div className="hidden md:block w-[42%]"></div>
                             </div>
                         );
                     })}
                 </div>
 
-                <div className="absolute bottom-0 left-6 md:left-1/2 transform -translate-x-1/2 translate-y-1/2 z-20">
-                    <div className={`transition-all duration-700 transform ${showJobButton ? 'opacity-100 scale-100' : 'opacity-0 scale-50'}`}>
+                {/* Final CTA Button - Centered and Styled like the reference image */}
+                <div className="absolute -bottom-10 left-1/2 transform -translate-x-1/2 z-30 w-full flex justify-center">
+                    <div className={`transition-all duration-1000 transform ${showJobButton ? 'opacity-100 scale-100 translate-y-0' : 'opacity-0 scale-50 translate-y-10'}`}>
                         <Link
                             to="/register"
-                            className="inline-flex items-center justify-center px-8 py-4 border-4 border-white dark:border-gray-900 text-lg font-bold rounded-full text-white bg-green-600 hover:bg-green-700 transition-all duration-300 shadow-[0_0_20px_rgba(22,163,74,0.5)] hover:shadow-[0_0_30px_rgba(22,163,74,0.7)] hover:-translate-y-1 whitespace-nowrap"
+                            className="group relative inline-flex items-center justify-center px-12 py-4 border-4 border-white dark:border-gray-900 text-lg md:text-xl font-black rounded-full text-white bg-green-600 hover:bg-green-500 transition-all duration-300 shadow-[0_0_25px_rgba(34,197,94,0.5)] hover:shadow-[0_0_40px_rgba(34,197,94,0.8)] hover:-translate-y-1 uppercase tracking-[0.15em] overflow-hidden"
                         >
-                            Job Opportunity
-                            <Briefcase className="ml-2 w-6 h-6" />
+                            <span className="relative z-10 flex items-center">
+                                Opportunity
+                                <Briefcase className="ml-3 w-6 h-6 group-hover:rotate-12 transition-transform" />
+                            </span>
+                            {/* Inner Glow Shine Effect - Restricted by overflow-hidden on Link */}
+                            <div className="absolute inset-0 bg-white/20 -translate-x-full group-hover:translate-x-full transition-transform duration-700 skew-x-12"></div>
                         </Link>
                     </div>
                 </div>
             </section>
 
             {/* FAQ Section */}
-            <section className="max-w-4xl mx-auto px-4 py-8 mt-20">
-                <h2 className="text-3xl font-bold text-center text-blue-900 dark:text-blue-400 mb-10 flex items-center justify-center">
-                    <div className="bg-blue-100 dark:bg-blue-900/30 p-2 rounded-full mr-3">
-                        <HelpCircle className="w-6 h-6 text-blue-700 dark:text-blue-400" />
+            <section className="max-w-4xl mx-auto px-4 py-20 mt-40 reveal">
+                <div className="text-center mb-16">
+                    <div className="inline-flex items-center gap-2 text-blue-600 dark:text-blue-400 font-black uppercase tracking-[0.3em] text-[10px] mb-4">
+                        <HelpCircle className="w-4 h-4" /> Got Questions?
                     </div>
-                    Frequently Asked Questions
-                </h2>
+                    <h2 className="text-3xl md:text-5xl font-black text-gray-900 dark:text-white tracking-tighter mb-4">Frequently Asked <span className="text-blue-600">Questions</span></h2>
+                </div>
+
                 <div className="grid md:grid-cols-2 gap-6">
                     {FAQS.map((faq, index) => (
-                        <div key={index} className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-sm border border-gray-100 dark:border-gray-700 hover:border-indigo-600 dark:hover:border-indigo-500 transition-colors group duration-300">
-                            <h3 className="font-bold text-lg text-gray-900 dark:text-white mb-2 group-hover:text-indigo-700 dark:group-hover:text-indigo-400 transition-colors">{faq.question}</h3>
-                            <p className="text-gray-600 dark:text-gray-300 text-sm">{faq.answer}</p>
+                        <div key={index} className="bg-white dark:bg-gray-900 p-8 rounded-3xl shadow-lg border border-gray-100 dark:border-gray-800 hover:border-blue-500 dark:hover:border-blue-500 transition-all group duration-300">
+                            <h3 className="font-bold text-lg text-gray-900 dark:text-white mb-3 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">{faq.question}</h3>
+                            <p className="text-gray-500 dark:text-gray-400 text-sm font-medium leading-relaxed">{faq.answer}</p>
                         </div>
                     ))}
                 </div>
@@ -151,10 +173,12 @@ const ProcessPage = () => {
 
             {/* Certificate Modal */}
             {isCertificateOpen && (
-                <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm animate-in fade-in duration-200" onClick={() => setIsCertificateOpen(false)}>
-                    <div className="relative max-w-4xl w-full bg-white rounded-lg p-2 shadow-2xl transform transition-all scale-100" onClick={e => e.stopPropagation()}>
-                        <button className="absolute -top-10 right-0 text-white hover:text-gray-200 transition-colors" onClick={() => setIsCertificateOpen(false)}><X className="w-8 h-8" /></button>
-                        <img src="/images/Certificate/Certificate-Firstname-Lastname.jpg" alt="Certificate Full View" className="w-full h-auto rounded" />
+                <div className="fixed inset-0 z-[150] flex items-center justify-center p-4 bg-black/95 backdrop-blur-md animate-in fade-in duration-300" onClick={() => setIsCertificateOpen(false)}>
+                    <div className="relative max-w-5xl w-full bg-white dark:bg-gray-900 rounded-2xl p-2 shadow-2xl overflow-hidden scale-100" onClick={e => e.stopPropagation()}>
+                        <button className="absolute top-4 right-4 bg-black/50 hover:bg-black text-white p-2 rounded-full transition-colors z-10" onClick={() => setIsCertificateOpen(false)}>
+                            <X className="w-6 h-6" />
+                        </button>
+                        <img src="/images/Certificate/Certificate-Firstname-Lastname.jpg" alt="Certificate Full View" className="w-full h-auto rounded-lg" />
                     </div>
                 </div>
             )}

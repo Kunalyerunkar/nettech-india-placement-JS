@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { User, Phone, Mail, MapPin, GraduationCap, Calendar, Building2, CheckCircle, Send, AlertCircle, Briefcase, Code2, RefreshCcw } from 'lucide-react';
+import React, { useState, useEffect, useMemo } from 'react';
+import { User, Phone, Mail, MapPin, GraduationCap, Calendar, Building2, CheckCircle, Send, AlertCircle, Briefcase, Code2, RefreshCcw, Sparkles } from 'lucide-react';
 import { useLocation } from 'react-router-dom';
 import { api } from '../services/api';
 import { JOB_DOMAINS } from '../constants';
@@ -32,6 +32,69 @@ const RegistrationPage = () => {
     const [isSubmitted, setIsSubmitted] = useState(false);
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [submitError, setSubmitError] = useState('');
+
+    // --- Dynamic Chained Skill Suggestion Logic ---
+    const suggestedSkills = useMemo(() => {
+        const currentText = formData.skills.toLowerCase();
+        const currentSkillsArray = formData.skills
+            .split(',')
+            .map(s => s.trim().toLowerCase())
+            .filter(s => s !== "");
+
+        let suggestions = new Set();
+
+        // 1. Initial Domain-based suggestions
+        if (formData.interestedDomain) {
+            const domain = JOB_DOMAINS.find(d => d.title === formData.interestedDomain);
+            if (domain) {
+                domain.skills.forEach(s => suggestions.add(s));
+            }
+        }
+
+        // 2. Chained suggestions: Find skills related to what's already typed
+        if (currentSkillsArray.length > 0) {
+            JOB_DOMAINS.forEach(domain => {
+                // Check if any current skill matches domain skills or domain title
+                const hasDomainOverlap = domain.skills.some(ds => currentSkillsArray.includes(ds.toLowerCase()));
+
+                if (hasDomainOverlap) {
+                    domain.skills.forEach(s => suggestions.add(s));
+                }
+
+                // Deep scan roles within domains for overlaps
+                domain.roles.forEach(role => {
+                    const hasRoleOverlap = role.skills.some(rs => currentSkillsArray.includes(rs.toLowerCase())) ||
+                        currentSkillsArray.some(cs => role.title.toLowerCase().includes(cs));
+
+                    if (hasRoleOverlap) {
+                        role.skills.forEach(s => suggestions.add(s));
+                        // Also add some common skills from the domain this role belongs to
+                        domain.skills.slice(0, 3).forEach(s => suggestions.add(s));
+                    }
+                });
+            });
+        }
+
+        // Convert set to array and filter out skills already in the textarea
+        return Array.from(suggestions)
+            .filter(s => !currentSkillsArray.includes(s.toLowerCase()))
+            .slice(0, 15); // Limit to 15 suggestions for a clean UI
+    }, [formData.interestedDomain, formData.skills]);
+
+    const handleAddSkill = (skill) => {
+        const trimmedSkills = formData.skills.trim();
+        let updatedSkills = trimmedSkills;
+
+        if (trimmedSkills === "") {
+            updatedSkills = skill;
+        } else if (trimmedSkills.endsWith(',')) {
+            updatedSkills = `${trimmedSkills} ${skill}`;
+        } else {
+            updatedSkills = `${trimmedSkills}, ${skill}`;
+        }
+
+        setFormData(prev => ({ ...prev, skills: updatedSkills }));
+    };
 
     const qualifications = [
         "B.E / B.Tech",
@@ -171,7 +234,6 @@ const RegistrationPage = () => {
                     `).join('\n')}
                 `}</style>
 
-                {/* Celebration Particles */}
                 <div className="confetti-container absolute inset-0 pointer-events-none">
                     {[...Array(15)].map((_, i) => (
                         <div key={i} className={`confetti-piece confetti-${i}`}></div>
@@ -400,6 +462,31 @@ const RegistrationPage = () => {
                             </div>
                             <div className="md:col-span-2">
                                 <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">Skills</label>
+
+                                {/* Intelligent Skill Bubbles / Suggestions */}
+                                {suggestedSkills.length > 0 && (
+                                    <div className="mb-4 animate-in fade-in slide-in-from-top-2 duration-500">
+                                        <div className="flex items-center gap-1.5 mb-3 text-blue-600 dark:text-blue-400">
+                                            <Sparkles className="w-4 h-4 fill-current" />
+                                            <span className="text-[10px] font-black uppercase tracking-widest">
+                                                {formData.skills.length > 2 ? 'Related Skills found for your profile' : `Primary Skills for ${formData.interestedDomain || 'Job Placement'}`}
+                                            </span>
+                                        </div>
+                                        <div className="flex flex-wrap gap-2">
+                                            {suggestedSkills.map((skill, idx) => (
+                                                <button
+                                                    key={`${skill}-${idx}`}
+                                                    type="button"
+                                                    onClick={() => handleAddSkill(skill)}
+                                                    className="px-3 py-1.5 bg-blue-50 hover:bg-blue-600 dark:bg-blue-900/20 dark:hover:bg-blue-700 text-blue-700 hover:text-white dark:text-blue-300 dark:hover:text-white text-[11px] font-bold rounded-lg border border-blue-100 dark:border-blue-800 transition-all transform hover:scale-105 active:scale-95 shadow-sm"
+                                                >
+                                                    + {skill}
+                                                </button>
+                                            ))}
+                                        </div>
+                                    </div>
+                                )}
+
                                 <div className="relative group">
                                     <div className="absolute top-3 left-0 pl-3 flex items-start pointer-events-none">
                                         <Code2 className="h-5 w-5 text-gray-400 group-focus-within:text-blue-500 transition-colors" />
