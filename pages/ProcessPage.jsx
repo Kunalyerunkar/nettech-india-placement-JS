@@ -116,14 +116,16 @@ const ProcessPage = () => {
                                     )}
 
                                     {step.details && (
-                                        <ul className="space-y-2 mt-6">
-                                            {step.details.map((detail, i) => (
-                                                <li key={i} className="flex items-center justify-center md:justify-start text-xs md:text-sm font-semibold text-gray-500 dark:text-gray-400">
-                                                    <div className="w-1.5 h-1.5 bg-blue-500 rounded-full mr-3 shadow-[0_0_8px_#3b82f6]"></div>
-                                                    {detail}
-                                                </li>
-                                            ))}
-                                        </ul>
+                                        <div className="flex justify-center md:justify-start">
+                                            <ul className="space-y-3 mt-4 text-left max-w-fit">
+                                                {step.details.map((detail, i) => (
+                                                    <li key={i} className="flex items-center text-sm md:text-base font-bold text-gray-600 dark:text-gray-400 group/item">
+                                                        <div className="w-2 h-2 bg-blue-600 rounded-full mr-4 shadow-[0_0_10px_#2563eb] flex-shrink-0 transition-transform group-hover/item:scale-125"></div>
+                                                        <span className="leading-tight">{detail}</span>
+                                                    </li>
+                                                ))}
+                                            </ul>
+                                        </div>
                                     )}
                                 </div>
 
