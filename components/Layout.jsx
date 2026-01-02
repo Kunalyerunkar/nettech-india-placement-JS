@@ -1,3 +1,4 @@
+
 import React, { useEffect } from 'react';
 import { Outlet, useLocation } from 'react-router-dom';
 import Navbar from './Navbar';
@@ -29,6 +30,7 @@ const Layout = () => {
 
   return (
     <div className="min-h-screen flex flex-col">
+      {/* Navbar is now always visible to allow testing site-wide components */}
       <Navbar />
       <main className="flex-grow">
         <Outlet />

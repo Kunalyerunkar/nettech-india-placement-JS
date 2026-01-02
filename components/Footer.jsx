@@ -1,9 +1,10 @@
+
 import React from 'react';
-import { MapPin, Phone, Mail, Globe, Facebook, Twitter, Linkedin, Instagram } from 'lucide-react';
+import { MapPin, Phone, Mail, Globe, Facebook, Youtube, Linkedin, Instagram } from 'lucide-react';
 
 const Footer = () => {
   return (
-    <footer id="contact" className="bg-gray-900 dark:bg-black text-gray-300 dark:text-gray-400 transition-colors duration-300">
+    <footer id="contact" className="bg-gray-900 dark:bg-black text-gray-300 dark:text-gray-400 transition-colors duration-300 pb-16 md:pb-0">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid md:grid-cols-3 gap-12">
 
@@ -14,10 +15,42 @@ const Footer = () => {
               Bridging the gap between education and employment. We provide free placement services and industry-focused training to help you secure your dream job.
             </p>
             <div className="flex space-x-4">
-              <a href="#" className="text-gray-400 hover:text-white transition-colors"><Facebook className="w-5 h-5" /></a>
-              <a href="#" className="text-gray-400 hover:text-white transition-colors"><Twitter className="w-5 h-5" /></a>
-              <a href="#" className="text-gray-400 hover:text-white transition-colors"><Linkedin className="w-5 h-5" /></a>
-              <a href="#" className="text-gray-400 hover:text-white transition-colors"><Instagram className="w-5 h-5" /></a>
+              <a
+                href="https://www.facebook.com/nettechindiathane"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gray-400 hover:text-blue-500 transition-colors"
+                aria-label="Facebook"
+              >
+                <Facebook className="w-5 h-5" />
+              </a>
+              <a
+                href="https://www.instagram.com/nettechindia/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gray-400 hover:text-pink-500 transition-colors"
+                aria-label="Instagram"
+              >
+                <Instagram className="w-5 h-5" />
+              </a>
+              <a
+                href="https://www.linkedin.com/company/nettechindiainmumbai1/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gray-400 hover:text-blue-400 transition-colors"
+                aria-label="LinkedIn"
+              >
+                <Linkedin className="w-5 h-5" />
+              </a>
+              <a
+                href="https://www.youtube.com/channel/UCVId8Wd1dMcXcXWLjaxQ5Mw"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gray-400 hover:text-red-500 transition-colors"
+                aria-label="YouTube"
+              >
+                <Youtube className="w-5 h-5" />
+              </a>
             </div>
           </div>
 
@@ -40,7 +73,7 @@ const Footer = () => {
               <li className="flex items-start">
                 <MapPin className="w-5 h-5 mr-3 text-blue-500 flex-shrink-0" />
                 <span>
-                  201, Ratnamani Building, Dada Patil Wadi,<br />
+                  102, Ratnamani Building, Dada Patil Wadi,<br />
                   Opp ICICI ATM, Thane West, Mumbai - 400602
                 </span>
               </li>

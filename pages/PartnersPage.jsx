@@ -1,12 +1,25 @@
 import React, { useEffect, useState } from 'react';
 import { PARTNER_BENEFITS } from '../constants';
-import { CheckCircle2, TrendingUp, Users, Building, DollarSign, Award, FileText, Handshake, Settings, ArrowRight, AlertCircle, CheckCircle } from 'lucide-react';
+import { CheckCircle2, TrendingUp, Users, Building, DollarSign, Award, FileText, Handshake, Settings, ArrowRight, AlertCircle, CheckCircle, ChevronDown } from 'lucide-react';
 import { api } from '../services/api';
-import partnerslogo from '../images/partnerlogo';
+import partnerslogo from '../images/partnerlogo.js';
 
 const PartnersPage = () => {
+    // We still use a small bit of JS to determine the initial slice, 
+    // but we'll make the button visibility handled more robustly by Tailwind.
+    const [isDesktop, setIsDesktop] = useState(window.innerWidth >= 768);
+    const [visibleLogosCount, setVisibleLogosCount] = useState(12);
+
     useEffect(() => {
         window.scrollTo(0, 0);
+
+        const handleResize = () => {
+            const desktop = window.innerWidth >= 768;
+            setIsDesktop(desktop);
+        };
+
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
     }, []);
 
     const [formData, setFormData] = useState({
@@ -58,6 +71,9 @@ const PartnersPage = () => {
     };
 
     const partners = partnerslogo;
+    // We show all on desktop, but only the count on mobile.
+    // This uses the isDesktop state to drive the data slice.
+    const displayedPartners = isDesktop ? partners : partners.slice(0, visibleLogosCount);
 
     const getSafeUrl = (path) => {
         if (!path) return '';
@@ -65,12 +81,16 @@ const PartnersPage = () => {
         return '/' + cleanPath.split('/').map(part => encodeURIComponent(part)).join('/');
     };
 
+    const handleLoadMore = () => {
+        setVisibleLogosCount(prev => Math.min(prev + 12, partners.length));
+    };
+
     return (
         <div className="bg-white dark:bg-gray-900 min-h-screen transition-colors duration-300">
             {/* Hero Header */}
             <section className="bg-slate-900 text-white py-20 text-center reveal active">
                 <h1 className="text-4xl md:text-5xl font-extrabold mb-4">Hire Top Talent</h1>
-                <p className="text-xl text-slate-300 max-w-2xl mx-auto">
+                <p className="text-xl text-slate-300 max-w-2xl mx-auto px-4">
                     Partner with NetTech India to access a pool of pre-screened, skilled, and job-ready candidates at zero cost.
                 </p>
             </section>
@@ -90,9 +110,9 @@ const PartnersPage = () => {
                                 <div className="w-12 h-12 bg-blue-50 dark:bg-blue-900/30 rounded-lg flex items-center justify-center text-blue-600 dark:text-blue-400 mb-4">
                                     <Icon className="w-6 h-6" />
                                 </div>
-                                <h3 className="font-bold text-gray-900 dark:text-white mb-2">{benefit}</h3>
+                                <h3 className="font-bold text-gray-900 dark:text-white mb-2 uppercase text-sm tracking-tight">{benefit}</h3>
                                 <p className="text-sm text-gray-500 dark:text-gray-400">
-                                    We ensure that this benefit translates to tangible value for your organization through our rigorous processes.
+                                    Access specialized talent trained in the latest industry standards and frameworks.
                                 </p>
                             </div>
                         );
@@ -109,46 +129,64 @@ const PartnersPage = () => {
                             <p className="text-gray-600 dark:text-gray-400 mb-8 leading-relaxed">
                                 Our candidates are trained in diverse domains, making them suitable for a wide range of industries. Whether you are a startup or an MNC, we have the right talent for you.
                             </p>
-                            <ul className="grid grid-cols-2 gap-4">
+                            <ul className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                                 {['Information Technology', 'Banking & Finance', 'Digital Marketing agencies', 'Manufacturing (CAD/CAM)', 'E-Commerce', 'Telecommunications'].map((ind, i) => (
                                     <li key={i} className="flex items-center text-gray-700 dark:text-gray-300 font-medium">
-                                        <CheckCircle2 className="w-5 h-5 text-green-500 mr-2" />
+                                        <CheckCircle2 className="w-5 h-5 text-green-500 mr-2 flex-shrink-0" />
                                         {ind}
                                     </li>
                                 ))}
                             </ul>
                         </div>
                         <div className="md:w-1/2 reveal">
-                            <img src="https://picsum.photos/seed/business-meeting/800/600" alt="Business Meeting" className="rounded-2xl shadow-xl dark:border-4 dark:border-gray-700" />
+                            <img src="images/web img/Industries We Serve.jpg" alt="Business Meeting" className="rounded-2xl shadow-xl dark:border-4 dark:border-gray-700 w-full object-cover" />
                         </div>
                     </div>
                 </div>
             </section>
 
-            {/* Trusted By Top Companies */}
+            {/* Trusted By Top Companies Section */}
             <section className="bg-white dark:bg-gray-900 py-20 border-t border-gray-100 dark:border-gray-800">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="text-center mb-16 reveal">
                         <h2 className="text-3xl font-bold text-gray-900 dark:text-white">Trusted By Top Companies</h2>
-                        <p className="text-gray-600 dark:text-gray-400 mt-4">We are proud to be associated with industry leaders across the globe.</p>
+                        <p className="text-gray-600 dark:text-gray-400 mt-4">We are proud to be associated with {partners.length} industry leaders.</p>
                     </div>
 
-                    <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-8">
-                        {partners.map((partner, idx) => (
-                            <div key={idx} className="flex items-center justify-center p-6 bg-white dark:bg-white rounded-xl hover:shadow-lg transition-all duration-300 group reveal border border-gray-100 dark:border-gray-200">
+                    <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4 md:gap-6">
+                        {displayedPartners.map((partner, idx) => (
+                            <div key={idx} className="flex flex-col items-center justify-center p-4 bg-white rounded-xl hover:shadow-lg transition-all duration-300 group border border-gray-100 dark:border-gray-200 h-24 relative overflow-hidden">
                                 <img
                                     src={getSafeUrl(partner.logo)}
                                     alt={partner.name}
-                                    className="max-h-12 w-auto filter grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-300 transform group-hover:scale-110"
+                                    className="max-h-12 w-auto transition-all duration-300 transform group-hover:scale-110 filter grayscale-0 opacity-100 md:grayscale md:opacity-60 md:group-hover:grayscale-0 md:group-hover:opacity-100"
                                     title={partner.name}
                                     onError={(e) => {
                                         e.currentTarget.style.display = 'none';
+                                        const fallback = e.currentTarget.parentElement.querySelector('.name-fallback');
+                                        if (fallback) fallback.classList.remove('hidden');
                                     }}
                                 />
-                                <span className="hidden group-hover:block absolute mt-16 text-[10px] font-bold text-gray-800 bg-white px-2 py-0.5 rounded shadow-sm z-10">{partner.name}</span>
+                                <div className="name-fallback hidden text-[10px] font-black text-gray-900 uppercase tracking-tighter text-center px-2">
+                                    {partner.name}
+                                </div>
                             </div>
                         ))}
                     </div>
+
+                    {/* See More Button - Robust Rendering Logic */}
+                    {/* We use md:hidden to hide it on PC always, and JS to only show it if there are more partners */}
+                    {visibleLogosCount < partners.length && (
+                        <div className="mt-16 text-center flex md:hidden justify-center items-center">
+                            <button
+                                onClick={handleLoadMore}
+                                className="group inline-flex items-center gap-2 px-10 py-5 bg-blue-700 text-white font-black rounded-full hover:bg-blue-800 transition-all shadow-[0_10px_30px_rgba(37,99,235,0.4)] active:scale-95 uppercase tracking-widest text-[10px] border-2 border-white/20"
+                            >
+                                SHOW MORE PARTNERS ({partners.length - visibleLogosCount} LEFT)
+                                <ChevronDown className="w-5 h-5 group-hover:translate-y-1 transition-transform" />
+                            </button>
+                        </div>
+                    )}
                 </div>
             </section>
 
@@ -157,7 +195,7 @@ const PartnersPage = () => {
                 <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-2xl overflow-hidden border border-gray-100 dark:border-gray-700">
                     <div className="bg-blue-600 p-8 text-center">
                         <h2 className="text-2xl font-bold text-white">Become a Hiring Partner</h2>
-                        <p className="text-blue-100 mt-2">Fill out the form below and our Corporate Relations team will get in touch.</p>
+                        <p className="text-blue-100 mt-2">Join our network and find the right talent for your team.</p>
                     </div>
                     <div className="p-8 md:p-12">
                         {isSubmitted ? (
@@ -243,7 +281,7 @@ const PartnersPage = () => {
                                         onChange={handleChange}
                                         className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500 focus:outline-none transition-shadow"
                                         rows={4}
-                                        placeholder="E.g., Java Developers..."
+                                        placeholder="E.g., Java Developers, Network Engineers..."
                                     ></textarea>
                                 </div>
                                 <button
@@ -253,7 +291,7 @@ const PartnersPage = () => {
                                 >
                                     {isSubmitting ? 'Submitting...' : (
                                         <>
-                                            Submit Request
+                                            Submit Partnership Request
                                             <ArrowRight className="ml-2 w-5 h-5" />
                                         </>
                                     )}
