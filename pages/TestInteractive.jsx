@@ -1,249 +1,318 @@
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import {
-    CheckCircle, RefreshCcw, Send,
-    Building2, Trophy, GraduationCap, TrendingUp as GraphIcon,
-    Play, Download, Zap, Layout, ArrowRight
+    Search, ChevronDown, Check, X, MapPin,
+    Briefcase, DollarSign, Filter, Sparkles,
+    Cpu, Zap, Globe, Layers, Command,
+    MoreHorizontal, ArrowRight, Shield, Rocket,
+    Target, Layout, Play, Clock
 } from 'lucide-react';
 import { JOB_DOMAINS } from '../constants';
-import { Link } from 'react-router-dom';
 
-const TestInteractive = () => {
-    const [counts, setCounts] = useState({ students: 0, partners: 0, rate: 0, domains: 0 });
-    const [regState, setRegState] = useState('idle');
-
-    // --- NATIVE VIDEO ASSETS ---
-    const VIDEO_GALLERY = [
-        { id: 'v1', videoUrl: "/images/video/0_Presentation_Meeting_1080x1920.mp4", title: "Tech Innovation Lab", tag: "Skill Development", metrics: "500+ Hours Training" },
-        { id: 'v2', videoUrl: "/images/video/1097610_Electronics_Circuit_1080x1920.mp4", title: "Candidate Success", tag: "Career Coaching", metrics: "98% Success Rate" },
-        { id: 'v3', videoUrl: "/images/video/6918191_Motion_Graphics_Motion_Graphic_1080x1920.mp4", title: "Placement Drives", tag: "Industry Connect", metrics: "4500+ Partners" },
-        { id: 'v4', videoUrl: "/images/video/7048907_Animation_Motion_Graphic_1080x1920.mp4", title: "Corporate Ready", tag: "Soft Skills", metrics: "MNC Standard" }
-    ];
+// --- 1. THE BENTO-GRID MULTI-SELECT ---
+const BentoMultiSelect = ({ label, options, selected, onToggle, icon: Icon }) => {
+    const [isOpen, setIsOpen] = useState(false);
+    const containerRef = useRef(null);
 
     useEffect(() => {
-        const timer = setTimeout(() => {
-            setCounts({
-                students: 1250,
-                partners: 4500,
-                rate: 98,
-                domains: JOB_DOMAINS.length
-            });
-        }, 100);
-        return () => clearTimeout(timer);
+        const handleClick = (e) => {
+            if (containerRef.current && !containerRef.current.contains(e.target)) setIsOpen(false);
+        };
+        document.addEventListener('mousedown', handleClick);
+        return () => document.removeEventListener('mousedown', handleClick);
     }, []);
 
-    const Counter = ({ target, duration = 2000, suffix = "" }) => {
-        const [count, setCount] = useState(0);
-        useEffect(() => {
-            let start = 0;
-            const increment = target / (duration / 16);
-            const timer = setInterval(() => {
-                start += increment;
-                if (start >= target) {
-                    setCount(target);
-                    clearInterval(timer);
-                } else {
-                    setCount(Math.floor(start));
-                }
-            }, 16);
-            return () => clearInterval(timer);
-        }, [target]);
-        return <span>{count.toLocaleString()}{suffix}</span>;
-    };
+    return (
+        <div className="relative w-full" ref={containerRef}>
+            <label className="block text-[10px] font-black uppercase text-gray-400 mb-3 tracking-[0.2em]">{label}</label>
+            <div
+                onClick={() => setIsOpen(!isOpen)}
+                className={`min-h-[64px] p-3 rounded-3xl border-2 transition-all cursor-pointer flex flex-wrap gap-2 items-center
+                    ${isOpen ? 'bg-white dark:bg-gray-800 border-indigo-500 shadow-xl' : 'bg-gray-50 dark:bg-gray-900 border-gray-100 dark:border-gray-800'}`}
+            >
+                {selected.length === 0 ? (
+                    <span className="text-gray-400 text-sm font-bold ml-2">Fuse your skills...</span>
+                ) : (
+                    selected.map(item => (
+                        <span key={item} className="bg-indigo-600 text-white text-[10px] font-black px-3 py-1.5 rounded-full flex items-center gap-2 animate-in zoom-in duration-300">
+                            {item}
+                            <X className="w-3 h-3 cursor-pointer" onClick={(e) => { e.stopPropagation(); onToggle(item); }} />
+                        </span>
+                    ))
+                )}
+                <div className="ml-auto pr-2">
+                    <ChevronDown className={`w-5 h-5 text-indigo-500 transition-transform ${isOpen ? 'rotate-180' : ''}`} />
+                </div>
+            </div>
 
-    const simulateSubmit = (e) => {
-        e.preventDefault();
-        setRegState('submitting');
-        setTimeout(() => setRegState('success'), 2000);
-    };
+            {isOpen && (
+                <div className="absolute z-50 mt-4 w-full bg-white dark:bg-gray-900 rounded-[2.5rem] shadow-2xl border border-gray-100 dark:border-gray-800 p-6 animate-in slide-in-from-top-2 duration-300">
+                    <div className="grid grid-cols-2 gap-3 max-h-64 overflow-y-auto custom-scrollbar pr-2">
+                        {options.map(opt => (
+                            <button
+                                key={opt}
+                                onClick={() => onToggle(opt)}
+                                className={`p-4 rounded-2xl text-left text-xs font-black transition-all border-2
+                                    ${selected.includes(opt)
+                                        ? 'bg-indigo-50 dark:bg-indigo-900/30 border-indigo-500 text-indigo-600'
+                                        : 'bg-gray-50 dark:bg-gray-800 border-transparent text-gray-500 hover:border-gray-200'}`}
+                            >
+                                {opt}
+                            </button>
+                        ))}
+                    </div>
+                </div>
+            )}
+        </div>
+    );
+};
 
-    const handleVideoHover = (e) => {
-        const video = e.currentTarget.querySelector('video');
-        if (video) video.play().catch(() => { });
-    };
+// --- 2. THE CYBER-NEON DROPDOWN ---
+const CyberNeonDropdown = ({ label, options, value, onChange }) => {
+    const [isOpen, setIsOpen] = useState(false);
 
-    const handleVideoLeave = (e) => {
-        const video = e.currentTarget.querySelector('video');
-        if (video) {
-            video.pause();
-            video.currentTime = 0;
-        }
+    return (
+        <div className="relative">
+            <label className="block text-[10px] font-black uppercase text-blue-500 mb-2 tracking-widest">{label}</label>
+            <button
+                onClick={() => setIsOpen(!isOpen)}
+                className="w-full h-16 bg-black border-b-2 border-blue-500/30 hover:border-blue-500 flex items-center justify-between px-6 transition-all group"
+            >
+                <div className="flex items-center gap-4">
+                    <div className="w-2 h-2 rounded-full bg-blue-500 animate-pulse shadow-[0_0_10px_#3b82f6]" />
+                    <span className="text-white font-black text-sm uppercase tracking-tighter">{value || "Initialize Module"}</span>
+                </div>
+                <Zap className={`w-4 h-4 text-blue-500 transition-all ${isOpen ? 'scale-125 opacity-100' : 'opacity-40'}`} />
+            </button>
+
+            {isOpen && (
+                <div className="absolute z-50 mt-1 w-full bg-black border border-blue-500/20 shadow-[0_0_40px_rgba(59,130,246,0.1)] py-2 animate-in fade-in slide-in-from-top-1">
+                    {options.map(opt => (
+                        <button
+                            key={opt}
+                            onClick={() => { onChange(opt); setIsOpen(false); }}
+                            className="w-full text-left px-8 py-4 text-[10px] font-black text-gray-400 hover:text-white hover:bg-blue-500/10 transition-all flex items-center justify-between group"
+                        >
+                            <span className="tracking-[0.2em]">{opt}</span>
+                            <ArrowRight className="w-3 h-3 opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all" />
+                        </button>
+                    ))}
+                </div>
+            )}
+        </div>
+    );
+};
+
+// --- 3. THE VISUAL CARD DROPDOWN ---
+const VisualCardDropdown = ({ label, options, value, onChange, icon: Icon }) => {
+    const [isOpen, setIsOpen] = useState(false);
+
+    return (
+        <div className="relative">
+            <label className="block text-[10px] font-black uppercase text-gray-400 mb-2 tracking-[0.2em]">{label}</label>
+            <button
+                onClick={() => setIsOpen(!isOpen)}
+                className="w-full p-5 bg-white dark:bg-gray-900 rounded-[2rem] border border-gray-100 dark:border-gray-800 shadow-lg hover:shadow-xl transition-all flex items-center justify-between"
+            >
+                <div className="flex items-center gap-4">
+                    <div className="p-3 bg-emerald-50 dark:bg-emerald-900/30 rounded-2xl text-emerald-600">
+                        <Icon className="w-5 h-5" />
+                    </div>
+                    <div className="text-left">
+                        <p className="text-xs font-black text-gray-900 dark:text-white uppercase tracking-tighter">{value || "Select Tier"}</p>
+                        <p className="text-[9px] text-gray-400 font-bold uppercase">Dynamic Ranking Active</p>
+                    </div>
+                </div>
+                <MoreHorizontal className="w-5 h-5 text-gray-300" />
+            </button>
+
+            {isOpen && (
+                <div className="absolute z-50 mt-4 w-[120%] -left-[10%] bg-white dark:bg-gray-900 rounded-[3rem] shadow-[0_32px_80px_rgba(0,0,0,0.15)] border border-gray-100 dark:border-gray-800 p-4 grid grid-cols-1 gap-2 animate-in zoom-in-95 duration-300">
+                    {options.map((opt, i) => (
+                        <button
+                            key={opt}
+                            onClick={() => { onChange(opt); setIsOpen(false); }}
+                            className={`p-6 rounded-[1.8rem] text-left transition-all flex items-center justify-between group
+                                ${value === opt ? 'bg-emerald-600 text-white shadow-lg' : 'bg-gray-50 dark:bg-gray-800 hover:bg-emerald-50 dark:hover:bg-emerald-900/30'}`}
+                        >
+                            <div>
+                                <h4 className={`text-sm font-black uppercase tracking-tighter ${value === opt ? 'text-white' : 'text-gray-900 dark:text-white'}`}>{opt}</h4>
+                                <p className={`text-[9px] font-bold uppercase mt-1 ${value === opt ? 'text-emerald-100' : 'text-gray-400'}`}>High Market Probability</p>
+                            </div>
+                            <div className={`p-2 rounded-xl transition-colors ${value === opt ? 'bg-white/20' : 'bg-white dark:bg-gray-700 shadow-sm'}`}>
+                                <Check className={`w-4 h-4 ${value === opt ? 'text-white' : 'text-emerald-500 opacity-0 group-hover:opacity-100'}`} />
+                            </div>
+                        </button>
+                    ))}
+                </div>
+            )}
+        </div>
+    );
+};
+
+const TestInteractive = () => {
+    const [selectedSkills, setSelectedSkills] = useState([]);
+    const [selectedLocation, setSelectedLocation] = useState('');
+    const [selectedTier, setSelectedTier] = useState('');
+    const [activeTheme, setActiveTheme] = useState('modern');
+
+    const toggleSkill = (skill) => {
+        setSelectedSkills(prev =>
+            prev.includes(skill) ? prev.filter(s => s !== skill) : [...prev, skill]
+        );
     };
 
     return (
-        <div className="bg-white dark:bg-gray-950 min-h-screen pt-40 pb-20 transition-colors duration-500 overflow-x-hidden">
+        <div className={`min-h-screen pt-40 pb-20 transition-all duration-700 overflow-x-hidden
+            ${activeTheme === 'cyber' ? 'bg-black text-white' : 'bg-gray-50 dark:bg-gray-950 text-gray-900 dark:text-white'}`}>
 
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="max-w-6xl mx-auto px-4">
 
-                {/* --- LAB STATUS BANNER --- */}
-                <div className="bg-blue-50 dark:bg-blue-900/20 rounded-[2rem] p-6 mb-24 border border-blue-100 dark:border-blue-800 text-center reveal active">
-                    <div className="inline-flex items-center gap-2 text-blue-600 font-black uppercase tracking-[0.3em] text-[10px]">
-                        <Layout className="w-4 h-4" /> Component Testing Environment
-                    </div>
-                    <p className="text-xs text-gray-500 dark:text-gray-400 mt-2 font-medium">The site-wide Navbar is active. Mobile users will see the sticky "Get Hired" bar at the bottom.</p>
-                </div>
-
-                {/* --- DYNAMIC HERO HEADER --- */}
-                <div className="flex flex-col lg:flex-row items-center justify-between mb-24 gap-12 reveal active">
-                    <div className="lg:w-1/2 text-left">
-                        <div className="inline-flex items-center gap-2 px-4 py-2 bg-blue-50 dark:bg-blue-900/30 rounded-full text-blue-700 dark:text-blue-400 font-black uppercase tracking-widest text-xs mb-6 border border-blue-100 dark:border-blue-800">
-                            <Zap className="w-4 h-4" /> Professional Placement Brochure
+                {/* --- LAB HEADER --- */}
+                <div className="flex flex-col md:flex-row justify-between items-end mb-20 gap-8">
+                    <div className="reveal active">
+                        <div className="inline-flex items-center gap-2 px-3 py-1 bg-blue-500/10 rounded-full text-blue-500 font-black uppercase text-[9px] tracking-widest mb-4">
+                            <Layers className="w-3 h-3" /> UI Engineering Lab
                         </div>
-                        <h1 className="text-5xl md:text-7xl font-black text-gray-900 dark:text-white mb-6 leading-[0.9] tracking-tighter">
-                            BRIDGE TO <br /><span className="text-blue-600">SUCCESS</span>
-                        </h1>
-                        <p className="text-gray-500 dark:text-gray-400 text-lg md:text-xl max-w-lg mb-8 font-medium">
-                            Transforming education into career excellence. Explore our digital interactive brochure and witness our impact.
-                        </p>
-                        <div className="flex flex-wrap gap-4">
-                            <button className="bg-blue-700 text-white font-black px-10 py-5 rounded-2xl shadow-xl shadow-blue-500/30 hover:bg-blue-800 transition-all hover:-translate-y-1 active:scale-95 flex items-center gap-3">
-                                Download Full PDF <Download className="w-5 h-5" />
-                            </button>
-                            <button className="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 text-gray-900 dark:text-white font-black px-10 py-5 rounded-2xl hover:bg-gray-50 transition-all flex items-center gap-3">
-                                Our Process <ArrowRight className="w-5 h-5" />
-                            </button>
-                        </div>
+                        <h1 className="text-6xl md:text-8xl font-black tracking-tighter leading-[0.8] uppercase">The <br /><span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">Select</span> Lab</h1>
                     </div>
 
-                    <div className="lg:w-1/2 relative">
-                        <div className="aspect-[4/3] rounded-[3rem] overflow-hidden border-[12px] border-gray-100 dark:border-gray-900 shadow-2xl relative bg-gray-100">
-                            <video
-                                className="w-full h-full object-cover"
-                                autoPlay loop muted playsInline
-                                src="https://assets.mixkit.co/videos/preview/mixkit-people-working-in-a-modern-office-42473-large.mp4"
-                            />
-                            <div className="absolute inset-0 bg-gradient-to-t from-blue-900/40 to-transparent"></div>
-                        </div>
-                        <div className="absolute -top-6 -right-6 bg-white dark:bg-gray-800 p-6 rounded-3xl shadow-2xl border border-gray-100 dark:border-gray-700 animate-bounce">
-                            <Trophy className="w-8 h-8 text-yellow-500 mb-2" />
-                            <p className="text-[10px] font-black uppercase text-gray-400">Award Winning</p>
-                            <p className="text-sm font-black text-gray-900 dark:text-white">Placement Cell</p>
-                        </div>
-                    </div>
-                </div>
-
-                {/* --- STATS DASHBOARD --- */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-32 reveal active">
-                    {[
-                        { label: 'Hiring Partners', count: counts.partners, suffix: '+', icon: Building2, color: 'blue', desc: 'MNCs & Global Tech' },
-                        { label: 'Placed Students', count: counts.students, suffix: '+', icon: Trophy, color: 'indigo', desc: 'Verified Placements' },
-                        { label: 'Success Rate', count: counts.rate, suffix: '%', icon: GraphIcon, color: 'emerald', desc: 'Industry Best Placement %' },
-                        { label: 'Career Domains', count: counts.domains, suffix: '+', icon: GraduationCap, color: 'orange', desc: 'Specialized Tech' }
-                    ].map((stat, i) => (
-                        <div key={i} className="group relative bg-white dark:bg-gray-900 p-8 rounded-[2.5rem] border border-gray-100 dark:border-gray-800 shadow-xl transition-all duration-300 hover:shadow-2xl hover:-translate-y-2 overflow-hidden">
-                            <div className="relative z-10 text-center flex flex-col items-center">
-                                <div className={`p-4 rounded-2xl bg-blue-50 dark:bg-blue-900/20 text-blue-600 dark:text-blue-400 inline-block mb-6 transition-transform group-hover:scale-110`}>
-                                    <stat.icon className="w-10 h-10" />
-                                </div>
-                                <h3 className="text-4xl font-black text-gray-900 dark:text-white mb-1">
-                                    <Counter target={stat.count} suffix={stat.suffix} />
-                                </h3>
-                                <p className="text-[10px] font-black uppercase tracking-widest text-gray-400 mb-2">{stat.label}</p>
-                                <p className="text-xs text-gray-500 dark:text-gray-500 font-medium leading-tight">{stat.desc}</p>
-                            </div>
-                        </div>
-                    ))}
-                </div>
-
-                {/* --- HOVER-PLAY VIDEO SHOWCASE --- */}
-                <div className="mb-32 reveal active">
-                    <div className="text-center mb-16">
-                        <div className="inline-flex items-center gap-2 text-blue-600 font-black uppercase tracking-[0.3em] text-[10px] mb-4">
-                            <Play className="w-4 h-4 fill-current" /> Interactive Experience
-                        </div>
-                        <h2 className="text-4xl md:text-6xl font-black text-gray-900 dark:text-white tracking-tighter mb-4">Life at <span className="text-blue-600">NetTech</span></h2>
-                    </div>
-
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                        {VIDEO_GALLERY.map((item) => (
-                            <div
-                                key={item.id}
-                                onMouseEnter={handleVideoHover}
-                                onMouseLeave={handleVideoLeave}
-                                className="group relative aspect-[9/16] bg-gray-100 dark:bg-gray-900 rounded-[2.5rem] overflow-hidden shadow-2xl transition-all duration-500 hover:-translate-y-2 cursor-pointer"
+                    {/* Theme Toggler */}
+                    <div className="flex bg-white dark:bg-gray-900 p-2 rounded-[2rem] shadow-xl border border-gray-100 dark:border-gray-800 reveal active">
+                        {['modern', 'cyber'].map(t => (
+                            <button
+                                key={t}
+                                onClick={() => setActiveTheme(t)}
+                                className={`px-6 py-3 rounded-full text-[10px] font-black uppercase tracking-widest transition-all
+                                    ${activeTheme === t ? 'bg-gray-900 dark:bg-white text-white dark:text-gray-900 shadow-lg' : 'text-gray-400 hover:text-gray-900 dark:hover:text-white'}`}
                             >
-                                <video
-                                    className="absolute inset-0 w-full h-full object-cover grayscale-[0.3] group-hover:grayscale-0 transition-all duration-700"
-                                    loop muted playsInline src={item.videoUrl}
-                                />
-                                <div className="absolute inset-0 flex items-center justify-center bg-black/10 group-hover:bg-transparent transition-all duration-500">
-                                    <div className="w-16 h-16 bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center text-white border border-white/30 group-hover:opacity-0 group-hover:scale-150 transition-all duration-500">
-                                        <Play className="w-8 h-8 fill-current ml-1" />
-                                    </div>
-                                </div>
-                                <div className="absolute inset-0 bg-gradient-to-t from-blue-950/90 via-transparent to-transparent opacity-60 group-hover:opacity-80 transition-opacity"></div>
-                                <div className="absolute bottom-0 left-0 right-0 p-8">
-                                    <div className="text-[8px] font-black text-blue-400 uppercase tracking-widest mb-2">{item.metrics}</div>
-                                    <h4 className="text-2xl font-black text-white leading-none mb-1">{item.title}</h4>
-                                </div>
-                            </div>
+                                {t} Engine
+                            </button>
                         ))}
                     </div>
                 </div>
 
-                {/* REGISTRATION SIMULATOR */}
-                <div className="mb-20 reveal active">
-                    <div className="bg-white dark:bg-gray-900 rounded-[3.5rem] shadow-2xl overflow-hidden border border-gray-100 dark:border-gray-800">
-                        <div className="grid lg:grid-cols-2">
-                            <div className="p-12 lg:p-20 flex flex-col justify-center bg-gray-50 dark:bg-gray-800/50">
-                                <h2 className="text-5xl font-black text-gray-900 dark:text-white mb-6 tracking-tighter">START THE JOURNEY</h2>
-                                <p className="text-gray-500 dark:text-gray-400 mb-8 leading-relaxed text-lg font-medium">
-                                    Enter your professional credentials to access exclusive candidate opportunities within our network of 4,500+ global hiring partners.
-                                </p>
-                            </div>
+                {/* --- DROPDOWN GRID --- */}
+                <div className="grid lg:grid-cols-12 gap-8 mb-20">
 
-                            <div className="p-12 lg:p-20 flex flex-col justify-center">
-                                {regState === 'idle' ? (
-                                    <form onSubmit={simulateSubmit} className="space-y-8">
-                                        <div className="space-y-3">
-                                            <label className="text-[10px] font-black uppercase text-gray-400 ml-4 tracking-widest">Candidate Reference ID</label>
-                                            <input
-                                                className="w-full px-10 py-6 rounded-[2.5rem] border-2 border-gray-100 dark:border-gray-800 bg-gray-50 dark:bg-gray-800 focus:border-blue-500 focus:bg-white focus:shadow-2xl outline-none transition-all text-gray-900 dark:text-white font-black uppercase tracking-widest"
-                                                placeholder="e.g. NT-CANDIDATE-ID"
-                                                required
-                                            />
-                                        </div>
-                                        <button
-                                            type="submit"
-                                            className="group relative w-full bg-blue-700 text-white font-black py-7 rounded-[2.5rem] shadow-2xl hover:shadow-blue-500/40 hover:scale-[1.02] active:scale-95 transition-all overflow-hidden"
-                                        >
-                                            <span className="relative z-10 flex items-center justify-center gap-4 text-xl uppercase tracking-widest">
-                                                Verify & Register <Send className="w-6 h-6" />
-                                            </span>
-                                            <div className="absolute inset-0 bg-white/20 -translate-x-full group-hover:translate-x-full transition-transform duration-700 skew-x-12"></div>
-                                        </button>
-                                    </form>
-                                ) : (
-                                    <div className="flex flex-col items-center justify-center min-h-[400px] animate-pop-in">
-                                        {regState === 'submitting' ? (
-                                            <div className="flex flex-col items-center gap-8">
-                                                <RefreshCcw className="w-24 h-24 text-blue-600 animate-spin" />
-                                                <span className="text-sm font-black text-blue-600 uppercase tracking-[0.3em] animate-pulse">Syncing Cloud Database...</span>
-                                            </div>
-                                        ) : (
-                                            <div className="text-center">
-                                                <div className="w-28 h-28 bg-emerald-100 dark:bg-emerald-900/30 rounded-full flex items-center justify-center mx-auto mb-10 shadow-inner">
-                                                    <CheckCircle className="w-16 h-16 text-emerald-600 dark:text-emerald-400" />
-                                                </div>
-                                                <h3 className="text-4xl font-black text-gray-900 dark:text-white tracking-tighter uppercase">ACCESS GRANTED</h3>
-                                                <button onClick={() => setRegState('idle')} className="mt-12 bg-blue-700 text-white px-10 py-4 rounded-2xl font-black uppercase tracking-widest hover:bg-blue-800 shadow-xl transition-all hover:scale-105 active:scale-95">Reset Session</button>
-                                            </div>
-                                        )}
-                                    </div>
-                                )}
+                    {/* Left Column: Input Lab */}
+                    <div className="lg:col-span-7 space-y-12 bg-white dark:bg-gray-900/50 p-10 rounded-[3.5rem] border border-gray-100 dark:border-gray-800 reveal active shadow-2xl">
+                        <div className="flex items-center gap-4 mb-4">
+                            <div className="w-12 h-12 rounded-2xl bg-indigo-600 flex items-center justify-center text-white shadow-lg shadow-indigo-500/20">
+                                <Rocket className="w-6 h-6" />
+                            </div>
+                            <div>
+                                <h2 className="text-2xl font-black uppercase tracking-tighter">Placement Configurator</h2>
+                                <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">State-driven UI Showcase</p>
+                            </div>
+                        </div>
+
+                        <BentoMultiSelect
+                            label="Neural Skill Integration"
+                            options={['React Native', 'AWS Cloud', 'Kubernetes', 'Python ML', 'TypeScript', 'Docker', 'PostgreSQL', 'Figma UI']}
+                            selected={selectedSkills}
+                            onToggle={toggleSkill}
+                        />
+
+                        <div className="grid md:grid-cols-2 gap-8">
+                            <CyberNeonDropdown
+                                label="HQ Geolocation"
+                                options={['Mumbai North', 'Bangalore Tech Park', 'Hyderabad Corridor', 'Remote Global']}
+                                value={selectedLocation}
+                                onChange={setSelectedLocation}
+                            />
+
+                            <VisualCardDropdown
+                                label="Economic Tiering"
+                                icon={DollarSign}
+                                options={['Entry (3-6L)', 'Growth (7-15L)', 'Elite (16L+)', 'MNC Prodigy']}
+                                value={selectedTier}
+                                onChange={setSelectedTier}
+                            />
+                        </div>
+
+                        <div className="pt-8 border-t border-gray-100 dark:border-gray-800">
+                            <div className="flex items-center gap-3">
+                                <Shield className="w-5 h-5 text-emerald-500" />
+                                <p className="text-[10px] font-black text-gray-500 uppercase tracking-widest">All inputs synchronized with live API engine</p>
                             </div>
                         </div>
                     </div>
+
+                    {/* Right Column: Visualization */}
+                    <div className="lg:col-span-5 bg-gray-950 rounded-[3.5rem] p-12 text-white relative overflow-hidden flex flex-col justify-between reveal active shadow-2xl shadow-blue-900/20">
+                        <div className="absolute top-0 right-0 p-12 opacity-10">
+                            <Command className="w-64 h-64 text-blue-500 rotate-12" />
+                        </div>
+
+                        <div className="relative z-10">
+                            <div className="flex justify-between items-center mb-12">
+                                <span className="text-[10px] font-black uppercase tracking-[0.4em] text-blue-500">Live Result</span>
+                                <div className="flex gap-1">
+                                    <div className="w-1.5 h-1.5 rounded-full bg-red-500" />
+                                    <div className="w-1.5 h-1.5 rounded-full bg-yellow-500" />
+                                    <div className="w-1.5 h-1.5 rounded-full bg-green-500" />
+                                </div>
+                            </div>
+
+                            <h3 className="text-4xl font-black uppercase tracking-tighter mb-10 leading-none">Strategy <br />Manifest</h3>
+
+                            <div className="space-y-6">
+                                <div className="p-6 bg-white/5 border border-white/10 rounded-3xl backdrop-blur-xl">
+                                    <p className="text-[10px] text-blue-400 font-black uppercase tracking-widest mb-3 flex items-center gap-2">
+                                        <Cpu className="w-3 h-3" /> Fused Core
+                                    </p>
+                                    <div className="flex flex-wrap gap-2">
+                                        {selectedSkills.length > 0 ? selectedSkills.map(s => (
+                                            <span key={s} className="text-xs font-bold bg-white/10 px-2 py-1 rounded-lg">{s}</span>
+                                        )) : <span className="text-xs italic text-gray-600 font-bold uppercase">Awaiting neural link...</span>}
+                                    </div>
+                                </div>
+
+                                <div className="grid grid-cols-2 gap-4">
+                                    <div className="p-6 bg-white/5 border border-white/10 rounded-3xl backdrop-blur-xl">
+                                        <p className="text-[10px] text-emerald-400 font-black uppercase tracking-widest mb-2">Location</p>
+                                        <p className="text-sm font-bold truncate">{selectedLocation || "---"}</p>
+                                    </div>
+                                    <div className="p-6 bg-white/5 border border-white/10 rounded-3xl backdrop-blur-xl">
+                                        <p className="text-[10px] text-purple-400 font-black uppercase tracking-widest mb-2">Tier</p>
+                                        <p className="text-sm font-bold truncate">{selectedTier || "---"}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className="mt-12 relative z-10">
+                            {selectedSkills.length > 0 && selectedLocation && selectedTier ? (
+                                <button className="w-full py-6 bg-blue-600 rounded-[2rem] font-black uppercase tracking-[0.2em] text-xs hover:bg-blue-500 transition-all shadow-[0_0_30px_rgba(37,99,235,0.4)] animate-in slide-in-from-bottom-4">
+                                    Execute Career Strategy
+                                </button>
+                            ) : (
+                                <div className="w-full py-6 border-2 border-dashed border-white/10 rounded-[2rem] flex items-center justify-center gap-3 opacity-40">
+                                    <Clock className="w-4 h-4" />
+                                    <span className="text-[10px] font-black uppercase tracking-widest">Awaiting Parameters</span>
+                                </div>
+                            )}
+                        </div>
+                    </div>
+                </div>
+
+                {/* --- FOOTER CTA --- */}
+                <div className="bg-gradient-to-br from-indigo-900 to-blue-900 rounded-[4rem] p-16 text-center text-white reveal active">
+                    <h2 className="text-4xl md:text-6xl font-black tracking-tighter mb-6 uppercase">Ready for <span className="text-blue-400">Launch?</span></h2>
+                    <p className="text-indigo-100 max-w-xl mx-auto mb-10 text-lg font-medium">Join 4,500+ partners who are looking for profiles configured exactly like yours.</p>
+                    <a href="/register" className="inline-flex items-center gap-3 px-12 py-5 bg-white text-gray-900 rounded-full font-black uppercase tracking-widest text-xs hover:scale-105 active:scale-95 transition-all">
+                        Begin Real Registration <ArrowRight className="w-4 h-4" />
+                    </a>
                 </div>
 
             </div>
 
             <style>{`
-                @keyframes popIn {
-                    0% { opacity: 0; transform: scale(0.8) translateY(20px); }
-                    100% { opacity: 1; transform: scale(1); }
-                }
-                .animate-pop-in { animation: popIn 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards; }
+                .custom-scrollbar::-webkit-scrollbar { width: 4px; }
+                .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
+                .custom-scrollbar::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.1); border-radius: 10px; }
+                .dark .custom-scrollbar::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); }
             `}</style>
         </div>
     );

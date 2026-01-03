@@ -14,6 +14,7 @@ const Navbar = () => {
   // Hide the sticky CTA on the registration page
   const isRegisterPage = location.pathname === '/register';
 
+  // Links for the navigation
   const navLinks = [
     { name: 'Home', href: '/' },
     { name: 'About', href: '/about' },
@@ -48,66 +49,90 @@ const Navbar = () => {
 
   return (
     <>
-      {/* 1. Mobile Menu Overlay - Cascading Style as per Image */}
+      {/* 1. Mobile Menu Overlay - Standard Vertical Layout */}
       <div
-        className={`lg:hidden fixed inset-0 w-full h-full bg-[#05070a] z-[500] flex flex-col pt-32 px-8 transition-all duration-500 ease-in-out ${isOpen ? 'translate-y-0 opacity-100' : '-translate-y-full opacity-0 pointer-events-none'}`}
+        className={`lg:hidden fixed inset-0 w-full h-full bg-[#05070a] z-[600] flex flex-col transition-all duration-500 ease-in-out ${isOpen ? 'translate-y-0 opacity-100' : '-translate-y-full opacity-0 pointer-events-none'}`}
       >
-        <div className="flex flex-col space-y-3">
-          {navLinks.map((link, idx) => (
-            <Link
-              key={link.name}
-              to={link.href}
-              className={`block text-[2.75rem] font-black leading-tight transition-all duration-300
-                ${location.pathname === link.href
-                  ? 'text-blue-500'
-                  : 'text-white hover:text-blue-400'}`}
-              style={{
-                paddingLeft: `${idx * 1.4}rem`,
-                transitionDelay: `${idx * 50}ms`
-              }}
-              onClick={() => setIsOpen(false)}
-            >
-              {link.name}
-            </Link>
-          ))}
+        {/* Header section with Logo and Close Button */}
+        <div className="flex justify-between items-center px-6 h-20 border-b border-white/5 flex-shrink-0">
+          <Link to="/" onClick={() => setIsOpen(false)}>
+            <img
+              src="/images/logo/NetTech India logo dark.png"
+              alt="NetTech India"
+              className="h-10 object-contain"
+            />
+          </Link>
+          <button
+            onClick={() => setIsOpen(false)}
+            className="p-3 text-white/40 hover:text-white bg-white/5 rounded-full transition-colors"
+          >
+            <X className="w-8 h-8" />
+          </button>
         </div>
 
-        <div className="mt-auto pb-12">
+        {/* Standard Links - Aligned one below the other */}
+        <div className="flex-1 flex flex-col justify-center px-10 py-10 overflow-y-auto">
+          <div className="flex flex-col space-y-4">
+            {navLinks.map((link, idx) => (
+              <Link
+                key={link.name}
+                to={link.href}
+                className={`block text-[2.6rem] xs:text-[3rem] font-black leading-[1.1] transition-all duration-500
+                  ${location.pathname === link.href
+                    ? 'text-blue-500'
+                    : 'text-white hover:text-blue-400'}`}
+                style={{
+                  transitionDelay: `${idx * 50}ms`,
+                  transform: isOpen ? 'translateX(0)' : 'translateX(-20px)',
+                  opacity: isOpen ? 1 : 0
+                }}
+                onClick={() => setIsOpen(false)}
+              >
+                {link.name}
+              </Link>
+            ))}
+          </div>
+        </div>
+
+        {/* Large Blue Bottom Button & Footer Text */}
+        <div className="px-6 pb-12 pt-4 flex-shrink-0 flex flex-col items-center">
           <Link
             to="/register"
-            className="block w-full py-5 rounded-[2.5rem] text-xl font-black text-white bg-blue-700 hover:bg-blue-800 text-center shadow-2xl shadow-blue-500/30 active:scale-95 transition-transform"
+            className="block w-full py-5 rounded-full text-xl font-black text-white bg-blue-700 hover:bg-blue-600 text-center shadow-2xl shadow-blue-500/20 active:scale-95 transition-all"
             onClick={() => setIsOpen(false)}
           >
             Get Hired Now
           </Link>
-          <p className="text-center text-gray-600 text-[10px] mt-8 font-black uppercase tracking-[0.3em]">NetTech India Placement Cell</p>
+          <p className="text-center text-white text-[9px] mt-10 font-black uppercase tracking-[0.4em] opacity-100">
+            NetTech India Placement Cell
+          </p>
         </div>
       </div>
 
-      {/* 2. Main Navbar Bar - Top-most layer */}
-      <div className={`fixed w-full z-[510] transition-all duration-500 ease-in-out ${isOpen ? 'top-0' : (isScrolled ? 'top-4 px-4 sm:px-6' : 'top-0')}`}>
+      {/* 2. Main Navbar Bar - Always visible base layer */}
+      <div className={`fixed w-full z-[510] transition-all duration-500 ease-in-out ${isOpen ? 'opacity-0 pointer-events-none' : (isScrolled ? 'top-4 px-4 sm:px-6' : 'top-0')}`}>
         <nav
           className={`mx-auto transition-all duration-500 ease-in-out 
-            ${(isScrolled && !isOpen)
+            ${(isScrolled)
               ? 'max-w-6xl rounded-full bg-white/80 dark:bg-gray-950/80 backdrop-blur-xl border border-white/20 dark:border-gray-800 shadow-[0_8px_32px_rgba(0,0,0,0.1)]'
               : 'max-w-full bg-white dark:bg-gray-900 border-b border-gray-100 dark:border-gray-800'
-            } ${isOpen ? 'bg-transparent border-none !shadow-none' : ''}`}
+            }`}
         >
           <div className="max-w-7xl mx-auto px-6 sm:px-8">
             <div className={`flex justify-between items-center transition-all duration-500 ${isScrolled ? 'h-16' : 'h-20'}`}>
 
               {/* Logo */}
               <div className="flex items-center">
-                <Link to="/" className="flex-shrink-0 group" onClick={() => setIsOpen(false)}>
+                <Link to="/" className="flex-shrink-0 group">
                   <img
-                    src={(isDarkMode || isOpen) ? "/images/logo/NetTech India logo dark.png" : "/images/logo/NetTech India logo.png"}
+                    src={isDarkMode ? "/images/logo/NetTech India logo dark.png" : "/images/logo/NetTech India logo.png"}
                     alt="NetTech India"
-                    className={`transition-all duration-500 object-contain group-hover:scale-105 ${isScrolled ? 'h-8 sm:h-10' : 'h-10 sm:h-12 lg:h-14'}`}
+                    className={`transition-all duration-500 object-contain group-hover:scale-105 ${isScrolled ? 'h-8 sm:h-9' : 'h-9 sm:h-11 lg:h-12'}`}
                   />
                 </Link>
               </div>
 
-              {/* Desktop Navigation */}
+              {/* Desktop Nav */}
               <div className="hidden lg:flex items-center space-x-1">
                 {navLinks.map((link) => (
                   <Link
@@ -124,7 +149,6 @@ const Navbar = () => {
 
                 <div className="h-6 w-px bg-gray-200 dark:bg-gray-800 mx-4"></div>
 
-                {/* Desktop Utilities */}
                 <div className="flex items-center space-x-3">
                   <button
                     onClick={toggleTheme}
@@ -145,27 +169,20 @@ const Navbar = () => {
                 </div>
               </div>
 
-              {/* Mobile/Tablet Toggle Division */}
+              {/* Mobile Controls */}
               <div className="lg:hidden flex items-center space-x-3">
-                {!isOpen && (
-                  <button
-                    onClick={toggleTheme}
-                    className="p-2.5 rounded-full text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition-all"
-                  >
-                    {isDarkMode ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
-                  </button>
-                )}
+                <button
+                  onClick={toggleTheme}
+                  className="p-2.5 rounded-full text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition-all"
+                >
+                  {isDarkMode ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
+                </button>
 
                 <button
-                  onClick={() => setIsOpen(!isOpen)}
-                  className={`relative z-[600] p-2.5 focus:outline-none rounded-full transition-all duration-300 
-                    ${isOpen
-                      ? 'text-white bg-white/10 hover:bg-white/20'
-                      : 'text-gray-600 dark:text-gray-300 bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700'
-                    }`}
-                  aria-label={isOpen ? "Close Menu" : "Open Menu"}
+                  onClick={() => setIsOpen(true)}
+                  className="p-2.5 focus:outline-none rounded-full text-gray-600 dark:text-gray-300 bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition-all"
                 >
-                  {isOpen ? <X className="w-7 h-7" /> : <Menu className="w-7 h-7" />}
+                  <Menu className="w-8 h-8" />
                 </button>
               </div>
             </div>
@@ -173,11 +190,11 @@ const Navbar = () => {
         </nav>
       </div>
 
-      {/* 3. Global Sticky Mobile CTA */}
+      {/* 3. Global Sticky Mobile Footer CTA (Visible when menu is closed) */}
       {!isRegisterPage && !isOpen && (
         <button
           onClick={() => navigate('/register')}
-          className="md:hidden fixed bottom-0 left-0 w-full z-[400] bg-blue-700 backdrop-blur-md text-white py-3 px-6 shadow-[0_-4px_24px_rgba(0,0,0,0.2)] flex items-center justify-center gap-3 active:scale-95 transition-all border-t border-white/5"
+          className="md:hidden fixed bottom-0 left-0 w-full z-[400] bg-blue-700 text-white py-3.5 px-6 shadow-[0_-4px_24px_rgba(0,0,0,0.2)] flex items-center justify-center gap-3 active:scale-95 transition-all border-t border-white/10"
         >
           <div className="relative">
             <MessageSquare className="w-4 h-4 fill-current" />

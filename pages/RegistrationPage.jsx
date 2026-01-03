@@ -1,8 +1,10 @@
+
 import React, { useState, useEffect, useMemo } from 'react';
 import { User, Phone, Mail, MapPin, GraduationCap, Calendar, Building2, CheckCircle, Send, AlertCircle, Briefcase, Code2, RefreshCcw, Sparkles } from 'lucide-react';
 import { useLocation } from 'react-router-dom';
 import { api } from '../services/api';
 import { JOB_DOMAINS } from '../constants';
+import CustomDropdown from '../components/CustomDropdown';
 
 const RegistrationPage = () => {
     const location = useLocation();
@@ -11,7 +13,6 @@ const RegistrationPage = () => {
         window.scrollTo(0, 0);
     }, []);
 
-    // Extract pre-fill data from state if available
     const prefillData = location.state || {};
 
     const [formData, setFormData] = useState({
@@ -33,9 +34,7 @@ const RegistrationPage = () => {
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [submitError, setSubmitError] = useState('');
 
-    // --- Dynamic Chained Skill Suggestion Logic ---
     const suggestedSkills = useMemo(() => {
-        const currentText = formData.skills.toLowerCase();
         const currentSkillsArray = formData.skills
             .split(',')
             .map(s => s.trim().toLowerCase())
@@ -43,7 +42,6 @@ const RegistrationPage = () => {
 
         let suggestions = new Set();
 
-        // 1. Initial Domain-based suggestions
         if (formData.interestedDomain) {
             const domain = JOB_DOMAINS.find(d => d.title === formData.interestedDomain);
             if (domain) {
@@ -51,70 +49,42 @@ const RegistrationPage = () => {
             }
         }
 
-        // 2. Chained suggestions: Find skills related to what's already typed
         if (currentSkillsArray.length > 0) {
             JOB_DOMAINS.forEach(domain => {
-                // Check if any current skill matches domain skills or domain title
                 const hasDomainOverlap = domain.skills.some(ds => currentSkillsArray.includes(ds.toLowerCase()));
+                if (hasDomainOverlap) domain.skills.forEach(s => suggestions.add(s));
 
-                if (hasDomainOverlap) {
-                    domain.skills.forEach(s => suggestions.add(s));
-                }
-
-                // Deep scan roles within domains for overlaps
                 domain.roles.forEach(role => {
                     const hasRoleOverlap = role.skills.some(rs => currentSkillsArray.includes(rs.toLowerCase())) ||
                         currentSkillsArray.some(cs => role.title.toLowerCase().includes(cs));
-
                     if (hasRoleOverlap) {
                         role.skills.forEach(s => suggestions.add(s));
-                        // Also add some common skills from the domain this role belongs to
                         domain.skills.slice(0, 3).forEach(s => suggestions.add(s));
                     }
                 });
             });
         }
 
-        // Convert set to array and filter out skills already in the textarea
         return Array.from(suggestions)
             .filter(s => !currentSkillsArray.includes(s.toLowerCase()))
-            .slice(0, 15); // Limit to 15 suggestions for a clean UI
+            .slice(0, 15);
     }, [formData.interestedDomain, formData.skills]);
 
     const handleAddSkill = (skill) => {
         const trimmedSkills = formData.skills.trim();
-        let updatedSkills = trimmedSkills;
-
-        if (trimmedSkills === "") {
-            updatedSkills = skill;
-        } else if (trimmedSkills.endsWith(',')) {
-            updatedSkills = `${trimmedSkills} ${skill}`;
-        } else {
-            updatedSkills = `${trimmedSkills}, ${skill}`;
-        }
-
+        let updatedSkills = trimmedSkills === "" ? skill :
+            trimmedSkills.endsWith(',') ? `${trimmedSkills} ${skill}` : `${trimmedSkills}, ${skill}`;
         setFormData(prev => ({ ...prev, skills: updatedSkills }));
     };
 
     const qualifications = [
-        "B.E / B.Tech",
-        "BCA",
-        "B.Sc IT/CS",
-        "Diploma",
-        "B.Com",
-        "BBA",
-        "BAF",
-        "B.Sc Finance",
-        "BEng Electrical Engineering",
-        "BEng Electronics Engineering",
-        "BEng Mechatronics Engineering",
-        "MCA",
-        "M.Sc IT/CS",
-        "Other"
+        "B.E / B.Tech", "BCA", "B.Sc IT/CS", "Diploma", "B.Com", "BBA", "BAF", "B.Sc Finance",
+        "BEng Electrical Engineering", "BEng Electronics Engineering", "BEng Mechatronics Engineering",
+        "MCA", "M.Sc IT/CS", "Other"
     ];
 
     const currentYear = new Date().getFullYear();
-    const years = Array.from({ length: 15 }, (_, i) => currentYear + 2 - i);
+    const years = Array.from({ length: 15 }, (_, i) => (currentYear + 2 - i).toString());
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -128,32 +98,25 @@ const RegistrationPage = () => {
         }
         setFormData(prev => ({ ...prev, [name]: value }));
         if (errors[name]) setErrors(prev => ({ ...prev, [name]: '' }));
-        setSubmitError('');
+    };
+
+    const handleDropdownChange = (name, value) => {
+        setFormData(prev => ({ ...prev, [name]: value }));
+        if (errors[name]) setErrors(prev => ({ ...prev, [name]: '' }));
     };
 
     const validate = () => {
         const newErrors = {};
         if (!formData.fullName.trim()) newErrors.fullName = "Full Name is required";
-        if (!formData.phone) {
-            newErrors.phone = "Phone Number is required";
-        } else if (formData.phone.length !== 10) {
-            newErrors.phone = "Phone Number must be exactly 10 digits";
-        }
-        if (!formData.email.trim()) {
-            newErrors.email = "Email ID is required";
-        } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
-            newErrors.email = "Please enter a valid email address";
-        }
+        if (!formData.phone || formData.phone.length !== 10) newErrors.phone = "Valid 10-digit Phone Number is required";
+        if (!formData.email.trim() || !/\S+@\S+\.\S+/.test(formData.email)) newErrors.email = "Valid Email is required";
         if (!formData.city.trim()) newErrors.city = "City is required";
         if (!formData.state.trim()) newErrors.state = "State is required";
-        if (!formData.highestQualification) {
-            newErrors.highestQualification = "Highest Qualification is required";
-        } else if (formData.highestQualification === 'Other' && !formData.otherQualification.trim()) {
-            newErrors.otherQualification = "Please specify your qualification";
-        }
+        if (!formData.highestQualification) newErrors.highestQualification = "Qualification is required";
+        if (formData.highestQualification === 'Other' && !formData.otherQualification.trim()) newErrors.otherQualification = "Specify qualification";
         if (!formData.passingYear) newErrors.passingYear = "Passing Year is required";
         if (!formData.collegeName.trim()) newErrors.collegeName = "College Name is required";
-        if (!formData.interestedDomain) newErrors.interestedDomain = "Please select an Interested Domain";
+        if (!formData.interestedDomain) newErrors.interestedDomain = "Interested Domain is required";
         if (!formData.skills.trim()) newErrors.skills = "Skills are required";
         setErrors(newErrors);
         return Object.keys(newErrors).length === 0;
@@ -173,7 +136,7 @@ const RegistrationPage = () => {
                 setIsSubmitted(true);
                 window.scrollTo(0, 0);
             } catch (error) {
-                setSubmitError(error.message || "Failed to register. Please try again.");
+                setSubmitError(error.message || "Registration failed.");
             } finally {
                 setIsSubmitting(false);
             }
@@ -182,352 +145,144 @@ const RegistrationPage = () => {
 
     if (isSubmitted) {
         return (
-            <div className="min-h-screen bg-gray-50 dark:bg-gray-950 flex items-center justify-center px-4 py-20 transition-colors duration-300 relative overflow-hidden">
-                <style>{`
-                    @keyframes popIn {
-                        0% { opacity: 0; transform: scale(0.8) translateY(20px); }
-                        70% { transform: scale(1.05); }
-                        100% { opacity: 1; transform: scale(1); }
-                    }
-                    .animate-pop-in {
-                        animation: popIn 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
-                    }
-
-                    .checkmark-circle {
-                        stroke-dasharray: 166;
-                        stroke-dashoffset: 166;
-                        stroke-miterlimit: 10;
-                        animation: stroke 0.6s cubic-bezier(0.65, 0, 0.45, 1) 0.3s forwards;
-                    }
-
-                    .checkmark-check {
-                        transform-origin: 50% 50%;
-                        stroke-dasharray: 48;
-                        stroke-dashoffset: 48;
-                        animation: stroke 0.3s cubic-bezier(0.65, 0, 0.45, 1) 0.8s forwards;
-                    }
-
-                    @keyframes stroke {
-                        100% { stroke-dashoffset: 0; }
-                    }
-
-                    .confetti-container { perspective: 1000px; }
-                    .confetti-piece {
-                        position: absolute;
-                        width: 8px;
-                        height: 8px;
-                        top: 50%;
-                        left: 50%;
-                        opacity: 0;
-                    }
-
-                    ${[...Array(15)].map((_, i) => `
-                        .confetti-${i} {
-                            background: ${['#3b82f6', '#10b981', '#f59e0b', '#ef4444', '#8b5cf6'][i % 5]};
-                            transform: rotate(${i * 24}deg);
-                            animation: confetti-burst-${i} 1.5s ease-out 0.8s forwards;
-                        }
-                        @keyframes confetti-burst-${i} {
-                            0% { transform: rotate(${i * 24}deg) translate(0, 0); opacity: 1; }
-                            100% { transform: rotate(${i * 24 + (Math.random() * 180)}deg) translate(${(Math.random() - 0.5) * 400}px, -${Math.random() * 300}px); opacity: 0; }
-                        }
-                    `).join('\n')}
-                `}</style>
-
-                <div className="confetti-container absolute inset-0 pointer-events-none">
-                    {[...Array(15)].map((_, i) => (
-                        <div key={i} className={`confetti-piece confetti-${i}`}></div>
-                    ))}
-                </div>
-
-                <div className="max-w-md w-full bg-white dark:bg-gray-900 rounded-[2.5rem] shadow-2xl p-10 text-center border border-gray-100 dark:border-gray-800 animate-pop-in relative z-10">
+            <div className="min-h-screen bg-gray-50 dark:bg-gray-950 flex items-center justify-center px-4 py-20 relative overflow-hidden">
+                <div className="max-w-md w-full bg-white dark:bg-gray-900 rounded-[2.5rem] shadow-2xl p-10 text-center border border-gray-100 dark:border-gray-800 relative z-10">
                     <div className="relative mb-8 flex justify-center">
-                        <svg className="w-24 h-24 text-green-500" viewBox="0 0 52 52">
-                            <circle className="checkmark-circle" cx="26" cy="26" r="25" fill="none" stroke="currentColor" strokeWidth="2" />
-                            <path className="checkmark-check" fill="none" stroke="currentColor" strokeWidth="4" d="M14.1 27.2l7.1 7.2 16.7-16.8" />
-                        </svg>
+                        <CheckCircle className="w-20 h-20 text-green-500" />
                         <div className="absolute inset-0 bg-green-500/10 blur-2xl rounded-full animate-pulse"></div>
                     </div>
-
-                    <h2 className="text-3xl font-black text-gray-900 dark:text-white mb-4">Registration Successful!</h2>
-                    <p className="text-gray-600 dark:text-gray-400 mb-10 leading-relaxed">
-                        Excellent choice! You've taken the first step towards a better future. Our HR team will review your profile and reach out shortly.
-                    </p>
-
-                    <a
-                        href="/"
-                        className="group relative inline-flex items-center justify-center w-full bg-blue-600 text-white font-black py-4 rounded-2xl shadow-lg hover:shadow-2xl hover:scale-[1.03] active:scale-95 transition-all overflow-hidden"
-                    >
-                        <span className="relative z-10">Go Back Home</span>
-                        <div className="absolute inset-0 bg-white/20 -translate-x-full group-hover:translate-x-full transition-transform duration-700 skew-x-12"></div>
-                    </a>
+                    <h2 className="text-3xl font-black text-gray-900 dark:text-white mb-4">Success!</h2>
+                    <p className="text-gray-600 dark:text-gray-400 mb-10 leading-relaxed">Our HR team will review your profile and contact you soon.</p>
+                    <a href="/" className="inline-flex w-full justify-center bg-blue-600 text-white font-black py-4 rounded-2xl hover:bg-blue-700 transition-all">Go Home</a>
                 </div>
             </div>
         );
     }
 
     return (
-        <div className="min-h-screen bg-gray-50 dark:bg-gray-900 pb-20 transition-colors duration-300">
-            <section className="bg-blue-900 text-white py-16 text-center reveal active relative overflow-hidden">
-                <div className="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full -mr-32 -mt-32 blur-3xl"></div>
-                <div className="absolute bottom-0 left-0 w-64 h-64 bg-blue-600/10 rounded-full -ml-32 -mb-32 blur-3xl"></div>
-
+        <div className="min-h-screen bg-gray-50 dark:bg-gray-950 pb-24 transition-colors duration-300">
+            <section className="bg-blue-900 text-white py-24 text-center relative overflow-hidden">
+                <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-10"></div>
                 <div className="max-w-4xl mx-auto px-4 relative z-10">
-                    <h1 className="text-3xl md:text-5xl font-extrabold mb-4">Registration for Free Job Placement</h1>
-                    <p className="text-xl text-blue-200">
-                        Take the first step towards your dream career. Fill in your details below.
-                    </p>
+                    <h1 className="text-4xl md:text-6xl font-black mb-4 tracking-tighter uppercase">Registration for Free Placement</h1>
+                    <p className="text-xl text-blue-200 font-medium">Start your career journey with NetTech India.</p>
                 </div>
             </section>
 
-            <section className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 -mt-10">
-                <div className="bg-white dark:bg-gray-800 rounded-3xl shadow-xl p-8 md:p-12 border border-gray-100 dark:border-gray-700 reveal active transition-colors duration-300">
-                    <form onSubmit={handleSubmit} className="space-y-6">
+            <section className="max-w-4xl mx-auto px-4 -mt-16 relative z-20">
+                <div className="bg-white dark:bg-gray-900 rounded-[2.5rem] shadow-2xl p-8 md:p-14 border border-gray-100 dark:border-gray-800">
+                    <form onSubmit={handleSubmit} className="space-y-10">
                         {submitError && (
-                            <div className="bg-red-50 dark:bg-red-900/30 text-red-600 dark:text-red-300 p-4 rounded-xl flex items-center border border-red-100 dark:border-red-900/50">
-                                <AlertCircle className="w-5 h-5 mr-2" />
-                                {submitError}
+                            <div className="bg-red-50 dark:bg-red-900/20 text-red-600 dark:text-red-400 p-5 rounded-2xl flex items-center border border-red-100 dark:border-red-900/50">
+                                <AlertCircle className="w-5 h-5 mr-3" /> <span className="font-bold">{submitError}</span>
                             </div>
                         )}
-                        <div className="grid md:grid-cols-2 gap-6">
-                            <div className="md:col-span-2">
-                                <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">Full Name</label>
+
+                        <div className="grid md:grid-cols-2 gap-x-8 gap-y-10">
+                            {/* Row 1: Full Name */}
+                            <div className="md:col-span-2 relative z-[60]">
+                                <label className="block text-[10px] font-black uppercase text-gray-400 dark:text-gray-500 mb-3 tracking-[0.25em] ml-1">Full Name</label>
                                 <div className="relative group">
-                                    <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                                        <User className="h-5 w-5 text-gray-400 group-focus-within:text-blue-500 transition-colors" />
-                                    </div>
-                                    <input
-                                        type="text"
-                                        name="fullName"
-                                        value={formData.fullName}
-                                        onChange={handleChange}
-                                        className={`block w-full pl-10 pr-3 py-3 border rounded-xl focus:ring-2 focus:outline-none transition-all bg-white dark:bg-gray-700 dark:text-white ${errors.fullName ? 'border-red-300 focus:ring-red-200' : 'border-gray-300 dark:border-gray-600 focus:ring-blue-200 focus:border-blue-500 hover:border-gray-400'}`}
-                                        placeholder="Enter your full name"
-                                    />
+                                    <User className="absolute left-5 top-1/2 -translate-y-1/2 h-5 w-5 text-gray-400 group-focus-within:text-blue-500 transition-colors" />
+                                    <input type="text" name="fullName" value={formData.fullName} onChange={handleChange} className="w-full pl-14 pr-6 py-4 border-2 border-gray-100 dark:border-gray-800 rounded-[1.5rem] bg-gray-50 dark:bg-gray-900/50 dark:text-white focus:border-blue-500 focus:bg-white dark:focus:bg-gray-800 outline-none font-bold shadow-sm transition-all" placeholder="Full Name" />
                                 </div>
-                                {errors.fullName && <p className="mt-1 text-xs text-red-500 flex items-center ml-1"><AlertCircle className="w-3 h-3 mr-1" />{errors.fullName}</p>}
                             </div>
-                            <div>
-                                <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">Email ID</label>
+
+                            {/* Row 2: Email and Phone */}
+                            <div className="relative z-[55]">
+                                <label className="block text-[10px] font-black uppercase text-gray-400 dark:text-gray-500 mb-3 tracking-[0.25em] ml-1">Email ID</label>
                                 <div className="relative group">
-                                    <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                                        <Mail className="h-5 w-5 text-gray-400 group-focus-within:text-blue-500 transition-colors" />
-                                    </div>
-                                    <input
-                                        type="email"
-                                        name="email"
-                                        value={formData.email}
-                                        onChange={handleChange}
-                                        className={`block w-full pl-10 pr-3 py-3 border rounded-xl focus:ring-2 focus:outline-none transition-all bg-white dark:bg-gray-700 dark:text-white ${errors.email ? 'border-red-300 focus:ring-red-200' : 'border-gray-300 dark:border-gray-600 focus:ring-blue-200 focus:border-blue-500 hover:border-gray-400'}`}
-                                        placeholder="you@example.com"
-                                    />
+                                    <Mail className="absolute left-5 top-1/2 -translate-y-1/2 h-5 w-5 text-gray-400 group-focus-within:text-blue-500 transition-colors" />
+                                    <input type="email" name="email" value={formData.email} onChange={handleChange} className="w-full pl-14 pr-6 py-4 border-2 border-gray-100 dark:border-gray-800 rounded-[1.5rem] bg-gray-50 dark:bg-gray-900/50 dark:text-white focus:border-blue-500 focus:bg-white dark:focus:bg-gray-800 outline-none font-bold shadow-sm transition-all" placeholder="Email Address" />
                                 </div>
-                                {errors.email && <p className="mt-1 text-xs text-red-500 flex items-center ml-1"><AlertCircle className="w-3 h-3 mr-1" />{errors.email}</p>}
                             </div>
-                            <div>
-                                <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">Phone</label>
+
+                            <div className="relative z-[55]">
+                                <label className="block text-[10px] font-black uppercase text-gray-400 dark:text-gray-500 mb-3 tracking-[0.25em] ml-1">Phone</label>
                                 <div className="relative group">
-                                    <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                                        <span className="text-gray-500 font-bold text-xs">+91</span>
-                                        <span className="h-4 w-px bg-gray-300 dark:bg-gray-600 mx-2"></span>
+                                    <div className="absolute left-5 top-1/2 -translate-y-1/2 flex items-center">
+                                        <span className="text-gray-500 dark:text-gray-400 font-black text-xs">+91</span>
+                                        <span className="h-4 w-px bg-gray-300 dark:bg-gray-700 mx-3"></span>
                                     </div>
-                                    <input
-                                        type="tel"
-                                        name="phone"
-                                        value={formData.phone}
-                                        onChange={handleChange}
-                                        className={`block w-full pl-16 pr-3 py-3 border rounded-xl focus:ring-2 focus:outline-none transition-all bg-white dark:bg-gray-700 dark:text-white ${errors.phone ? 'border-red-300 focus:ring-red-200' : 'border-gray-300 dark:border-gray-600 focus:ring-blue-200 focus:border-blue-500 hover:border-gray-400'}`}
-                                        placeholder="9876543210"
-                                    />
+                                    <input type="tel" name="phone" value={formData.phone} onChange={handleChange} className="w-full pl-20 pr-6 py-4 border-2 border-gray-100 dark:border-gray-800 rounded-[1.5rem] bg-gray-50 dark:bg-gray-900/50 dark:text-white focus:border-blue-500 focus:bg-white dark:focus:bg-gray-800 outline-none font-bold shadow-sm transition-all" placeholder="9876543210" />
                                 </div>
-                                {errors.phone && <p className="mt-1 text-xs text-red-500 flex items-center ml-1"><AlertCircle className="w-3 h-3 mr-1" />{errors.phone}</p>}
                             </div>
-                            <div>
-                                <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">City</label>
-                                <div className="relative group">
-                                    <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                                        <MapPin className="h-5 w-5 text-gray-400 group-focus-within:text-blue-500 transition-colors" />
-                                    </div>
-                                    <input
-                                        type="text"
-                                        name="city"
-                                        value={formData.city}
-                                        onChange={handleChange}
-                                        className={`block w-full pl-10 pr-3 py-3 border rounded-xl focus:ring-2 focus:outline-none transition-all bg-white dark:bg-gray-700 dark:text-white ${errors.city ? 'border-red-300 focus:ring-red-200' : 'border-gray-300 dark:border-gray-600 focus:ring-blue-200 focus:border-blue-500 hover:border-gray-400'}`}
-                                        placeholder="e.g. Thane"
-                                    />
-                                </div>
-                                {errors.city && <p className="mt-1 text-xs text-red-500 flex items-center ml-1"><AlertCircle className="w-3 h-3 mr-1" />{errors.city}</p>}
-                            </div>
-                            <div>
-                                <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">State</label>
-                                <div className="relative group">
-                                    <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                                        <MapPin className="h-5 w-5 text-gray-400 group-focus-within:text-blue-500 transition-colors" />
-                                    </div>
-                                    <input
-                                        type="text"
-                                        name="state"
-                                        value={formData.state}
-                                        onChange={handleChange}
-                                        className={`block w-full pl-10 pr-3 py-3 border rounded-xl focus:ring-2 focus:outline-none transition-all bg-white dark:bg-gray-700 dark:text-white ${errors.state ? 'border-red-300 focus:ring-red-200' : 'border-gray-300 dark:border-gray-600 focus:ring-blue-200 focus:border-blue-500 hover:border-gray-400'}`}
-                                        placeholder="e.g. Maharashtra"
-                                    />
-                                </div>
-                                {errors.state && <p className="mt-1 text-xs text-red-500 flex items-center ml-1"><AlertCircle className="w-3 h-3 mr-1" />{errors.state}</p>}
-                            </div>
-                            <div>
-                                <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">Highest Qualification</label>
-                                <div className="relative group">
-                                    <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                                        <GraduationCap className="h-5 w-5 text-gray-400 group-focus-within:text-blue-500 transition-colors" />
-                                    </div>
-                                    <select
-                                        name="highestQualification"
-                                        value={formData.highestQualification}
-                                        onChange={handleChange}
-                                        className={`block w-full pl-10 pr-3 py-3 border rounded-xl focus:ring-2 focus:outline-none transition-all appearance-none bg-white dark:bg-gray-700 dark:text-white ${errors.highestQualification ? 'border-red-300 focus:ring-red-200' : 'border-gray-300 dark:border-gray-600 focus:ring-blue-200 focus:border-blue-500 hover:border-gray-400'}`}
-                                    >
-                                        <option value="">Select Qualification</option>
-                                        {qualifications.map((q, idx) => <option key={idx} value={q}>{q}</option>)}
-                                    </select>
-                                </div>
-                                {errors.highestQualification && <p className="mt-1 text-xs text-red-500 flex items-center ml-1"><AlertCircle className="w-3 h-3 mr-1" />{errors.highestQualification}</p>}
+
+                            {/* Row 3: Qualification and Year */}
+                            <div className="relative z-[50]">
+                                <CustomDropdown
+                                    label="Highest Qualification"
+                                    icon={GraduationCap}
+                                    options={qualifications}
+                                    value={formData.highestQualification}
+                                    onChange={(val) => handleDropdownChange('highestQualification', val)}
+                                    error={errors.highestQualification}
+                                />
                                 {formData.highestQualification === 'Other' && (
-                                    <div className="mt-3 animate-in fade-in slide-in-from-top-2 duration-200">
-                                        <input
-                                            type="text"
-                                            name="otherQualification"
-                                            value={formData.otherQualification}
-                                            onChange={handleChange}
-                                            className={`block w-full px-4 py-3 border rounded-xl focus:ring-2 focus:outline-none transition-all bg-white dark:bg-gray-700 dark:text-white ${errors.otherQualification ? 'border-red-300 focus:ring-red-200' : 'border-gray-300 dark:border-gray-600 focus:ring-blue-200 focus:border-blue-500 hover:border-gray-400'}`}
-                                            placeholder="Please specify your qualification"
-                                        />
-                                        {errors.otherQualification && <p className="mt-1 text-xs text-red-500 flex items-center ml-1"><AlertCircle className="w-3 h-3 mr-1" />{errors.otherQualification}</p>}
-                                    </div>
+                                    <input type="text" name="otherQualification" value={formData.otherQualification} onChange={handleChange} className="w-full mt-4 px-6 py-4 border-2 border-gray-100 dark:border-gray-800 rounded-2xl bg-gray-50 dark:bg-gray-900/50 dark:text-white outline-none font-bold animate-in slide-in-from-top-2 duration-300" placeholder="Specify Qualification" />
                                 )}
                             </div>
-                            <div>
-                                <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">Passing Year</label>
-                                <div className="relative group">
-                                    <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                                        <Calendar className="h-5 w-5 text-gray-400 group-focus-within:text-blue-500 transition-colors" />
-                                    </div>
-                                    <select
-                                        name="passingYear"
-                                        value={formData.passingYear}
-                                        onChange={handleChange}
-                                        className={`block w-full pl-10 pr-3 py-3 border rounded-xl focus:ring-2 focus:outline-none transition-all appearance-none bg-white dark:bg-gray-700 dark:text-white ${errors.passingYear ? 'border-red-300 focus:ring-red-200' : 'border-gray-300 dark:border-gray-600 focus:ring-blue-200 focus:border-blue-500 hover:border-gray-400'}`}
-                                    >
-                                        <option value="">Select Year</option>
-                                        {years.map((year) => <option key={year} value={year}>{year}</option>)}
-                                    </select>
-                                </div>
-                                {errors.passingYear && <p className="mt-1 text-xs text-red-500 flex items-center ml-1"><AlertCircle className="w-3 h-3 mr-1" />{errors.passingYear}</p>}
-                            </div>
-                            <div className="md:col-span-2">
-                                <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">College Name</label>
-                                <div className="relative group">
-                                    <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                                        <Building2 className="h-5 w-5 text-gray-400 group-focus-within:text-blue-500 transition-colors" />
-                                    </div>
-                                    <input
-                                        type="text"
-                                        name="collegeName"
-                                        value={formData.collegeName}
-                                        onChange={handleChange}
-                                        className={`block w-full pl-10 pr-3 py-3 border rounded-xl focus:ring-2 focus:outline-none transition-all bg-white dark:bg-gray-700 dark:text-white ${errors.collegeName ? 'border-red-300 focus:ring-red-200' : 'border-gray-300 dark:border-gray-600 focus:ring-blue-200 focus:border-blue-500 hover:border-gray-400'}`}
-                                        placeholder="Enter your college/university name"
-                                    />
-                                </div>
-                                {errors.collegeName && <p className="mt-1 text-xs text-red-500 flex items-center ml-1"><AlertCircle className="w-3 h-3 mr-1" />{errors.collegeName}</p>}
-                            </div>
-                            <div className="md:col-span-2">
-                                <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">Interested Domain</label>
-                                <div className="relative group">
-                                    <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                                        <Briefcase className="h-5 w-5 text-gray-400 group-focus-within:text-blue-500 transition-colors" />
-                                    </div>
-                                    <select
-                                        name="interestedDomain"
-                                        value={formData.interestedDomain}
-                                        onChange={handleChange}
-                                        className={`block w-full pl-10 pr-3 py-3 border rounded-xl focus:ring-2 focus:outline-none transition-all appearance-none bg-white dark:bg-gray-700 dark:text-white ${errors.interestedDomain ? 'border-red-300 focus:ring-red-200' : 'border-gray-300 dark:border-gray-600 focus:ring-blue-200 focus:border-blue-500 hover:border-gray-400'}`}
-                                    >
-                                        <option value="">Select Domain</option>
-                                        {JOB_DOMAINS.map((domain) => <option key={domain.id} value={domain.title}>{domain.title}</option>)}
-                                    </select>
-                                </div>
-                                {errors.interestedDomain && <p className="mt-1 text-xs text-red-500 flex items-center ml-1"><AlertCircle className="w-3 h-3 mr-1" />{errors.interestedDomain}</p>}
-                            </div>
-                            <div className="md:col-span-2">
-                                <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">Skills</label>
 
-                                {/* Intelligent Skill Bubbles / Suggestions */}
+                            <div className="relative z-[50]">
+                                <CustomDropdown
+                                    label="Passing Year"
+                                    icon={Calendar}
+                                    options={years}
+                                    value={formData.passingYear}
+                                    onChange={(val) => handleDropdownChange('passingYear', val)}
+                                    error={errors.passingYear}
+                                />
+                            </div>
+
+                            {/* Row 4: College Name */}
+                            <div className="md:col-span-2 relative z-[45]">
+                                <label className="block text-[10px] font-black uppercase text-gray-400 dark:text-gray-500 mb-3 tracking-[0.25em] ml-1">College Name</label>
+                                <div className="relative group">
+                                    <Building2 className="absolute left-5 top-1/2 -translate-y-1/2 h-5 w-5 text-gray-400 transition-colors" />
+                                    <input type="text" name="collegeName" value={formData.collegeName} onChange={handleChange} className="w-full pl-14 pr-6 py-4 border-2 border-gray-100 dark:border-gray-800 rounded-[1.5rem] bg-gray-50 dark:bg-gray-900/50 dark:text-white focus:border-blue-500 outline-none font-bold shadow-sm transition-all" placeholder="University/College Name" />
+                                </div>
+                            </div>
+
+                            {/* Row 5: Domain */}
+                            <div className="md:col-span-2 relative z-[40]">
+                                <CustomDropdown
+                                    label="Interested Domain"
+                                    icon={Briefcase}
+                                    options={JOB_DOMAINS.map(d => d.title)}
+                                    value={formData.interestedDomain}
+                                    onChange={(val) => handleDropdownChange('interestedDomain', val)}
+                                    searchable={true}
+                                    error={errors.interestedDomain}
+                                />
+                            </div>
+
+                            {/* Row 6: Skills */}
+                            <div className="md:col-span-2 relative z-[30]">
+                                <label className="block text-[10px] font-black uppercase text-gray-400 dark:text-gray-500 mb-3 tracking-[0.25em] ml-1">Professional Skills</label>
                                 {suggestedSkills.length > 0 && (
-                                    <div className="mb-4 animate-in fade-in slide-in-from-top-2 duration-500">
-                                        <div className="flex items-center gap-1.5 mb-3 text-blue-600 dark:text-blue-400">
+                                    <div className="mb-6">
+                                        <div className="flex items-center gap-2 mb-3 text-blue-600 dark:text-blue-400">
                                             <Sparkles className="w-4 h-4 fill-current" />
-                                            <span className="text-[10px] font-black uppercase tracking-widest">
-                                                {formData.skills.length > 2 ? 'Related Skills found for your profile' : `Primary Skills for ${formData.interestedDomain || 'Job Placement'}`}
-                                            </span>
+                                            <span className="text-[10px] font-black uppercase tracking-widest">Recommended Skills</span>
                                         </div>
-                                        <div className="flex flex-wrap gap-2">
+                                        <div className="flex flex-wrap gap-2.5">
                                             {suggestedSkills.map((skill, idx) => (
-                                                <button
-                                                    key={`${skill}-${idx}`}
-                                                    type="button"
-                                                    onClick={() => handleAddSkill(skill)}
-                                                    className="px-3 py-1.5 bg-blue-50 hover:bg-blue-600 dark:bg-blue-900/20 dark:hover:bg-blue-700 text-blue-700 hover:text-white dark:text-blue-300 dark:hover:text-white text-[11px] font-bold rounded-lg border border-blue-100 dark:border-blue-800 transition-all transform hover:scale-105 active:scale-95 shadow-sm"
-                                                >
-                                                    + {skill}
-                                                </button>
+                                                <button key={idx} type="button" onClick={() => handleAddSkill(skill)} className="px-4 py-2 bg-blue-50 dark:bg-blue-900/20 text-blue-700 dark:text-blue-300 text-[10px] font-black rounded-xl border border-blue-100 dark:border-blue-800 hover:bg-blue-600 hover:text-white transition-all active:scale-95 shadow-sm">+ {skill}</button>
                                             ))}
                                         </div>
                                     </div>
                                 )}
-
                                 <div className="relative group">
-                                    <div className="absolute top-3 left-0 pl-3 flex items-start pointer-events-none">
-                                        <Code2 className="h-5 w-5 text-gray-400 group-focus-within:text-blue-500 transition-colors" />
-                                    </div>
-                                    <textarea
-                                        name="skills"
-                                        value={formData.skills}
-                                        onChange={handleChange}
-                                        rows={3}
-                                        className={`block w-full pl-10 pr-3 py-3 border rounded-xl focus:ring-2 focus:outline-none transition-all bg-white dark:bg-gray-700 dark:text-white ${errors.skills ? 'border-red-300 focus:ring-red-200' : 'border-gray-300 dark:border-gray-600 focus:ring-blue-200 focus:border-blue-500 hover:border-gray-400'}`}
-                                        placeholder="E.g. Java, Python, SQL, Communication, Excel..."
-                                    />
+                                    <Code2 className="absolute left-5 top-5 h-5 w-5 text-gray-400" />
+                                    <textarea name="skills" value={formData.skills} onChange={handleChange} rows={4} className="w-full pl-14 pr-6 py-5 border-2 border-gray-100 dark:border-gray-800 rounded-[1.5rem] bg-gray-50 dark:bg-gray-900/50 dark:text-white focus:border-blue-500 outline-none font-bold shadow-sm transition-all" placeholder="E.g. Java, Python, SQL..." />
                                 </div>
-                                {errors.skills && <p className="mt-1 text-xs text-red-500 flex items-center ml-1"><AlertCircle className="w-3 h-3 mr-1" />{errors.skills}</p>}
                             </div>
                         </div>
 
-                        <div className="pt-4">
-                            <button
-                                type="submit"
-                                disabled={isSubmitting}
-                                className={`group relative w-full flex items-center justify-center bg-blue-700 text-white font-black py-4 rounded-2xl transition-all shadow-lg hover:shadow-2xl hover:scale-[1.02] active:scale-95 overflow-hidden ${isSubmitting ? 'opacity-70 cursor-not-allowed' : 'hover:bg-blue-800'}`}
-                            >
-                                <span className="relative z-10 flex items-center">
-                                    {isSubmitting ? (
-                                        <span className="flex items-center">
-                                            <RefreshCcw className="w-5 h-5 animate-spin mr-3" />
-                                            Processing...
-                                        </span>
-                                    ) : (
-                                        <>
-                                            Complete Registration
-                                            <Send className="ml-2 w-5 h-5 group-hover:translate-x-1 group-hover:translate-y-[-2px] transition-transform" />
-                                        </>
-                                    )}
-                                </span>
-                                <div className="absolute inset-0 bg-white/20 -translate-x-full group-hover:translate-x-full transition-transform duration-500 skew-x-12"></div>
+                        <div className="pt-6">
+                            <button type="submit" disabled={isSubmitting} className="w-full bg-blue-700 text-white font-black py-6 rounded-[2rem] hover:bg-blue-800 shadow-2xl shadow-blue-500/20 transition-all active:scale-[0.98] flex items-center justify-center gap-4 text-lg">
+                                {isSubmitting ? <RefreshCcw className="w-6 h-6 animate-spin" /> : <>COMPLETE REGISTRATION <Send className="w-6 h-6" /></>}
                             </button>
-                            <p className="text-xs text-gray-500 dark:text-gray-400 text-center mt-4 italic">
-                                Your data is secured. By registering, you agree to be contacted by NetTech India.
-                            </p>
                         </div>
                     </form>
                 </div>

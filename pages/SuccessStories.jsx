@@ -1,5 +1,6 @@
+
 import React, { useEffect, useState, useRef, useCallback, useMemo } from 'react';
-import { ChevronDown, RefreshCcw, Send, Play, ChevronLeft, ChevronRight, Sparkles, Calendar } from 'lucide-react';
+import { ChevronDown, RefreshCcw, Send, Play, ChevronLeft, ChevronRight, Sparkles, Calendar, Pause } from 'lucide-react';
 import { PLACED_STUDENTS } from '../data/successData';
 
 const SUCCESS_REELS = [
@@ -17,9 +18,16 @@ const SuccessStories = () => {
   const [visibleCount, setVisibleCount] = useState(20);
   const [isAnimating, setIsAnimating] = useState(false);
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [playingVideoId, setPlayingVideoId] = useState(null);
+  const [isMobile, setIsMobile] = useState(false);
+  const scrollRef = useRef(null);
 
   useEffect(() => {
     window.scrollTo(0, 0);
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
   }, []);
 
   const loadMore = () => {
@@ -30,6 +38,7 @@ const SuccessStories = () => {
     }, 400);
   };
 
+  // Carousel logic for Desktop (Chunky scrolling)
   const reelChunks = useMemo(() => {
     const chunks = [];
     for (let i = 0; i < SUCCESS_REELS.length; i += 4) {
@@ -46,19 +55,49 @@ const SuccessStories = () => {
     setCurrentSlide(prev => (prev === 0 ? reelChunks.length - 1 : prev - 1));
   }, [reelChunks.length]);
 
-  const handleVideoHover = (e) => {
+  // Video Management Logic
+  const togglePlay = (id, videoElement) => {
+    if (playingVideoId === id) {
+      videoElement.pause();
+      setPlayingVideoId(null);
+    } else {
+      // Pause all other videos if needed (though usually only one is visible/active)
+      const allVideos = document.querySelectorAll('video');
+      allVideos.forEach(v => {
+        if (v !== videoElement) {
+          v.pause();
+          v.currentTime = 0;
+        }
+      });
+      videoElement.play().catch(() => { });
+      setPlayingVideoId(id);
+    }
+  };
+
+  const handleVideoHover = (id, e) => {
+    if (isMobile) return;
     const video = e.currentTarget.querySelector('video');
     if (video) {
       video.muted = false;
       video.play().catch(() => { });
+      setPlayingVideoId(id);
     }
   };
 
   const handleVideoLeave = (e) => {
+    if (isMobile) return;
     const video = e.currentTarget.querySelector('video');
     if (video) {
       video.pause();
       video.currentTime = 0;
+      setPlayingVideoId(null);
+    }
+  };
+
+  const handleVideoClick = (id, e) => {
+    const video = e.currentTarget.querySelector('video');
+    if (video) {
+      togglePlay(id, video);
     }
   };
 
@@ -118,7 +157,6 @@ const SuccessStories = () => {
         </div>
         <h4 className="text-xl font-bold text-yellow-400" style={{ transform: 'translateZ(20px)' }}>{student.company}</h4>
 
-        {/* Selection Date UI */}
         <div className="mt-4 flex items-center gap-1.5 opacity-80" style={{ transform: 'translateZ(15px)' }}>
           <Calendar className="w-3.5 h-3.5 text-blue-200" />
           <span className="text-[10px] font-bold text-blue-100 uppercase tracking-widest">Selected on: {student.selectionDate}</span>
@@ -167,96 +205,137 @@ const SuccessStories = () => {
         )}
       </section>
 
-      {/* SUCCESS REELS SLIDESHOW */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-40">
-        <div className="text-center mb-12">
+      {/* SUCCESS REELS SLIDESHOW - MOBILE NATIVE SCROLL FIX */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-24 md:mt-40">
+        <div className="text-center mb-10 md:mb-16">
           <div className="inline-flex items-center gap-2 text-blue-600 dark:text-blue-400 font-black uppercase tracking-[0.3em] text-[10px] mb-4">
             <Sparkles className="w-4 h-4 fill-current" /> Success Highlights
           </div>
           <h2 className="text-3xl md:text-5xl font-black text-gray-900 dark:text-white tracking-tighter mb-4">Success <span className="text-blue-600">Reels</span></h2>
-          <p className="text-gray-500 dark:text-gray-400 max-w-2xl mx-auto font-medium">Watch how we bridge the gap. Each reel tells a story of transformation and achievement.</p>
+          <p className="text-gray-500 dark:text-gray-400 max-w-2xl mx-auto font-medium text-sm md:text-base">Watch how we bridge the gap. Each reel tells a story of transformation and achievement.</p>
         </div>
 
         <div className="relative">
-          <div className="overflow-hidden rounded-[2.5rem] bg-white dark:bg-gray-800 p-8 shadow-2xl border border-gray-100 dark:border-gray-700 transition-all duration-500">
+          {/* Mobile: Scroll Snap Container | Desktop: Carousel Logic Wrapper */}
+          <div className="overflow-hidden md:rounded-[2.5rem] bg-transparent md:bg-white md:dark:bg-gray-800 md:p-8 md:shadow-2xl md:border md:border-gray-100 md:dark:border-gray-700 transition-all duration-500">
+
+            {/* Scrollable Area */}
             <div
-              className="flex transition-transform duration-700 ease-in-out"
-              style={{ transform: `translateX(-${currentSlide * 100}%)` }}
+              ref={scrollRef}
+              className={`flex transition-transform duration-700 ease-in-out scrollbar-hide ${isMobile ? 'overflow-x-auto snap-x snap-mandatory gap-4 px-4 pb-8' : 'w-full'}`}
+              style={!isMobile ? { transform: `translateX(-${currentSlide * 100}%)` } : {}}
             >
-              {reelChunks.map((chunk, chunkIdx) => (
-                <div key={chunkIdx} className="w-full flex-shrink-0 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 px-3">
-                  {chunk.map((reel) => (
-                    <div
-                      key={reel.id}
-                      onMouseEnter={handleVideoHover}
-                      onMouseLeave={handleVideoLeave}
-                      className="group relative aspect-[9/16] bg-gray-950 rounded-[2rem] overflow-hidden shadow-lg transition-all duration-500 hover:-translate-y-2 cursor-pointer"
-                    >
-                      <video
-                        className="absolute inset-0 w-full h-full object-cover"
-                        src={reel.url}
-                        loop playsInline
-                      />
+              {isMobile ? (
+                // MOBILE VIEW: Simple map of all reels with horizontal scroll
+                SUCCESS_REELS.map((reel) => (
+                  <div
+                    key={reel.id}
+                    onClick={(e) => handleVideoClick(reel.id, e)}
+                    className="flex-shrink-0 w-[75vw] aspect-[9/16] snap-center group relative bg-gray-950 rounded-[2rem] overflow-hidden shadow-xl"
+                  >
+                    <video
+                      className="absolute inset-0 w-full h-full object-cover"
+                      src={reel.url}
+                      loop playsInline muted
+                    />
 
-                      <div className="absolute inset-0 flex items-center justify-center transition-opacity duration-300 group-hover:opacity-0 pointer-events-none">
-                        <div className="w-16 h-16 bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center text-white border border-white/30">
-                          <Play className="w-8 h-8 fill-current ml-1" />
-                        </div>
-                      </div>
-
-                      <div className="absolute bottom-6 left-6 right-6">
-                        <span className="text-[10px] font-black text-white drop-shadow-md uppercase tracking-widest mb-1 block">{reel.tag}</span>
-                        <h4 className="text-xl font-bold text-white leading-tight drop-shadow-lg">{reel.title}</h4>
+                    {/* Play Button Overlay */}
+                    <div className={`absolute inset-0 flex items-center justify-center transition-all duration-500 ${playingVideoId === reel.id ? 'opacity-0 scale-150' : 'opacity-100 scale-100'}`}>
+                      <div className="w-20 h-20 bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center text-white border border-white/40 shadow-2xl">
+                        <Play className="w-10 h-10 fill-current ml-1" />
                       </div>
                     </div>
-                  ))}
-                </div>
-              ))}
+
+                    {/* Content Overlay */}
+                    <div className="absolute inset-x-0 bottom-0 p-8 bg-gradient-to-t from-black/90 via-black/20 to-transparent">
+                      <span className="text-[10px] font-black text-blue-400 drop-shadow-md uppercase tracking-widest mb-1 block">{reel.tag}</span>
+                      <h4 className="text-xl font-bold text-white leading-tight drop-shadow-lg">{reel.title}</h4>
+                    </div>
+                  </div>
+                ))
+              ) : (
+                // DESKTOP VIEW: Chunked Carousel for layout control
+                reelChunks.map((chunk, chunkIdx) => (
+                  <div key={chunkIdx} className="w-full flex-shrink-0 grid grid-cols-4 gap-6 px-3">
+                    {chunk.map((reel) => (
+                      <div
+                        key={reel.id}
+                        onMouseEnter={(e) => handleVideoHover(reel.id, e)}
+                        onMouseLeave={handleVideoLeave}
+                        className="group relative aspect-[9/16] bg-gray-950 rounded-[2rem] overflow-hidden shadow-lg transition-all duration-500 hover:-translate-y-2 cursor-pointer"
+                      >
+                        <video
+                          className="absolute inset-0 w-full h-full object-cover"
+                          src={reel.url}
+                          loop playsInline muted
+                        />
+
+                        {/* Play Button Overlay */}
+                        <div className={`absolute inset-0 flex items-center justify-center transition-all duration-500 ${playingVideoId === reel.id ? 'opacity-0 scale-150' : 'opacity-100 scale-100'}`}>
+                          <div className="w-16 h-16 bg-white/30 backdrop-blur-md rounded-full flex items-center justify-center text-white border border-white/40 shadow-2xl">
+                            <Play className="w-8 h-8 fill-current ml-1" />
+                          </div>
+                        </div>
+
+                        {/* Content Overlay */}
+                        <div className="absolute inset-x-0 bottom-0 p-6 bg-gradient-to-t from-black/80 via-black/20 to-transparent">
+                          <span className="text-[10px] font-black text-blue-400 drop-shadow-md uppercase tracking-widest mb-1 block">{reel.tag}</span>
+                          <h4 className="text-xl font-bold text-white leading-tight drop-shadow-lg">{reel.title}</h4>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                ))
+              )}
             </div>
           </div>
 
-          {reelChunks.length > 1 && (
+          {/* Navigation Controls (Desktop Only) */}
+          {!isMobile && reelChunks.length > 1 && (
             <>
               <button
                 onClick={prevSlide}
-                className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 md:-translate-x-8 p-4 bg-white dark:bg-gray-800 rounded-full shadow-2xl border border-gray-100 dark:border-gray-700 hover:bg-blue-600 hover:text-white transition-all z-20"
+                className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-8 p-4 bg-white dark:bg-gray-800 rounded-full shadow-2xl border border-gray-100 dark:border-gray-700 hover:bg-blue-600 hover:text-white transition-all z-20"
               >
                 <ChevronLeft className="w-6 h-6" />
               </button>
               <button
                 onClick={nextSlide}
-                className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 md:translate-x-8 p-4 bg-white dark:bg-gray-800 rounded-full shadow-2xl border border-gray-100 dark:border-gray-700 hover:bg-blue-600 hover:text-white transition-all z-20"
+                className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-8 p-4 bg-white dark:bg-gray-800 rounded-full shadow-2xl border border-gray-100 dark:border-gray-700 hover:bg-blue-600 hover:text-white transition-all z-20"
               >
                 <ChevronRight className="w-6 h-6" />
               </button>
             </>
           )}
 
-          <div className="flex justify-center mt-8 gap-2">
-            {reelChunks.map((_, idx) => (
-              <button
-                key={idx}
-                onClick={() => setCurrentSlide(idx)}
-                className={`w-3 h-3 rounded-full transition-all ${currentSlide === idx ? 'bg-blue-600 w-8' : 'bg-gray-300 dark:bg-gray-700 hover:bg-gray-400'}`}
-              />
-            ))}
-          </div>
+          {/* Pagination dots (Desktop Only) */}
+          {!isMobile && (
+            <div className="flex justify-center mt-8 gap-2">
+              {reelChunks.map((_, idx) => (
+                <button
+                  key={idx}
+                  onClick={() => setCurrentSlide(idx)}
+                  className={`w-2.5 h-2.5 rounded-full transition-all ${currentSlide === idx ? 'bg-blue-600 w-8' : 'bg-gray-300 dark:bg-gray-700 hover:bg-gray-400'}`}
+                />
+              ))}
+            </div>
+          )}
         </div>
       </section>
 
       {/* CTA SECTION */}
-      <section className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 mt-40 text-center opacity-100 block">
-        <div className="bg-gradient-to-br from-blue-600 to-indigo-800 p-12 rounded-3xl shadow-2xl relative overflow-hidden group">
+      <section className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 mt-24 md:mt-40 text-center">
+        <div className="bg-gradient-to-br from-blue-600 to-indigo-800 p-8 md:p-12 rounded-[2rem] md:rounded-3xl shadow-2xl relative overflow-hidden group">
           <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full -mr-32 -mt-32 transition-transform duration-700 group-hover:scale-150"></div>
           <div className="relative z-10">
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">Want to be featured here?</h2>
-            <p className="text-blue-100 mb-10 text-lg max-w-xl mx-auto">
+            <h2 className="text-2xl md:text-4xl font-bold text-white mb-4 md:mb-6">Want to be featured here?</h2>
+            <p className="text-blue-100 mb-8 md:mb-10 text-base md:text-lg max-w-xl mx-auto">
               Your dream job is just one step away. Join our free placement cell and start your journey to a top MNC today.
             </p>
             <div className="flex flex-col sm:flex-row justify-center gap-4">
               <a
                 href="/register"
-                className="group relative bg-yellow-400 text-blue-900 font-bold py-4 px-10 rounded-xl hover:bg-yellow-300 transition-all shadow-lg hover:scale-110 active:scale-95 overflow-hidden"
+                className="group relative bg-yellow-400 text-blue-900 font-bold py-4 px-8 md:px-10 rounded-xl hover:bg-yellow-300 transition-all shadow-lg hover:scale-105 active:scale-95 overflow-hidden"
               >
                 <span className="relative z-10 flex items-center justify-center">
                   Apply for Placement
@@ -266,7 +345,7 @@ const SuccessStories = () => {
               </a>
               <a
                 href="/contact"
-                className="bg-transparent border-2 border-white/50 text-white font-bold py-4 px-10 rounded-xl hover:bg-white/10 transition-all hover:scale-105 active:scale-95 flex items-center justify-center"
+                className="bg-transparent border-2 border-white/50 text-white font-bold py-4 px-8 md:px-10 rounded-xl hover:bg-white/10 transition-all hover:scale-105 active:scale-95 flex items-center justify-center"
               >
                 Inquire Now
               </a>
@@ -274,6 +353,16 @@ const SuccessStories = () => {
           </div>
         </div>
       </section>
+
+      <style>{`
+        .scrollbar-hide::-webkit-scrollbar {
+          display: none;
+        }
+        .scrollbar-hide {
+          -ms-overflow-style: none;
+          scrollbar-width: none;
+        }
+      `}</style>
     </div>
   );
 };
